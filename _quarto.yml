@@ -8,8 +8,6 @@ website:
   site-url: "http://cccc0423.github.io/"
   navbar:
     right:
-      - href: confucius.qmd
-        text: 細說論語
       - href: about.qmd
         text: 關於
   page-footer:

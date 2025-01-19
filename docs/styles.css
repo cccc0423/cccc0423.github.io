@@ -15,3 +15,39 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 } 
+
+/* boxlinks */
+
+btn:hover {
+  font-weight: bold;
+}
+
+div.books, div.comment, div.caution {
+  padding: 1.1em;
+  padding-bottom: 0em;
+  margin: 1em 0;
+  padding-left: 90px;
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  color: #212529;
+  background-color: #FFFFFF;
+  border-top: dashed 5px #a9ccf4;
+  border-bottom: dashed 5px #a9ccf4;
+  border-left: dashed 5px #a9ccf4;
+  border-right: dashed 5px #a9ccf4;
+}
+  
+div.books {
+    background-image: url("images/books.svg");
+    background-size: 45px;
+}
+
+div.comment {
+  background-image: url("images/speech-balloon.svg");
+  background-size: 45px;
+}
+
+div.caution {
+  background-image: url("images/warning.svg");
+  background-size: 45px;
+}
