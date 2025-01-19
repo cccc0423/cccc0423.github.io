@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "小學生筆記"
+  favicon: "images/icon.jpeg"
+  site-url: "http://cccc0423.github.io/"
+  navbar:
+    right:
+      - href: confucius.qmd
+        text: 細說論語
+      - href: about.qmd
+        text: 關於
+  page-footer:
+    left: ""
+    center: "This site is powered by [Quarto](https://quarto.org)"
+    right:
+      - icon: github
+        href: https://github.com/
+      - icon: facebook
+        href: https://www.facebook.com/
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

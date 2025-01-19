@@ -1,0 +1,6 @@
+---
+title: "Philosophy of Science: A Very Short Introduction"
+subtitle: "一份閱讀筆記"
+date: 2025-01-07
+categories: [ "閱讀筆記" ]
+---

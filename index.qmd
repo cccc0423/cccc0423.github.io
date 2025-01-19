@@ -1,0 +1,12 @@
+---
+title: "首頁"
+listing:
+  id: listings-zh
+  type: default
+  contents: posts
+  sort: "date desc"
+  categories: true
+  sort-ui: [title, date]
+  filter-ui: [title, date, categories]
+  fields: [date, title, categories, image]
+---
