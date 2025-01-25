@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&display=swap');
 
 body {
-  font-family: 'Fira Sans', 'Source Sans Pro', 'Noto Sans KR', 'Noto Sans TC', 'Noto Color Emoji', -apple-system;
+  font-family: 'Fira Sans', 'Noto Sans KR', 'Noto Sans TC', 'Noto Color Emoji', -apple-system;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 } 
@@ -64,10 +64,10 @@ div.books, div.comment, div.caution {
   background-position: 20px center;
   color: #212529;
   background-color: #FFFFFF;
-  border-top: dashed 5px #a9ccf4;
-  border-bottom: dashed 5px #a9ccf4;
-  border-left: dashed 5px #a9ccf4;
-  border-right: dashed 5px #a9ccf4;
+  border-top: dashed 5px #B4D1E1;
+  border-bottom: dashed 5px #B4D1E1;
+  border-left: dashed 5px #B4D1E1;
+  border-right: dashed 5px #B4D1E1;
 }
   
 div.books {
@@ -83,13 +83,4 @@ div.comment {
 div.caution {
   background-image: url("images/warning.svg");
   background-size: 45px;
-}
-
-.flushleft{
-  width:80%;
-  display:inline-block;
-}
-.flushright{
-  width:15%;
-  display: inline-block;
 }

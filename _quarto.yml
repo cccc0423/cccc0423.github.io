@@ -21,7 +21,9 @@ website:
 
 format:
   html:
-    theme: zephyr
+    theme:
+      - zephyr
+      - styles.scss
     css: styles.css
     toc: true
 
