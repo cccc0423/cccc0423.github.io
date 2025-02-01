@@ -85,3 +85,15 @@ div.caution {
   background-size: 45px;
 }
 
+.emphasis {
+  position: relative;
+}
+
+.emphasis .dot {
+  position: absolute;
+  bottom: -1em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7em;
+}
+

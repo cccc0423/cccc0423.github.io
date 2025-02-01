@@ -1,7 +1,7 @@
 ---
 title: "流行病學試驗"
 subtitle: "Modern Epidemiology, 4th Edition --- Chapter 6"
-date: 2025-01-07
+date: 2024-08-17
 categories: [ "閱讀筆記", "流行病學" ]
 ---
 
