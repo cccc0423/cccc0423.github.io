@@ -4,6 +4,7 @@ subtitle: "農曆新年"
 date: 2025-02-01
 categories: [ "週記" ]
 include-after-body: "../emphasis-point.html"
+back-to-top-navigation: true
 margin-header: |
   >  <ruby>
   >    週<rt>ㄓㄡ</rt>記<rt>ㄐㄧˋ</rt>
