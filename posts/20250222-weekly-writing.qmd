@@ -1,7 +1,7 @@
 ---
 title: "週記（五）"
 subtitle: "開學第一週"
-date: 2025-02-15
+date: 2025-02-22
 categories: [ "週記" ]
 include-after-body: "../emphasis-point.html"
 margin-header: |
