@@ -1,5 +1,8 @@
 ---
 title: "小學生筆記"
+include-in-header:
+      text: |
+        <meta name="google-site-verification" content="Yzem9_xPjrCrNcCHmziBq7Ak2gQUxZeZ29IQMvNZdkc" />
 include-before-body: confucius-said.html
 listing:
   id: listings
