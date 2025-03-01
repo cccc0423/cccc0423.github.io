@@ -1,6 +1,6 @@
 ---
 title: "週記（六）"
-subtitle: "開學前一週"
+subtitle: "超沒效率的一週"
 date: 2025-03-01
 categories: [ "週記" ]
 include-after-body: "../emphasis-point.html"
