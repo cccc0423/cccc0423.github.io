@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - googlef0fd5969082931d4.html
 
 website:
   title: "小學生筆記"
