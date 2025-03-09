@@ -49,6 +49,25 @@ blockquote {
   line-height: 1.8;
 }
 
+/* links */
+
+a:not([class]):not(.body > a):not(.listing-categories > a):not(.metadata > a):not(.quarto-category > a) {
+  color: #0072B2;
+	font-weight: 400;
+	padding: 2px;
+}
+
+a:not([class]):not(.body > a):not(.listing-categories > a):not(.metadata > a):not(.quarto-category > a):hover {
+  background: linear-gradient(#dae9f1, #dae9f1);
+	background-size: auto 2em;
+	background-repeat: no-repeat;
+	background-position: 0% 18px;
+}
+
+a:not([class]):not(.body > a):not(.listing-categories > a):not(.metadata > a):not(.quarto-category > a), u{
+  text-decoration: none;
+}
+
 /* boxlinks */
 
 btn:hover {
