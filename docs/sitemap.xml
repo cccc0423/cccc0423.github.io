@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://cccc0423.github.io/about.html</loc>
-    <lastmod>2025-03-01T16:24:44.689Z</lastmod>
-  </url>
-  <url>
-    <loc>http://cccc0423.github.io/posts/20250208-weekly-writing.html</loc>
-    <lastmod>2025-03-01T16:24:43.298Z</lastmod>
-  </url>
-  <url>
-    <loc>http://cccc0423.github.io/posts/20250125-weekly-writing.html</loc>
-    <lastmod>2025-03-01T16:24:42.738Z</lastmod>
-  </url>
-  <url>
-    <loc>http://cccc0423.github.io/posts/20250222-weekly-writing.html</loc>
-    <lastmod>2025-03-01T16:24:42.083Z</lastmod>
-  </url>
-  <url>
-    <loc>http://cccc0423.github.io/posts/20250201-weekly-writing.html</loc>
-    <lastmod>2025-03-01T16:24:41.778Z</lastmod>
-  </url>
-  <url>
-    <loc>http://cccc0423.github.io/posts/20250301-weekly-writing.html</loc>
-    <lastmod>2025-03-01T16:24:42.400Z</lastmod>
-  </url>
-  <url>
-    <loc>http://cccc0423.github.io/posts/20230304-friedman-thermostat.html</loc>
-    <lastmod>2025-03-01T16:24:43.004Z</lastmod>
-  </url>
-  <url>
-    <loc>http://cccc0423.github.io/posts/20250215-weekly-writing.html</loc>
-    <lastmod>2025-03-01T16:24:43.579Z</lastmod>
+    <loc>http://cccc0423.github.io/misc.html</loc>
+    <lastmod>2025-03-09T02:15:04.758Z</lastmod>
   </url>
   <url>
     <loc>http://cccc0423.github.io/index.html</loc>
-    <lastmod>2025-03-01T16:24:44.442Z</lastmod>
+    <lastmod>2025-03-09T02:15:04.227Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20250308-weekly-writing.html</loc>
+    <lastmod>2025-03-09T02:15:03.158Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20250208-weekly-writing.html</loc>
+    <lastmod>2025-03-09T02:15:02.488Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20250125-weekly-writing.html</loc>
+    <lastmod>2025-03-09T02:15:01.894Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20250222-weekly-writing.html</loc>
+    <lastmod>2025-03-09T02:15:01.246Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/misc/name-tag.html</loc>
+    <lastmod>2025-03-09T02:15:00.416Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20250201-weekly-writing.html</loc>
+    <lastmod>2025-03-09T02:15:00.911Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20250301-weekly-writing.html</loc>
+    <lastmod>2025-03-09T02:15:01.540Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20230304-friedman-thermostat.html</loc>
+    <lastmod>2025-03-09T02:15:02.171Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/posts/20250215-weekly-writing.html</loc>
+    <lastmod>2025-03-09T02:15:02.798Z</lastmod>
+  </url>
+  <url>
+    <loc>http://cccc0423.github.io/about.html</loc>
+    <lastmod>2025-03-09T02:15:04.497Z</lastmod>
   </url>
 </urlset>

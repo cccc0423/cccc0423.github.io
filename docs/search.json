@@ -1,10 +1,45 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "關於",
+    "objectID": "misc.html",
+    "href": "misc.html",
+    "title": "其他",
     "section": "",
-    "text": "喜歡吉娃娃的人。"
+    "text": "名牌產生器：為了當助教的課，用 \\(\\rm \\LaTeX\\) 製作了一個簡單的名牌產生器。"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "小學生筆記",
+    "section": "",
+    "text": "⇦ ⇨ ↻ ⓘ\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n週記（七）\n\n\n超沒效率的另一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nMar 8, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（六）\n\n\n超沒效率的一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nMar 1, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（五）\n\n\n開學第一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 22, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（四）\n\n\n開學前一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 15, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（三）\n\n\n要趕緊決定碩論題目才行\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 8, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（二）\n\n\n農曆新年\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 1, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（一）\n\n\n農曆年前的最後一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nJan 25, 2025\n\n\n\n\n\n\n  \n\n\n\n\nMilton Friedman 的恆溫器\n\n\n一個寓言故事\n\n\n\n\n因果推論\n\n\n經濟學\n\n\n \n\n\n\n\nMar 4, 2023\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/20250308-weekly-writing.html",
+    "href": "posts/20250308-weekly-writing.html",
+    "title": "週記（七）",
+    "section": "",
+    "text": "不知道要寫什麼，來寫上課學到什麼好了。在此之前補述一下上週的學習。\n\n\n書法課分初學與進階兩組。這與練習的材料和評分標準有關。雖然我學了一陣子了，但還是沒把握自己能算是進階組，所以選了初學組。我修的這門課教智永的真書千字文。所謂真書，就是楷書的意思。當然在那個時代（隋朝），因為楷書似乎還沒有發展得那麼成熟（？），所以智永的楷書也帶有一點點行書的筆意。上週初學組從基本筆畫點、撇開始。\n至於統計學習，上課進度真的很快。上週老師教了 ESL 的第四章。第四章的主題是用於分類的線性方法。所謂線性方法，指的是那些判別函數 \\(\\delta_k(x)\\) 或後驗機率 \\(P(G = k \\mid X = x)\\) 模型（在單調轉換後）是線性的方法。\n具體而言，這章節最主要介紹 linear discriminant analysis (LDA) 和 logistic regression，與他們的一些變形。有趣的是 LDA 和 logistic regression 其實可以導出等價的判別準則，可是 LDA 卻需要假設資料從常態分配中抽出。這使 logistic regression 在理論上更穩健，而當資料真的從常態分配生成時，LDA 的漸進效率更好。另一件有趣的事情是 LDA 與線性迴歸有一個比較深的連結；課本習題 4.2 讓我們逐步推導，在二元分類問題中，如果兩類別的樣本數相當，那線性迴歸的決策邊界其實就是 LDA 的決策邊界。不過我還沒有參透背後的直觀意義。除此之外，最後還提了一點基於 separating hyperplanes 的分類方法，如 perceptron learning algorithm，然後為 support vector machine (SVM) 鋪路。\n\n\n\n這週書法課讓我們練習橫畫。不過，我當然已經很會了。就這樣沒什麼壓力地度過兩節課。\n這週的統計學習教 ESL 第五章的前半。第五章的內容是 basis expansions 和 regularization。我們這週就教各種 splines。我有感覺老師因為感覺自己上太快，所以刻意放慢速度。至於，有什麼有趣的東西嗎？我覺得課本習題 5.7，說 knots 在資料點 \\(x_i\\) 上的 natrual cubic splines 可以最小化 \\[\n\\operatorname{RSS}(f, \\lambda)\n= \\sum_{i=1}^N \\left( y_i - f(x_i) \\right)^2 + \\lambda \\int f''(t)^2 \\, dt\n\\] 這個目標函數，是一件很有趣的事情。不過講 smoothing splines 的計算時介紹到 B-splines，我真的是對這部分感覺很陌生。有時間應該好好研究研究😅。"
+  },
+  {
+    "objectID": "posts/20250308-weekly-writing.html#修課",
+    "href": "posts/20250308-weekly-writing.html#修課",
+    "title": "週記（七）",
+    "section": "",
+    "text": "不知道要寫什麼，來寫上課學到什麼好了。在此之前補述一下上週的學習。\n\n\n書法課分初學與進階兩組。這與練習的材料和評分標準有關。雖然我學了一陣子了，但還是沒把握自己能算是進階組，所以選了初學組。我修的這門課教智永的真書千字文。所謂真書，就是楷書的意思。當然在那個時代（隋朝），因為楷書似乎還沒有發展得那麼成熟（？），所以智永的楷書也帶有一點點行書的筆意。上週初學組從基本筆畫點、撇開始。\n至於統計學習，上課進度真的很快。上週老師教了 ESL 的第四章。第四章的主題是用於分類的線性方法。所謂線性方法，指的是那些判別函數 \\(\\delta_k(x)\\) 或後驗機率 \\(P(G = k \\mid X = x)\\) 模型（在單調轉換後）是線性的方法。\n具體而言，這章節最主要介紹 linear discriminant analysis (LDA) 和 logistic regression，與他們的一些變形。有趣的是 LDA 和 logistic regression 其實可以導出等價的判別準則，可是 LDA 卻需要假設資料從常態分配中抽出。這使 logistic regression 在理論上更穩健，而當資料真的從常態分配生成時，LDA 的漸進效率更好。另一件有趣的事情是 LDA 與線性迴歸有一個比較深的連結；課本習題 4.2 讓我們逐步推導，在二元分類問題中，如果兩類別的樣本數相當，那線性迴歸的決策邊界其實就是 LDA 的決策邊界。不過我還沒有參透背後的直觀意義。除此之外，最後還提了一點基於 separating hyperplanes 的分類方法，如 perceptron learning algorithm，然後為 support vector machine (SVM) 鋪路。\n\n\n\n這週書法課讓我們練習橫畫。不過，我當然已經很會了。就這樣沒什麼壓力地度過兩節課。\n這週的統計學習教 ESL 第五章的前半。第五章的內容是 basis expansions 和 regularization。我們這週就教各種 splines。我有感覺老師因為感覺自己上太快，所以刻意放慢速度。至於，有什麼有趣的東西嗎？我覺得課本習題 5.7，說 knots 在資料點 \\(x_i\\) 上的 natrual cubic splines 可以最小化 \\[\n\\operatorname{RSS}(f, \\lambda)\n= \\sum_{i=1}^N \\left( y_i - f(x_i) \\right)^2 + \\lambda \\int f''(t)^2 \\, dt\n\\] 這個目標函數，是一件很有趣的事情。不過講 smoothing splines 的計算時介紹到 B-splines，我真的是對這部分感覺很陌生。有時間應該好好研究研究😅。"
+  },
+  {
+    "objectID": "posts/20250308-weekly-writing.html#研究與閱讀",
+    "href": "posts/20250308-weekly-writing.html#研究與閱讀",
+    "title": "週記（七）",
+    "section": "研究與閱讀",
+    "text": "研究與閱讀\n又是碩論毫無進展的一週。還沒拿定主意要做什麼。來說一下我到底是對什麼有興趣。\n我想要做好的應用個體。我不認爲我會、我有能力或我想成為一個純粹的 econometric theorist。與其說我對計量經濟學有興趣，更貼切的說法是，我在從事經驗研究的過程中，產生一些困惑。我發現其中有些困惑曾經被一些人，例如計量經濟學家、其他科學領域的學者或者科學哲學家詢問、嘗試解答過。我實在很著迷於這些根本的科學方法論問題。一個最簡單、最普遍的疑問是，什麼時候我們會說 \\(X\\) 對 \\(Y\\) 有因果關係？（這不是一個簡單的問題）。然後我們還可以退一步問，這個問題是有意義的嗎？\n回到正題，如果要在經濟系做一些相關的研究，最直接地就是我去做一些計量經濟學的方法研究。現在我有一些感興趣的關鍵字：\n\n我對 difference-in-differences (DiD) 比較熟悉，這是做實證研究的經濟學家非常常用的研究設計。問題在於，DiD 的 papers 真的汗牛充棟，我不知道我有可能做出什麼新的貢獻。\n我對 mediation analysis 有興趣但不熟悉，這並不是大多數經濟學家熟悉的東西，做這個的大多在流行病學、政治學等領域。我覺得這個領域有很多有趣的問題。其中之一，就是我們能不能放寬經典的 sequential ignorability 假設。我曾經在 JC 的機器學習課的期末報告，嘗試提出一個利用 parallel trends 假設來識別一些 mediation analysis 參數的想法（然後用 double ML 的方式估計）。這是一個 DiD 設計的應用。但是，後來我也有點難信服我下的 parallel trends 假設真的可能在現實世界成立。一個潛在的方向是去研究它的 empirical contents，如最近有文章在討論怎樣的 selection mechanism 會產生 parallel trends，但我對這方向很悲觀，我感覺我沒有能力，而且沒有好結果。另一個方向是往 principal stratification 的方向發展，可是這感覺最終又會太像某篇 JBES 的文章。\n我對 treatment heterogeneity 也有興趣。這是另一個很冷門的主題。學過因果推論 101 的人都聽過 effect heterogeneity，但 treatment heterogeneity 是另一個問題。在 Rubin causal model 裡，通常假設 stable unit treatment value assumption (SUTVA)。這個假設可以分成兩個部分，第一是沒有干擾（interference），也就是說，任何人的 treatment condition 都不會影響其他人的 outcome；第二是 treatment 沒有多個「版本」，也就是說，那些被劃分成有同樣的 treatment condition 的人，他們的 treatment condition 真的是一樣的。第二個部分比較微妙，經濟學的文獻也很少人研究，既有的討論大部分在流行病學的文獻裡。所謂沒有多個版本，其實是要求 treatment 有清楚的定義。以血壓為例，研究者可能想了解降低血壓對健康的效果，但是這個 treatment 有很多版本，比如藥物治療、手術治療、飲食治療等等。如果放在 Heckman 那套「思想實驗」的框架的話，沒有多個版本的要求事實上也可以看成要求研究者所觀察到的實驗組和對照組，真的與他心目中的思想實驗的參數有關。這個問題在經濟學中似乎比較少被詳細討論。比如，我們經常測量婚姻的效果、生育的效果，但是這些 treatment 的定義其實是很模糊的，很難想像真的滿足 SUTVA。而這些研究者心目中的思想實驗是什麼？要怎麼把問題定義清楚？"
+  },
+  {
+    "objectID": "posts/20250308-weekly-writing.html#其他",
+    "href": "posts/20250308-weekly-writing.html#其他",
+    "title": "週記（七）",
+    "section": "其他",
+    "text": "其他\n週四吃了個有點貴的晚餐。現在已經覺得自己對吃東西沒有太大興趣了😅。並且體悟到節制應該是重要的美德。另外，我還是覺得我更適合一些比較接地氣的食物，例如泰米香的油爆草蝦、聚的北海道昆布湯或者雙月的蒜好好瘦肉湯。\n\n用 Claude 3.7 Sonnet 完成 Perceptron 演算法的互動式視覺化\n現在的 LLM 真的不錯用。我用它寫了一個 perceptron 演算法的互動式視覺化。這個視覺化是基於 SVG 的，我只有手動修改一些美感的部分。\nRosenblatt 的 perceptron 演算法是一個簡單的二元分類演算法。它的目標是找到一個 hyperplane，使得正類樣本（標籤為 \\(+1\\) 的那些）在 hyperplane 的一邊，負類樣本（標籤為 \\(-1\\) 的那些）在 hyperplane 的另一邊。這個 hyperplane 可以寫成 \\(\\beta_1^\\intercal x + \\beta_0 = 0\\) 或 \\(\\beta^\\intercal x^*\\)，其中，\\(\\beta = (\\beta_1, \\beta_0)\\) 可以看成是該 hyperplane 的法向量，\\(x^* = (x, 1)\\) 是樣本的特徵向量。\n那這個演算法實際上怎麼找到那個 hyperplane 呢？它使用一種隨機的梯度下降法。具體來說，對於一個被誤分類的樣本 \\(x_i^*\\)，我們更新 \\(\\beta\\) 的規則是 \\(\\beta_{\\text{new}} \\leftarrow \\beta_{\\text{old}} + y_i z_i\\)，其中 \\(y_i\\) 是樣本的標籤，\\(z_i = x_i^* / \\| x_i^* \\|\\) 是樣本的標準化向量。\n以下的視覺化展示，假設該 \\(x_i^*\\) 的標籤是 \\(-1\\) 而使得 \\(\\beta^\\intercal x_i + \\beta_0 &gt; 0\\)，那麼我們就應該把 \\(\\beta\\) 向 \\(z_i\\) 的反方向移動一些，使得 hyperplane 能夠正確分類這個樣本。\n\n  \n    \n  \n\n  \n    執行一步\n    自動運行\n    重置\n  \n\n  \n  \n  \n  \n  \n  \n  當前狀態\n  \n  \n  \n  \n    迭代次數：0\n    \\(\\beta\\)：(0.00, 0.00, 0.00)\n    \n      \n        選中的點：(, )；標籤：\n        標準化向量 \\(z\\)：(, , )\n      \n    \n  \n  \n  \n\n  \n  \n  \n  \n  \n  \n  演算法說明\n  \n  \n  \n  \n    紅色向量：\\(\\beta\\) 參數向量，決定決策邊界，垂直於決策邊界\n    藍色線：當前決策邊界\n    綠色點：正類樣本（\\(+1\\)）\n    紅色點：負類樣本（\\(-1\\)）\n    紫色虛線：標準化向量 \\(z\\) \n    更新規則：\\(\\beta_{\\text{new}} \\leftarrow \\beta_{\\text{old}} + y_i z_i\\)（其中 \\(y_i\\) 是點的標籤，\\(z_i\\)  是標準化向量）\n    虛線框：當前被誤分類的點"
   },
   {
     "objectID": "posts/20250208-weekly-writing.html",
@@ -98,6 +133,13 @@
     "text": "其他\n記錄一下新吃了什麼。\n週一吃了溫州街蘿蔔絲餅達人。這間似乎是名店，週一傍晚路過看到大排長龍，於是跟著排隊。我第一次吃蘿蔔絲餅，就是油炸的麵團包著蘿蔔絲。味道還可以，裡頭的蘿蔔絲很多，吃起來有點脆脆的，不過網路上也有人說他們不喜歡這樣偏生的口感。我倒是覺得還好。我還點了蔥油餅，同樣是油炸的。我比較喜歡蔥油餅。不知道是不是因為我放冷了才吃，感覺非常油，但蔥香味道還不錯。以價格和味道而言還不錯，是如果不用排太久的隊，而且吃垃圾食物的額度還沒用罄的時候會想吃的店。\n週六吃了 Boulangerie Ours，四維路上的歐式麵包店。我買了一根長棍、一個肉桂捲（sticky bun）、一個蘆筍培根佛卡夏和一塊巧克力餅乾。都很好吃。長棍外皮酥脆，內裡軟綿，味道不錯。肉桂捲的肉桂、堅果和焦糖味都很香。佛卡夏的蘆筍很鮮嫩，培根的鹹味和起司的香氣很搭。巧克力餅乾的巧克力味道很濃。下次還會再訪，試試看酸種和三明治。"
   },
   {
+    "objectID": "misc/name-tag.html",
+    "href": "misc/name-tag.html",
+    "title": "名牌產生器",
+    "section": "",
+    "text": "這個產生器能讀 .tsv 檔。使用者需要把 .tsv 檔和 .tex 檔放在同個路徑之下。\n如果我們從 NTU COOL 上下載了學生名單，那我們可以用 R 把學生名單轉換成 .tsv 檔。注意這個 .tsv 檔要有兩個欄位，一個是中文名字 chinese，另一個是英文名字 english。\n\nlibrary(tidyverse)\nlibrary(readxl)\n\nfile_path &lt;- \"Student-List.xlsx\"\n\nstudent &lt;- read_excel(file_path) %&gt;%\n  mutate(\n    english = str_extract(Name, \"(?&lt;=\\\\().*(?=\\\\))\"),\n    chinese = str_remove(Name, \" \\\\(.*\")\n  )\n\nstudent %&gt;%\n  select(chinese, english) %&gt;%\n  write_tsv(\"student.tsv\")\n\n檔案大概要是長這樣。\nchinese english\n林一一  LIN, YI-Yi\n張二二 CHANG, ER-ER\n...\n再來就是 \\(\\rm \\LaTeX\\) 的部分。這個文件會讀取 .tsv 檔，然後把學生名字和學號印在 A4 紙上。注意這個文件要用 xelatex 編譯，因為我用了 xeCJK 套件來處理中文，而且要安裝相應的字型才能正常編譯（或者改成自己有的字型）。現在使用的幾個字型都是 overleaf 上有的。漢字字型是日文的 Harano Aji Gothic，因為有點缺字，所以缺字的地方會用 Noto Sans CJK JP 來代替。英文字型則是 IBM Plex Sans Condensed，會使用 Condesed 是因為這樣能塞下比較多的字，不至於把字縮得太小。\n\\documentclass[a4paper]{article}\n\\usepackage[margin=-10pt]{geometry}\n\\usepackage{fontspec}\n\\usepackage[AutoFallBack=true]{xeCJK}\n\\setCJKmainfont{Noto Sans CJK JP}\n\\setCJKsansfont[FallBack=Noto Sans CJK JP]{Harano Aji Gothic}\n\\setsansfont{IBM Plex Sans Condensed}\n\\usepackage{graphicx}\n\\pagestyle{empty}\n\\usepackage{csvsimple}\n\\usepackage{xcolor}\n\\definecolor{gray02}{gray}{0.2}\n\n\\newcommand{\\NamePlate}[2]{%\n  \\begin{center}\n    \\begin{tabular}{@{}c@{}}\n      %---------------------------------\n      % (1) 第一等分：空白\n      \\begin{minipage}[c][.25\\textheight][c]{.95\\textwidth}\n      \\end{minipage}\\\\\n      \\hline\n      %---------------------------------\n      % (2) 第二等分：旋轉 180° 的中英文姓名\n      \\begin{minipage}[c][.25\\textheight][c]{.95\\textwidth}\n        \\centering\n        \\rotatebox{180}{%\n          \\parbox{1\\textwidth}{\\centering\n            {\\fontsize{65}{72}\\selectfont\\sffamily\\bfseries\\textcolor{gray02}{#1}}\\\\[1cm]\n            {\\fontsize{60}{60}\\selectfont\\sffamily\\bfseries\\textcolor{gray02}{#2}}\n          }%\n        }\n      \\end{minipage}\\\\\n      \\hline\n      %---------------------------------\n      % (3) 第三等分：正常方向的中英文姓名\n      \\begin{minipage}[c][.25\\textheight][c]{.95\\textwidth}\n        \\centering\n        {\\fontsize{65}{72}\\selectfont\\sffamily\\bfseries\\textcolor{gray02}{#1}}\\\\[1cm]\n        {\\fontsize{60}{60}\\selectfont\\sffamily\\bfseries\\textcolor{gray02}{#2}}\n      \\end{minipage}\\\\\n      \\hline\n      %---------------------------------\n      % (4) 第四等分：空白\n      \\begin{minipage}[c][.25\\textheight][c]{.95\\textwidth}\n      \\end{minipage}\\\\\n    \\end{tabular}\n  \\end{center}\n}\n\n\\begin{document}\n\n\\csvreader[head to column names, separator=tab]{name_tab.tsv}{}{%\n   \\NamePlate{\\chinese}{\\english}\n}\n\n\\end{document}"
+  },
+  {
     "objectID": "posts/20250201-weekly-writing.html",
     "href": "posts/20250201-weekly-writing.html",
     "title": "週記（二）",
@@ -175,10 +217,10 @@
     "text": "Footnotes\n\n\n直到最近幾個月，他又解封了我的 Twitter 然後重新追蹤我，但我們沒有任何互動。↩︎"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "小學生筆記",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "關於",
     "section": "",
-    "text": "⇦ ⇨ ↻ ⓘ\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n週記（六）\n\n\n超沒效率的一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nMar 1, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（五）\n\n\n開學第一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 22, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（四）\n\n\n開學前一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 15, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（三）\n\n\n要趕緊決定碩論題目才行\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 8, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（二）\n\n\n農曆新年\n\n\n\n\n週記\n\n\n \n\n\n\n\nFeb 1, 2025\n\n\n\n\n\n\n  \n\n\n\n\n週記（一）\n\n\n農曆年前的最後一週\n\n\n\n\n週記\n\n\n \n\n\n\n\nJan 25, 2025\n\n\n\n\n\n\n  \n\n\n\n\nMilton Friedman 的恆溫器\n\n\n一個寓言故事\n\n\n\n\n因果推論\n\n\n經濟學\n\n\n \n\n\n\n\nMar 4, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "喜歡吉娃娃的人。"
   }
 ]

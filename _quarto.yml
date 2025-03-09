@@ -10,6 +10,8 @@ website:
   site-url: "http://cccc0423.github.io/"
   navbar:
     right:
+      - href: misc.qmd
+        text: 其他
       - href: about.qmd
         text: 關於
   page-footer:
