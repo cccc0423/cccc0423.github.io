@@ -197,12 +197,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Rosenblatt 的 perceptron 演算法是一個簡單的二元分類演算法。它的目標是找到一個 hyperplane，使得正類樣本（標籤為 <span class="math inline">\(+1\)</span> 的那些）在 hyperplane 的一邊，負類樣本（標籤為 <span class="math inline">\(-1\)</span> 的那些）在 hyperplane 的另一邊。這個 hyperplane 可以寫成 <span class="math inline">\(\beta_1^\intercal x + \beta_0 = 0\)</span> 或 <span class="math inline">\(\beta^\intercal x^*\)</span>，其中，<span class="math inline">\(\beta = (\beta_1, \beta_0)\)</span> 可以看成是該 hyperplane 的法向量，<span class="math inline">\(x^* = (x, 1)\)</span> 是樣本的特徵向量。</p>
 <p>那這個演算法實際上怎麼找到那個 hyperplane 呢？它使用一種隨機的梯度下降法。具體來說，對於一個被誤分類的樣本 <span class="math inline">\(x_i^*\)</span>，我們更新 <span class="math inline">\(\beta\)</span> 的規則是 <span class="math inline">\(\beta_{\text{new}} \leftarrow \beta_{\text{old}} + y_i z_i\)</span>，其中 <span class="math inline">\(y_i\)</span> 是樣本的標籤，<span class="math inline">\(z_i = x_i^* / \| x_i^* \|\)</span> 是樣本的標準化向量。</p>
 <p>以下的視覺化展示，假設該 <span class="math inline">\(x_i^*\)</span> 的標籤是 <span class="math inline">\(-1\)</span> 而使得 <span class="math inline">\(\beta^\intercal x_i + \beta_0 &gt; 0\)</span>，那麼我們就應該把 <span class="math inline">\(\beta\)</span> 向 <span class="math inline">\(z_i\)</span> 的反方向移動一些，使得 hyperplane 能夠正確分類這個樣本。</p>
-<div id="perceptron-container" style="max-width:900px;margin:0 auto;">
-  <div style="width:100%;height:550px;position:relative;">
-    <svg id="perceptron-svg" width="800" height="500" style="display:block;margin:0 auto;border:1px solid #ddd;background-color:#fff;"></svg>
+<div id="perceptron-container" style="width:100%;max-width:900px;margin:0 auto;">
+  <div style="width:100%;position:relative;padding-bottom:62.5%;">
+    <svg id="perceptron-svg" width="100%" height="100%" style="position:absolute;top:0;left:0;display:block;border:1px solid #ddd;background-color:#fff;"></svg>
   </div>
 
-  <div style="text-align:center;margin-bottom:20px;">
+  <div style="text-align:center;margin:20px 0;">
     <button id="step-button" class="btn btn-primary">執行一步</button>
     <button id="auto-button" class="btn btn-success">自動運行</button>
     <button id="reset-button" class="btn btn-danger">重置</button>
@@ -255,21 +255,34 @@ ul.task-list li input[type="checkbox"] {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // 畫布設置 - 增加尺寸
+  // 獲取SVG元素
   const svg = document.getElementById('perceptron-svg');
-  const width = parseFloat(svg.getAttribute('width'));
-  const height = parseFloat(svg.getAttribute('height'));
-  const margin = 40; // 增加邊距
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const scale = 70; // 增加刻度比例
+  
+  // 與窗口大小有關的重設函數
+  function resizeSVG() {
+    const svgRect = svg.getBoundingClientRect();
+    const width = svgRect.width;
+    const height = svgRect.height;
+    
+    // 更新中心點和縮放因子
+    centerX = width / 2;
+    centerY = height / 2;
+    scale = Math.min(width, height) / 8;  // 動態調整縮放因子
+    margin = Math.min(width, height) * 0.08;  // 動態調整邊距
+    
+    // 重繪整個視覺化
+    initializeSVG();
+    redraw();
+  }
+  
+  // 添加窗口大小變化事件監聽器
+  window.addEventListener('resize', resizeSVG);
   
   // SVG 命名空間
   const svgNS = "http://www.w3.org/2000/svg";
   
   // 感知機狀態
   let beta = { x: 0, y: 0, bias: 0 };
-  // 修改數據點，使它們更加分散，避免靠近決策邊界的模糊情況
   let points = [
     { id: 1, x: 2.5, y: 1.5, label: 1 },
     { id: 2, x: 1.5, y: 2.5, label: 1 },
@@ -281,6 +294,9 @@ document.addEventListener('DOMContentLoaded', function() {
   let selectedPoint = null;
   let iterations = 0;
   let autoRunTimer = null;
+  
+  // 初始化可視化參數 - 將在resizeSVG中更新
+  let centerX, centerY, scale, margin;
   
   // 座標轉換函數
   function toScreenX(x) {
@@ -301,18 +317,17 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
   
-  // 判斷點是否被錯誤分類 - 增加明確的閾值
+  // 判斷點是否被錯誤分類
   function isMisclassified(point) {
     const normalizedPoint = normalize(point);
     const dotProduct = beta.x * normalizedPoint.x + beta.y * normalizedPoint.y + beta.bias * normalizedPoint.bias;
     
-    // 使用閾值，避免非常接近決策邊界的情況引起混淆
     const threshold = 0.01;
     
     if (point.label > 0) {
-      return dotProduct < threshold; // 正類樣本應該有較大的正值
+      return dotProduct < threshold;
     } else {
-      return dotProduct > -threshold; // 負類樣本應該有較大的負值
+      return dotProduct > -threshold;
     }
   }
   
@@ -328,47 +343,55 @@ document.addEventListener('DOMContentLoaded', function() {
       svg.removeChild(svg.firstChild);
     }
     
-    // 定義箭頭標記
+    // 定義箭頭標記 - 調小尺寸
     const defs = document.createElementNS(svgNS, "defs");
     const marker = document.createElementNS(svgNS, "marker");
     marker.setAttribute("id", "arrowhead");
-    marker.setAttribute("markerWidth", "10");
-    marker.setAttribute("markerHeight", "7");
-    marker.setAttribute("refX", "9");
-    marker.setAttribute("refY", "3.5");
+    marker.setAttribute("markerWidth", "6");  // 從10減小到6
+    marker.setAttribute("markerHeight", "4");  // 從7減小到4
+    marker.setAttribute("refX", "6");  // 從9減小到6
+    marker.setAttribute("refY", "2");  // 從3.5減小到2
     marker.setAttribute("orient", "auto");
     
     const polygon = document.createElementNS(svgNS, "polygon");
-    polygon.setAttribute("points", "0 0, 10 3.5, 0 7");
+    polygon.setAttribute("points", "0 0, 6 2, 0 4");  // 從"0 0, 10 3.5, 0 7"減小到"0 0, 6 2, 0 4"
     
     marker.appendChild(polygon);
     defs.appendChild(marker);
     svg.appendChild(defs);
     
-    // 繪製坐標軸 - 增加粗細
+    // 計算SVG的可視區域
+    const viewBox = `0 0 ${svg.getBoundingClientRect().width} ${svg.getBoundingClientRect().height}`;
+    svg.setAttribute("viewBox", viewBox);
+    
+    // 繪製坐標軸
     const xAxis = document.createElementNS(svgNS, "line");
     xAxis.setAttribute("x1", margin);
-    xAxis.setAttribute("x2", width - margin);
+    xAxis.setAttribute("x2", svg.getBoundingClientRect().width - margin);
     xAxis.setAttribute("y1", centerY);
     xAxis.setAttribute("y2", centerY);
     xAxis.setAttribute("stroke", "black");
-    xAxis.setAttribute("stroke-width", "1.5"); // 增加線寬
+    xAxis.setAttribute("stroke-width", "1.5");
     svg.appendChild(xAxis);
     
     const yAxis = document.createElementNS(svgNS, "line");
     yAxis.setAttribute("x1", centerX);
     yAxis.setAttribute("x2", centerX);
     yAxis.setAttribute("y1", margin);
-    yAxis.setAttribute("y2", height - margin);
+    yAxis.setAttribute("y2", svg.getBoundingClientRect().height - margin);
     yAxis.setAttribute("stroke", "black");
-    yAxis.setAttribute("stroke-width", "1.5"); // 增加線寬
+    yAxis.setAttribute("stroke-width", "1.5");
     svg.appendChild(yAxis);
+    
+    // 調整字體大小根據SVG尺寸
+    const fontSize = Math.max(10, Math.round(scale * 0.15));
+    const smallFontSize = Math.max(8, Math.round(scale * 0.12));
     
     // x軸標籤
     const xLabel = document.createElementNS(svgNS, "text");
-    xLabel.setAttribute("x", width - margin + 20);
+    xLabel.setAttribute("x", svg.getBoundingClientRect().width - margin + 20);
     xLabel.setAttribute("y", centerY + 15);
-    xLabel.setAttribute("font-size", "16");
+    xLabel.setAttribute("font-size", fontSize);
     xLabel.textContent = "x₁";
     svg.appendChild(xLabel);
     
@@ -376,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const yLabel = document.createElementNS(svgNS, "text");
     yLabel.setAttribute("x", centerX - 15);
     yLabel.setAttribute("y", margin - 20);
-    yLabel.setAttribute("font-size", "16");
+    yLabel.setAttribute("font-size", fontSize);
     yLabel.textContent = "x₂";
     svg.appendChild(yLabel);
     
@@ -396,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
       xText.setAttribute("x", toScreenX(val));
       xText.setAttribute("y", centerY + 20);
       xText.setAttribute("text-anchor", "middle");
-      xText.setAttribute("font-size", "12");
+      xText.setAttribute("font-size", smallFontSize);
       xText.textContent = val;
       svg.appendChild(xText);
       
@@ -414,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
       yText.setAttribute("x", centerX - 20);
       yText.setAttribute("y", toScreenY(val) + 5);
       yText.setAttribute("text-anchor", "middle");
-      yText.setAttribute("font-size", "12");
+      yText.setAttribute("font-size", smallFontSize);
       yText.textContent = val;
       svg.appendChild(yText);
     });
@@ -423,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const originText = document.createElementNS(svgNS, "text");
     originText.setAttribute("x", centerX - 20);
     originText.setAttribute("y", centerY + 20);
-    originText.setAttribute("font-size", "12");
+    originText.setAttribute("font-size", smallFontSize);
     originText.textContent = "O";
     svg.appendChild(originText);
   }
@@ -526,13 +549,18 @@ document.addEventListener('DOMContentLoaded', function() {
     svg.appendChild(line);
   }
   
-  // 繪製數據點 - 修改為更清晰地顯示誤分類點
+  // 繪製數據點
   function drawPoints() {
     // 移除舊的點
     const oldPoints = svg.querySelectorAll(".data-point");
     oldPoints.forEach(point => {
       svg.removeChild(point);
     });
+    
+    // 根據SVG大小動態調整點的大小和字體 - 調整比例
+    const circleRadius = Math.max(4, scale * 0.12);  // 略微減小點的尺寸
+    const selectedCircleRadius = circleRadius * 1.2;
+    const fontSize = Math.max(8, scale * 0.12);
     
     points.forEach(point => {
       const isSelected = selectedPoint && selectedPoint.id === point.id;
@@ -542,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const circle = document.createElementNS(svgNS, "circle");
       circle.setAttribute("cx", toScreenX(point.x));
       circle.setAttribute("cy", toScreenY(point.y));
-      circle.setAttribute("r", isSelected ? 12 : 10); // 增加點的大小
+      circle.setAttribute("r", isSelected ? selectedCircleRadius : circleRadius);
       circle.setAttribute("fill", fillColor);
       
       // 強調誤分類的點
@@ -550,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function() {
         circle.setAttribute("opacity", 1);
         circle.setAttribute("stroke", "black");
         circle.setAttribute("stroke-width", 2);
-        circle.setAttribute("stroke-dasharray", "2,2"); // 添加虛線邊框
+        circle.setAttribute("stroke-dasharray", "2,2");
       } else {
         circle.setAttribute("opacity", 0.8);
         circle.setAttribute("stroke", isSelected ? "black" : "none");
@@ -562,10 +590,10 @@ document.addEventListener('DOMContentLoaded', function() {
       
       const text = document.createElementNS(svgNS, "text");
       text.setAttribute("x", toScreenX(point.x));
-      text.setAttribute("y", toScreenY(point.y) - 15);
+      text.setAttribute("y", toScreenY(point.y) - circleRadius - 5);
       text.setAttribute("text-anchor", "middle");
-      text.setAttribute("font-size", "13"); // 增加字體大小
-      text.setAttribute("font-weight", "bold"); // 加粗
+      text.setAttribute("font-size", fontSize);
+      text.setAttribute("font-weight", "bold");
       text.setAttribute("class", "data-point");
       text.textContent = `(${point.x}, ${point.y})`;
       svg.appendChild(text);
@@ -686,9 +714,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   document.getElementById("reset-button").addEventListener("click", reset);
   
-  // 初始化
-  initializeSVG();
-  redraw();
+  // 初始計算SVG尺寸相關參數
+  resizeSVG();
 });
 </script>
 
