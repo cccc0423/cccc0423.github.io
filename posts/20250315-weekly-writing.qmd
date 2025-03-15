@@ -29,7 +29,7 @@ $\hat{\mathbf{e}}_g$ 是第 $g$ 個 cluster 的殘差。
 $$
 \operatorname{rank} \left(\sum_g \mathbf{X}_g^\intercal \hat{\mathbf{e}}_g \hat{\mathbf{e}}_g^\intercal \mathbf{X}_g\right) \leq 2.
 $$
-因此 $\widehat{\operatorname{Var}}(\hat{\beta})$ 的 rank 也不會超過 $2$。但這裡最少有 $4$ 個參數要估計，所以 $\widehat{\operatorname{Var}}(\hat{\beta})$ 的 rank 必須得是 $4$。事實上在現有的資料中，$\sum_g \mathbf{X}_g^\intercal \hat{\mathbf{e}}_g \hat{\mathbf{e}}_g^\intercal \mathbf{X}_g$ 甚至不是正定矩陣。 如此，統計軟體在計算 $\widehat{\operatorname{Var}}(\hat{\beta})$ 時容易給出非常極端的數值。因此在此資料不適合這樣使用 clustered standard errors。解決辦法是至少讓 cluster 數量 $G$ 大於參數數量。不過這樣的話，現有的資料就不夠了，又要再清理一些資料。做這些 data work 還不是最煩的，我更討厭使用 MS Word 把家教課和他說過的東西整理成一份文件。真是惡夢一場。
+因此 $\widehat{\operatorname{Var}}(\hat{\beta})$ 的 rank 也不會超過 $2$。但這裡最少有 $4$ 個參數要估計，所以 $\widehat{\operatorname{Var}}(\hat{\beta})$ 的 rank 必須得是 $4$。事實上在現有的資料中，$\sum_g \mathbf{X}_g^\intercal \hat{\mathbf{e}}_g \hat{\mathbf{e}}_g^\intercal \mathbf{X}_g$ 甚至不是正定矩陣。 如此，統計軟體在計算 $\widehat{\operatorname{Var}}(\hat{\beta})$ 時容易給出非常極端的數值。因此在此資料不適合這樣使用 clustered standard errors。解決辦法是至少讓 cluster 數量 $G$ 大於參數數量。不過這樣的話，現有的資料就不夠了，又要再清理一些資料。做這些 data work 還不是最煩的，我更討厭使用 MS Word 把家教課和他說過的東西整理成一份文件。使用 Word 排版讓人身心很不舒適。總而言之，真是惡夢一場。
 
 ## 修課
 
