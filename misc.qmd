@@ -4,7 +4,7 @@ title: "其他"
 
 ## Econometrics
 
-- [Instrumental Variables in a Nutshell](/misc/nutshell-iv.html): An overview of IV, 2SLS, and the control function approach. 
+- [Instrumental Variables in a Nutshell](/misc/nutshell-iv.html): An brief introduction to the IV, 2SLS, and control function approaches.
 
 ## Gallery
 
