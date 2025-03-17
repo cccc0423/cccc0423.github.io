@@ -2,4 +2,10 @@
 title: "其他"
 ---
 
+## Econometrics
+
+- [Instrumental Variables in a Nutshell](/misc/nutshell-iv.html): An overview of IV, 2SLS, and the control function approach. 
+
+## Gallery
+
 - [名牌產生器](/misc/name-tag.html)：為了當助教的課，用 $\rm \LaTeX$ 製作了一個簡單的名牌產生器。
