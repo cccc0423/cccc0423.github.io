@@ -10,7 +10,7 @@ Suppose that the wage $Y_i$ of individual $i$ is linearly determined by educatio
 $$
 Y_i = \beta_0 + \beta_1 D_i + \beta_2 A_i + e_i \coloneqq \beta_0 + \beta_1 D_i + \varepsilon_i,
 $$
-where $D_i$ and $A_i$ are mean independent of $\varepsilon_i$, and $\varepsilon_i \coloneqq \beta_2 A_i + e_i$ is the structural error. We are interested in the causal effect of education $D_i$ on wages $Y_i$. This effect is given by $\beta_1$ in the DGP.^[For simplicity, we assume that there is no treatment effect heterogeneity. This means that the effect of education on wages is the same for all individuals. This assumption is already encoded in the structural equation above.] If we can fit a linear regression of $Y_i$ on $D_i$ and $A_i$, then the OLS estimator of $\beta_1$ is unbiased and consistent. However, what if we cannot observe $A_i$?
+where $D_i$ and $A_i$ are mean independent of $e_i$, and $\varepsilon_i \coloneqq \beta_2 A_i + e_i$ is the structural error. We are interested in the causal effect of education $D_i$ on wages $Y_i$. This effect is given by $\beta_1$ in the DGP.^[For simplicity, we assume that there is no treatment effect heterogeneity. This means that the effect of education on wages is the same for all individuals. This assumption is already encoded in the structural equation above.] If we can fit a linear regression of $Y_i$ on $D_i$ and $A_i$, then the OLS estimator of $\beta_1$ is unbiased and consistent. However, what if we cannot observe $A_i$?
 
 This scenario is known as omitted variable bias in traditional econometrics textbooks. The omitted variable bias arises when the unobservable $A_i$ appears in the outcome equation and is correlated with $D_i$. In this case, the OLS estimator of $\beta_1$ is biased and inconsistent:
 $$
