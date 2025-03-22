@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,17 +38,23 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b0b541c1a9a17cfc777ed0244016d689.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -57,6 +63,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -65,20 +72,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listings .list');
+    const listingTargetEl = window.document.querySelector('#listing-weekly-listings .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-categories','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-title-sort'] },{ data: ['listing-date-sort'] }],
       
       searchColumns: ["listing-title","listing-date","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listings'] = new List('listing-listings', options);
+    window['quarto-listings']['listing-weekly-listings'] = new List('listing-weekly-listings', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -93,8 +100,35 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <meta name="google-site-verification" content="Yzem9_xPjrCrNcCHmziBq7Ak2gQUxZeZ29IQMvNZdkc">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -103,31 +137,31 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">小學生筆記</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./misc.html" rel="" target="">
- <span class="menu-text">其他</span></a>
+    <a class="nav-link" href="./misc.html"> 
+<span class="menu-text">其他</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">關於</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">關於</span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -135,9 +169,9 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="因果推論">因果推論 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="經濟學">經濟學 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="週記">週記 <span class="quarto-category-count">(8)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <script>
@@ -697,10 +731,11 @@ window.onload = confucius_said
   </div>
   
 
+
 </header>
 
-<div class="comment">
 
+<div class="comment">
 <table style="width: 100%; margin-bottom: 4px;">
 <tbody><tr>
 <td>
@@ -712,7 +747,6 @@ window.onload = confucius_said
 <btn onclick="previous_verse()" title="Previous verse">⇦</btn> <btn onclick="next_verse()" title="Next verse">⇨</btn> <btn onclick="confucius_said()" title="Random verse">↻</btn> <btn title="Jesse C. Chen is credited with creating this widget.">ⓘ</btn>
 </td>
 </tr>
-
 </tbody></table>
 <p id="analects-verse">
 </p>
@@ -720,18 +754,14 @@ window.onload = confucius_said
 <div style="height: 30px;">
 
 </div>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listings">
+<div id="listing-weekly-listings" class="quarto-listing quarto-listing-container-table">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listings-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listings'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+     <select id="listing-weekly-listings-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-weekly-listings'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
+         <option value="listing-title-sort" data-direction="asc">
           Title
         </option>
          <option value="listing-date-sort" data-direction="asc">
@@ -747,267 +777,142 @@ window.onload = confucius_said
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="週記" data-listing-date-sort="1741968000000" data-listing-file-modified-sort="1742051536932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20250315-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250315-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（八）
-</h3>
-<div class="listing-subtitle">
-疲憊的一週
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250315-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250315-weekly-writing.html">
-<div class="listing-date">
-Mar 15, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="週記" data-listing-date-sort="1741363200000" data-listing-file-modified-sort="1741505001273" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17">
-<div class="thumbnail">
-<p><a href="./posts/20250308-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250308-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（七）
-</h3>
-<div class="listing-subtitle">
-超沒效率的另一週
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250308-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250308-weekly-writing.html">
-<div class="listing-date">
-Mar 8, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="週記" data-listing-date-sort="1740758400000" data-listing-file-modified-sort="1740846039343" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20250301-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250301-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（六）
-</h3>
-<div class="listing-subtitle">
-超沒效率的一週
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250301-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250301-weekly-writing.html">
-<div class="listing-date">
-Mar 1, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="週記" data-listing-date-sort="1740153600000" data-listing-file-modified-sort="1741488512170" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20250222-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250222-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（五）
-</h3>
-<div class="listing-subtitle">
-開學第一週
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250222-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250222-weekly-writing.html">
-<div class="listing-date">
-Feb 22, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="週記" data-listing-date-sort="1739548800000" data-listing-file-modified-sort="1739638176254" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20250215-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250215-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（四）
-</h3>
-<div class="listing-subtitle">
-開學前一週
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250215-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250215-weekly-writing.html">
-<div class="listing-date">
-Feb 15, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="週記" data-listing-date-sort="1738944000000" data-listing-file-modified-sort="1739031432296" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20250208-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250208-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（三）
-</h3>
-<div class="listing-subtitle">
-要趕緊決定碩論題目才行
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250208-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250208-weekly-writing.html">
-<div class="listing-date">
-Feb 8, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="週記" data-listing-date-sort="1738339200000" data-listing-file-modified-sort="1738486343919" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20250201-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250201-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（二）
-</h3>
-<div class="listing-subtitle">
-農曆新年
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250201-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250201-weekly-writing.html">
-<div class="listing-date">
-Feb 1, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="週記" data-listing-date-sort="1737734400000" data-listing-file-modified-sort="1738337913702" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20250125-weekly-writing.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20250125-weekly-writing.html">
-<h3 class="no-anchor listing-title">
-週記（一）
-</h3>
-<div class="listing-subtitle">
-農曆年前的最後一週
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('週記'); return false;">
-週記
-</div>
-</div>
-<a href="./posts/20250125-weekly-writing.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20250125-weekly-writing.html">
-<div class="listing-date">
-Jan 25, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="因果推論,經濟學" data-listing-date-sort="1677859200000" data-listing-file-modified-sort="1738338120353" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/20230304-friedman-thermostat.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20230304-friedman-thermostat.html">
-<h3 class="no-anchor listing-title">
-Milton Friedman 的恆溫器
-</h3>
-<div class="listing-subtitle">
-一個寓言故事
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('因果推論'); return false;">
-因果推論
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('經濟學'); return false;">
-經濟學
-</div>
-</div>
-<a href="./posts/20230304-friedman-thermostat.html"> </a>
-</div>
-<div class="metadata">
-<a href="./posts/20230304-friedman-thermostat.html">
-<div class="listing-date">
-Mar 4, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+<th>
+Subtitle
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1743177600000" data-listing-file-modified-sort="1742640004739" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="47" data-listing-title-sort="週記（十）" data-listing-filename-sort="20250329-weekly-writing.qmd">
+<td>
+<span class="listing-date">Mar 29, 2025</span>
+</td>
+<td>
+<a href="./posts/20250329-weekly-writing.html" class="title listing-title">週記（十）</a>
+</td>
+<td>
+<span class="listing-subtitle">&nbsp;</span>
+</td>
+</tr>
+<tr data-index="1" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1742572800000" data-listing-file-modified-sort="1742665425626" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="254" data-listing-title-sort="週記（九）" data-listing-filename-sort="20250322-weekly-writing.qmd">
+<td>
+<span class="listing-date">Mar 22, 2025</span>
+</td>
+<td>
+<a href="./posts/20250322-weekly-writing.html" class="title listing-title">週記（九）</a>
+</td>
+<td>
+<span class="listing-subtitle">騎 YouBike 騎到不見</span>
+</td>
+</tr>
+<tr data-index="2" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1741968000000" data-listing-file-modified-sort="1742051536932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="123" data-listing-title-sort="週記（八）" data-listing-filename-sort="20250315-weekly-writing.qmd">
+<td>
+<span class="listing-date">Mar 15, 2025</span>
+</td>
+<td>
+<a href="./posts/20250315-weekly-writing.html" class="title listing-title">週記（八）</a>
+</td>
+<td>
+<span class="listing-subtitle">疲憊的一週</span>
+</td>
+</tr>
+<tr data-index="3" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1741363200000" data-listing-file-modified-sort="1741505001273" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3343" data-listing-title-sort="週記（七）" data-listing-filename-sort="20250308-weekly-writing.qmd">
+<td>
+<span class="listing-date">Mar 8, 2025</span>
+</td>
+<td>
+<a href="./posts/20250308-weekly-writing.html" class="title listing-title">週記（七）</a>
+</td>
+<td>
+<span class="listing-subtitle">超沒效率的另一週</span>
+</td>
+</tr>
+<tr data-index="4" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1740758400000" data-listing-file-modified-sort="1740846039343" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7" data-listing-title-sort="週記（六）" data-listing-filename-sort="20250301-weekly-writing.qmd">
+<td>
+<span class="listing-date">Mar 1, 2025</span>
+</td>
+<td>
+<a href="./posts/20250301-weekly-writing.html" class="title listing-title">週記（六）</a>
+</td>
+<td>
+<span class="listing-subtitle">超沒效率的一週</span>
+</td>
+</tr>
+<tr data-index="5" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1740153600000" data-listing-file-modified-sort="1741488512170" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="53" data-listing-title-sort="週記（五）" data-listing-filename-sort="20250222-weekly-writing.qmd">
+<td>
+<span class="listing-date">Feb 22, 2025</span>
+</td>
+<td>
+<a href="./posts/20250222-weekly-writing.html" class="title listing-title">週記（五）</a>
+</td>
+<td>
+<span class="listing-subtitle">開學第一週</span>
+</td>
+</tr>
+<tr data-index="6" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1739548800000" data-listing-file-modified-sort="1739638176254" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="40" data-listing-title-sort="週記（四）" data-listing-filename-sort="20250215-weekly-writing.qmd">
+<td>
+<span class="listing-date">Feb 15, 2025</span>
+</td>
+<td>
+<a href="./posts/20250215-weekly-writing.html" class="title listing-title">週記（四）</a>
+</td>
+<td>
+<span class="listing-subtitle">開學前一週</span>
+</td>
+</tr>
+<tr data-index="7" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1738944000000" data-listing-file-modified-sort="1739031432296" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="週記（三）" data-listing-filename-sort="20250208-weekly-writing.qmd">
+<td>
+<span class="listing-date">Feb 8, 2025</span>
+</td>
+<td>
+<a href="./posts/20250208-weekly-writing.html" class="title listing-title">週記（三）</a>
+</td>
+<td>
+<span class="listing-subtitle">要趕緊決定碩論題目才行</span>
+</td>
+</tr>
+<tr data-index="8" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1738339200000" data-listing-file-modified-sort="1738486343919" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="45" data-listing-title-sort="週記（二）" data-listing-filename-sort="20250201-weekly-writing.qmd">
+<td>
+<span class="listing-date">Feb 1, 2025</span>
+</td>
+<td>
+<a href="./posts/20250201-weekly-writing.html" class="title listing-title">週記（二）</a>
+</td>
+<td>
+<span class="listing-subtitle">農曆新年</span>
+</td>
+</tr>
+<tr data-index="9" data-categories="JUU5JTgwJUIxJUU4JUE4JTk4" data-listing-date-sort="1737734400000" data-listing-file-modified-sort="1738337913702" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="128" data-listing-title-sort="週記（一）" data-listing-filename-sort="20250125-weekly-writing.qmd">
+<td>
+<span class="listing-date">Jan 25, 2025</span>
+</td>
+<td>
+<a href="./posts/20250125-weekly-writing.html" class="title listing-title">週記（一）</a>
+</td>
+<td>
+<span class="listing-subtitle">農曆年前的最後一週</span>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1043,18 +948,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1086,11 +980,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("http:\/\/cccc0423\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1100,8 +1031,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1113,7 +1053,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1157,6 +1219,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1182,6 +1245,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1247,7 +1336,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">This site is powered by <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-center">
+<p>This site is powered by <a href="https://quarto.org">Quarto</a></p>
+</div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -1266,6 +1357,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

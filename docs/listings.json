@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/20250329-weekly-writing.html",
+      "/posts/20250322-weekly-writing.html",
       "/posts/20250315-weekly-writing.html",
       "/posts/20250308-weekly-writing.html",
       "/posts/20250301-weekly-writing.html",
@@ -9,8 +11,7 @@
       "/posts/20250215-weekly-writing.html",
       "/posts/20250208-weekly-writing.html",
       "/posts/20250201-weekly-writing.html",
-      "/posts/20250125-weekly-writing.html",
-      "/posts/20230304-friedman-thermostat.html"
+      "/posts/20250125-weekly-writing.html"
     ]
   }
 ]

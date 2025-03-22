@@ -5,14 +5,14 @@ include-in-header:
         <meta name="google-site-verification" content="Yzem9_xPjrCrNcCHmziBq7Ak2gQUxZeZ29IQMvNZdkc" />
 include-before-body: confucius-said.html
 listing:
-  id: listings
-  type: default
-  contents: posts
-  sort: "date desc"
-  categories: true
-  sort-ui: [title, date]
-  filter-ui: [title, date, categories]
-  fields: [date, title, categories, image]
+  - id: weekly-listings
+    type: table
+    contents: posts
+    sort: "date desc"
+    categories: false
+    sort-ui: [title, date]
+    filter-ui: [title, date, categories]
+    fields: [date, title, subtitle]
 ---
 
 :::{.comment}
@@ -27,3 +27,7 @@ listing:
 
 
 <div style="height: 30px;"></div>
+
+
+::: {#weekly-listings}
+:::
