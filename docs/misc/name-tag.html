@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-03-01">
 
 <title>名牌產生器 – 小學生筆記</title>
 <style>
@@ -181,23 +180,14 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">名牌產生器</h1>
-<p class="subtitle lead">一個簡單的 <span class="math inline">\(\rm \LaTeX\)</span> 名牌產生器。</p>
-  <div class="quarto-categories">
-    <div class="quarto-category">LaTeX</div>
-  </div>
-  </div>
+<p class="subtitle lead">為了當助教的課，用 <span class="math inline">\(\rm \LaTeX\)</span> 製作了一個簡單的名牌產生器。</p>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 1, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -227,7 +217,7 @@ window.Quarto = {
 </div>
 <p>檔案大概要是長這樣。</p>
 <pre><code>chinese english
-林一一  LIN, YI-YI
+林一一  LIN, YI-Yi
 張二二 CHANG, ER-ER
 ...</code></pre>
 <p>再來就是 <span class="math inline">\(\rm \LaTeX\)</span> 的部分。這個文件會讀取 <code>.tsv</code> 檔，然後把學生名字和學號印在 A4 紙上。注意這個文件要用 <code>xelatex</code> 編譯，因為我用了 <code>xeCJK</code> 套件來處理中文，而且要安裝相應的字型才能正常編譯（或者改成自己有的字型）。現在使用的幾個字型都是 overleaf 上有的。漢字字型是日文的 Harano Aji Gothic，因為有點缺字，所以缺字的地方會用 Noto Sans CJK JP 來代替。英文字型則是 IBM Plex Sans Condensed，會使用 Condesed 是因為這樣能塞下比較多的字，不至於把字縮得太小。</p>

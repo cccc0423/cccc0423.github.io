@@ -1,8 +1,7 @@
 ---
 title: "Instrumental Variables in a Nutshell"
-subtitle: "A brief introduction to the IV, 2SLS, and control function approaches"
+subtitle: ""
 date: 2025-03-17
-categories: [ "Econometrics" ]
 ---
 
 ## The Setup

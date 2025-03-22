@@ -8,4 +8,4 @@ title: "其他"
 
 ## Gallery
 
-- [名牌產生器](/misc/name-tag.html)：一個簡單的 $\rm \LaTeX$ 名牌產生器。
+- [名牌產生器](/misc/name-tag.html)：為了當助教的課，用 $\rm \LaTeX$ 製作了一個簡單的名牌產生器。

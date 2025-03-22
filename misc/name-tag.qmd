@@ -1,8 +1,6 @@
 ---
 title: "名牌產生器"
-subtitle: "一個簡單的 $\\rm \\LaTeX$ 名牌產生器。"
-date: 2025-03-01
-categories: [ "LaTeX" ]
+subtitle: "為了當助教的課，用 $\\rm \\LaTeX$ 製作了一個簡單的名牌產生器。"
 ---
 
 這個產生器能讀 `.tsv` 檔。使用者需要把 `.tsv` 檔和 `.tex` 檔放在同個路徑之下。
@@ -29,7 +27,7 @@ student %>%
 
 ```
 chinese	english
-林一一  LIN, YI-YI
+林一一  LIN, YI-Yi
 張二二	CHANG, ER-ER
 ...
 ```
