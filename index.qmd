@@ -6,13 +6,13 @@ include-in-header:
 include-before-body: confucius-said.html
 listing:
   id: listings
-  type: default
+  type: table
   contents: posts
   sort: "date desc"
   categories: true
   sort-ui: [title, date]
   filter-ui: [title, date, categories]
-  fields: [date, title, categories, image]
+  fields: [date, title, subtitle]
 ---
 
 :::{.comment}
