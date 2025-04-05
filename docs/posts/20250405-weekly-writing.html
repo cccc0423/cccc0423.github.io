@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-03-29">
 
-<title>週記（十） – 小學生筆記</title>
+<title>週記（十一） – 小學生筆記</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,11 +153,7 @@ window.Quarto = {
   <li><a href="#修課" id="toc-修課" class="nav-link active" data-scroll-target="#修課">修課</a></li>
   <li><a href="#研究與閱讀" id="toc-研究與閱讀" class="nav-link" data-scroll-target="#研究與閱讀">研究與閱讀</a>
   <ul class="collapse">
-  <li><a href="#braakmann-chevalier-and-wilson-2024" id="toc-braakmann-chevalier-and-wilson-2024" class="nav-link" data-scroll-target="#braakmann-chevalier-and-wilson-2024">Braakmann, Chevalier and Wilson (2024)</a></li>
-  <li><a href="#cunha-2014" id="toc-cunha-2014" class="nav-link" data-scroll-target="#cunha-2014">Cunha (2014)</a></li>
-  <li><a href="#lundborg-rooth-and-alex-petersen-2022" id="toc-lundborg-rooth-and-alex-petersen-2022" class="nav-link" data-scroll-target="#lundborg-rooth-and-alex-petersen-2022">Lundborg, Rooth, and Alex-Petersen (2022)</a></li>
-  <li><a href="#braghieri-levy-and-makarin-2022" id="toc-braghieri-levy-and-makarin-2022" class="nav-link" data-scroll-target="#braghieri-levy-and-makarin-2022">Braghieri, Levy, and Makarin (2022)</a></li>
-  <li><a href="#wolfers-2006" id="toc-wolfers-2006" class="nav-link" data-scroll-target="#wolfers-2006">Wolfers (2006)</a></li>
+  <li><a href="#artmann-oosterbeek-and-van-der-klaauw-2022" id="toc-artmann-oosterbeek-and-van-der-klaauw-2022" class="nav-link" data-scroll-target="#artmann-oosterbeek-and-van-der-klaauw-2022">Artmann, Oosterbeek, and van der Klaauw (2022)</a></li>
   </ul></li>
   <li><a href="#其他" id="toc-其他" class="nav-link" data-scroll-target="#其他">其他</a></li>
   </ul>
@@ -168,8 +164,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">週記（十）</h1>
-<p class="subtitle lead">渾渾噩噩的一週</p>
+<h1 class="title">週記（十一）</h1>
   <div class="quarto-categories">
     <div class="quarto-category">週記</div>
   </div>
@@ -197,92 +192,40 @@ window.Quarto = {
 
 <section id="修課" class="level2">
 <h2 class="anchored" data-anchor-id="修課">修課</h2>
-<p>這週書法課繼續寫字。寫字真的很能夠消磨時間。</p>
-<p>這週的統計學習課主要教 local polynomial regression。這部分感覺還算重要，有空應該好好研讀😔。下週教 model selection，我已經大致上看了除了 VC dimension 以外的內容了（雖然還沒仔細研讀），要不是在計量課學過一些些，還真的會完全沒有概念，被牽著鼻子走（開學以來大部分的主題對我來說都是陌生的，因此常發生這樣的事）。</p>
+<p>書法課沒有上新的東西，因為下週要考試，因此這週稱為考前複習。</p>
+<p>統計學習課這週在教 model selection。老師不到三堂課就把 ESL 的第 7 章上完了。讀到現在我真不覺得 ESL 是一本適合入門統計學習或機器學習的書。有空的話或許應該也要去讀 Pattern Recognition and Machine Learning（PRML），這本書感覺更容易上手。說到 model selection，這個經濟系在計量課多少會教到一點點。不過我覺得大多數人的理解都很片面。改天來寫一篇短文介紹這邊的 big picture。</p>
 </section>
 <section id="研究與閱讀" class="level2">
 <h2 class="anchored" data-anchor-id="研究與閱讀">研究與閱讀</h2>
-<p>這週同樣看了一些 reduced form 的文章。</p>
-<section id="braakmann-chevalier-and-wilson-2024" class="level3">
-<h3 class="anchored" data-anchor-id="braakmann-chevalier-and-wilson-2024">Braakmann, Chevalier and Wilson (2024)</h3>
-<p>這篇文章發表在 AEJ: Applied，標題是 Expected Returns to Crime and Crime Location。作者研究犯罪的期望報酬對犯罪地點的影響。</p>
-<p>Becker (1968) 把犯罪視為一種經濟決策。如果犯罪的預期回報高於其成本，則人就會去犯罪。大部分的實證文獻都研究勞動市場的條件與逮捕或判刑機率對犯罪的影響，但很少有文獻研究犯罪的期望報酬本身對於犯罪的影響。本研究評估犯罪期望報酬的變化不僅改變了犯罪的性質，還改變了犯罪的地點。</p>
-<p>南亞裔家庭有儲存黃金、珠寶在家中的文化習俗。這樣的習俗也因為媒體報導，為英國大眾熟知。作者搜集了 2011 年至 2019 年英格蘭和威爾斯每月的鄰里層級的犯罪資料，並利用 2011 年人口普查資料，將南亞裔人口密度較高的鄰里劃分為實驗組。接著將這些資料與英國的每月黃金價格相結合，並估計以下模型： <span class="math display">\[
-y_{ict} = \beta_0 + \beta_1 \mathit{SA}_{ic} + \beta_2 \mathit{GP}_t + \tau \big( \mathit{SA}_{ic} \times \mathit{GP}_t \big) + \alpha_c + \theta_t + \gamma \mathit{TREND}_{it} + \varepsilon_{ict},
-\]</span> 其中 <span class="math inline">\(y_{ict}\)</span> 是鄰里 <span class="math inline">\(i\)</span> 在區域 <span class="math inline">\(c\)</span> 時間 <span class="math inline">\(t\)</span> 的犯罪率，<span class="math inline">\(\mathit{SA}_{ic}\)</span> 是鄰里 <span class="math inline">\(i\)</span> 是否屬於南亞裔人口密度較高的區域，<span class="math inline">\(\mathit{GP}_t\)</span> 是時間 <span class="math inline">\(t\)</span> 的黃金價格，<span class="math inline">\(\mathit{TREND}_{it}\)</span> 是鄰里的時間趨勢，<span class="math inline">\(\alpha_c\)</span> 是區域固定效果，<span class="math inline">\(\theta_t\)</span> 是月固定效果，<span class="math inline">\(\varepsilon_{ict}\)</span> 是誤差項。作者並把黃金價格與犯罪數都做了 inverse hyperbolic sine 轉換，以便詮釋成彈性。</p>
-<p>研究結果發現，南亞裔鄰里的竊盜犯罪對黃金價格變動的敏感度是其他同一區域鄰里的兩倍。黃金價格上漲使得南亞裔鄰里的竊盜犯罪相對於其他鄰里會顯著增加。</p>
-<p>大家都會說自己在做 DiD，不過他們做的事經常偏離經典的 DiD 設計。我的疑問包括：</p>
-<ol type="1">
-<li><p>黃金的價格是連續變數。這時候的 fixed effects 迴歸真的能給出有因果詮釋的係數嗎？</p></li>
-<li><p>有 47% 的觀察值的竊盜案發生數是 0，因此作者用了 inverse hyperbolic sine 轉換。這樣的轉換是否合理？他引用了 Bellemare and Wichman (2019) 在 Oxford Bulletin of Economics and Statistics 的文章。另外，Chen and Roth (2023) 的 QJE 也討論這個問題。</p></li>
-<li><p>續 2，在穩健性檢驗中，作者也用絕對值的竊盜案發生數，並且改用 fixed effects Poisson regression。這樣的做法是否合理？我懷疑並不合理，原因有二。</p>
-<ul>
-<li><p>首先，Poisson regression 要求條件平均值等於條件變異數，但是大部分的觀察值都是 0，所以這個假設很可能不成立。</p></li>
-<li><p>其次，這其實有 zero-inflated 的問題，但是作者並沒有考慮到。在因果推論上，這邊比較深一點的問題大概跟 extensive margin 和 intensive margin 可以扯上關係，但我還想不太清楚。</p></li>
-</ul></li>
-</ol>
-<p>有空的話我應該去看看 Bellemare and Wichman (2019) 和 Chen and Roth (2023) 的文章。</p>
-</section>
-<section id="cunha-2014" class="level3">
-<h3 class="anchored" data-anchor-id="cunha-2014">Cunha (2014)</h3>
-<p>因為跟 KM 的研究正需要看文獻有什麼發現，所以看了這篇文章。這篇文章發表在 AEJ: Applied，標題是 Testing Paternalism: Cash versus In-Kind Transfers。作者研究政府以實物（in-kind transfer）而非現金形式提供福利的合理性。</p>
-<p>家父長式的（paternalistic）政府會選擇以實物形式提供福利，因為他們認為這樣可以確保福利用於<span id="emphasizedText" class="emphasis">正確</span>的地方。為什麼不發放等值的現金呢？一個家父長式的政府會認為，如果福利以現金形式發放，接受者可能會把這筆錢用在<span id="emphasizedText" class="emphasis">不當</span>的地方。注意到如果政府提供的實物移轉的量少於接受者在沒有該移轉但擁有等值現金時會消費的量時，接受者即使收到等值的現金，也會至少消費這麼多的該項物品。在這種情況下，對於接受者而言，實物移轉就相當於現金，因為他們可以減少購買該項物品的支出，並將這筆錢用在其他地方。因此，這種類型的實物移轉對消費行為的影響與等值的現金移轉沒有差別。只有在實物移轉的量超過接受者在沒有該移轉但擁有等值現金時會消費的量時，實物移轉才會對消費行為產生影響，也就是扭曲消費行為。具體而言，假設政府每月發給一個家庭價值 100 元的白米飯，而這家庭本來每月會花 200 元買白米飯。這樣的話，這個家庭每月可以省下 100 元買米的錢，並且可以把這筆錢用在其他地方，而實物移轉與等值的現金移轉的效果就是相同的。</p>
-<p>2004 年，墨西哥的糧食援助計畫實驗（PAL）隨機將 208 個農村分為四組：實物移轉組（一組附加教育課程，一組沒有）、等值現金移轉組和無移轉的控制組。因為教育課程的提供和參與情況混亂，作者將這兩個實物轉移組別合併進行分析。被分到實物移轉組的家庭每個月可以得到十種常見食品的移轉，例如玉米粉、豆類、米、油和奶粉，市價約為 205 墨西哥披索。而被分到等值現金移轉組的家庭每個月可以得到 150 披索的現金，這是實物移轉的批發價格。</p>
-<p>研究發現，就整體食物消費而言，實物移轉與等值現金移轉的效果差不多，也就是說，家庭在收到等值的現金後，也會消費類似總量的食物。當然個別食品的消費可能有所不同，像是豆類和食用油（常買的食品），實物移轉不太造成扭曲，而像是奶粉和扁豆（不常買的食品），實物移轉會使得家庭消費更多。另外還有許多比較細節的結果，不過整體而言，雖然實物移轉確實改變消費行為、改善營養狀況，但是效果與等值的現金移轉差不多。作者並發現，領取現金移轉的貧困農村家庭不太會將大部分現金用於不良嗜好（如酒精、菸草和垃圾食品）。相反地，他們將大部分現金用於營養食品（如水果和蔬菜）、藥品和衛生用品。同時，把實物挪動到當地倉庫的配送成本大約佔實物批發價值的 20%。總之，至少在 PAL 計畫的情境中，似乎沒有什麼理由支持政府以家父長式的方式提供福利。</p>
-</section>
-<section id="lundborg-rooth-and-alex-petersen-2022" class="level3">
-<h3 class="anchored" data-anchor-id="lundborg-rooth-and-alex-petersen-2022">Lundborg, Rooth, and Alex-Petersen (2022)</h3>
-<p>這篇文章發表在 RES，標題是 The Long-Term Effects of Childhood Nutrition: Evidence from a School Lunch Reform。作者評估 1959 年至 1969 年間在瑞典小學推行的免費營養午餐政策的長期效果。</p>
-<p>瑞典政府在小學引入免費營養午餐政策，為改善兒童營養攝入，並減輕家庭（尤其是母親）準備學童午餐的負擔，期望能提高女性勞動參與率並改善家庭經濟狀況。作者首先考察歷史資料，確定各地區何時引入免費營養午餐政策，再串聯多個行政資料與人口普查資料，估計政策對於學童的長期影響。研究結果顯示，這項學校午餐計畫有顯著的長期效益。在整個小學階段都接觸到該計畫的學生，其終身收入平均高出 3%。該計畫對早期接觸者和來自貧困家庭的學生影響更大，表示該計畫有助於縮小成年後的社會經濟不平等。接觸該計畫對教育程度和健康有所改善，而也提高母親的勞動參與率。</p>
-<p>計量上的問題我想到一些：</p>
-<ol type="1">
-<li><p>讓我有趣的是，這並非 panel data，因為作者關心的是如終身收入等等的結果。經典的 DiD 要求 treated 和 control units 若無政策實施則有相同的時間趨勢。而這裡要求 treated 和 control group 若無政策實施則有相同的世代趨勢。但是，一個人只會屬於一個世代，這樣如何在個體層面定義 identification assumption？</p></li>
-<li><p>在建構樣本時，作者納入 1942 至 1965 年間出生在那 265 個在 1959 年後才實施免費營養午餐政策的地區的學童。此外，有 739 個地區在 1959 年前就已經實施免費營養午餐政策，因為作者不曉得這些地區的確切實施時間，所以這些地區的學童照理來說不在樣本中。但是，他仍然將這些地區 1959 年及之後開始上學的世代，他們聲稱，「因為知道他們在整個小學期間都接觸到了該政策，而這些學生對免費營養午餐的接觸沒有變異，納入他們又有助於估計世代效果」。我其實沒看懂「有助於估計世代效果」是什麼意思。如 Goodman-Bacon (2021) 那篇 JoE 所述，放入 always-treated 的樣本很可能會導致 negative weights。</p></li>
-</ol>
-</section>
-<section id="braghieri-levy-and-makarin-2022" class="level3">
-<h3 class="anchored" data-anchor-id="braghieri-levy-and-makarin-2022">Braghieri, Levy, and Makarin (2022)</h3>
-<p>這篇文章發在 AER，標題是 Social Media and Mental Health。作者利用 Facebook 在美國大學校園的逐步推出（staggered adoption）作為自然實驗，研究社交媒體使用對於心理健康的影響。</p>
-<p>Facebook 在 2004 年 2 月在哈佛大學上線，但遲至 2006 年 9 月才開放給一般大眾。在此期間，Facebook 逐步在美國大學校園推出。作者利用 Facebook 推出的時間差異與十七波的 NCHA 調查資料。研究發現，Facebook 的推出對學生心理健康有負面影響。接觸的時間越長，負面影響越大。作者認為，Facebook 等社群媒體平台讓使用者更容易與其他人比較。他們發現更可能遭受不利的社會比較的群體，其心理健康受 Facebook 推出的負面影響更大。</p>
-<p>計量上感覺沒什麼大問題。不過，在他的穩健性檢驗中，他提到 “to the extent that the trends are linear, we would be able to account for them in a robustness check that includes expansion-group-level linear time trends.” 我沒搞懂控制 linear time trends 具體解決的是什麼問題。我在網路上搜尋一番以後，發現原來指的是把時間當成一般的連續變數，而不是 dummies。而這個做法在 Mostly Harmless Econometrics 有提到（而且那頁我有畫記，顯然我應該讀過😅）。書上是這樣說的：</p>
-<blockquote class="blockquote">
-<p>An alternative check on the DD identification strategy adds state-specific time trends to the list of controls. In other words, we estimate <span class="math display">\[
-Y_{ist} = \gamma_{0s} + \gamma_{1s} t + \lambda_t + \delta D_{st} + X_{ist}' \beta + \varepsilon_{ist},
-\]</span> where <span class="math inline">\(\gamma_{0s}\)</span> is a state-specific intercept, as before, and <span class="math inline">\(\gamma_{1s}\)</span> is a state-specific trend coefficient multiplying the time trend variable, <span class="math inline">\(t\)</span>. […] As a rule, DD estimation with state-specific trends is likely to be more robust and convincing when the pretreatment data establish a clear trend that can be extrapolated into the posttreatment period.</p>
-</blockquote>
-<p>然後接著引用 Besley and Burgess (2004) 利用這個方法來做穩健性檢驗。我在網路上搜尋了一下，發現有人提到 Wolfers (2006) 討論到這個方法。</p>
-</section>
-<section id="wolfers-2006" class="level3">
-<h3 class="anchored" data-anchor-id="wolfers-2006">Wolfers (2006)</h3>
-<p>這篇文章發表在 AER，標題是 Did Unilateral Divorce Laws Raise Divorce Rates? A Reconciliation and New Results。作者研究單方離婚法對離婚率的影響。</p>
-<p>1970 年代美國引入單方離婚法，允許在未經配偶同意的情況下尋求離婚。這時離婚率顯著上升。各界對此爭論紛紛。Leora Friedberg (1998) 分析離婚的行政資料，為了解決內生性問題，控制州與年的固定效果，與各州的時間趨勢。Friedberg 認為單方離婚法施行可以解釋自 1960 年代後期以來離婚率上升約六分之一的變異。一時之間，這個結論受廣泛接受。然而，Wolfers 認為 Friedberg 的結論有問題。</p>
-<p>Wolfers 主張在做 DiD 的分析時，分辨<span id="emphasizedText" class="emphasis">既存的趨勢</span>與<span id="emphasizedText" class="emphasis">政策衝擊的動態效果</span>相當困難。他認為 Friedberg 控制各州的時間趨勢可能不只是消除掉既存的趨勢，還捕捉到政策效果。</p>
-<p>控制各州的時間趨勢以後，Friedberg 發現單方離婚法的係數大幅增加，Friedberg 認為這是遺漏變數偏誤。但是，Wolfers 質疑這個解釋。首先，會認為這是遺漏變數偏誤，就意味著 Friedberg 認為法律實施的時間點並非隨機的，各州是否及何時採用單方離婚法與各州的離婚率趨勢有關。進一步說，假如時間趨勢影響實施法律的時間點，那係數上升，也只能是「離婚率趨勢下降的州越可能採用單方離婚法」。但是，Wolfers 觀察到的趨勢卻是那些採用單方離婚法的州，實施前的離婚率趨勢相對於其他州略微增加。</p>
-<p>Wolfers 認為離婚制度的變化可能有很不同的短期和長期效果。改革後，可能因為積壓的需求，離婚率可能會快速上升，經過複雜的動態變化，然後才逐漸趨於穩定。<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 為了捕捉動態效果，Wolfers 估計以下的迴歸模型： <span class="math display">\[
-\begin{aligned}
-\mathit{Divorce\;Rate}_{st}
-&amp;= \sum_{k \geq 1} \beta_k \mathit{Unilateral\;divorce\;has\;been\;adopted}_{s,t} \\
-&amp;\quad + \sum_{s} \mathit{State\;FE}_s + \sum_{t} \mathit{Time\;FE}_t \\
-&amp;\quad + \sum_{s} \mathit{State}_s \times Time_t +
-\sum_{s} \mathit{State}_s \times Time_t^2 + \varepsilon_{st}.
-\end{aligned}
-\]</span> 但所以加入各州的線性和二次時間趨勢，到底是為了什麼？這樣的做法是否合理？我找了一陣子發現 Borusyak, Jaravel, and Spiess (2024) 的 RES 文章，Revisiting Event-Study Designs: Robust and Efficient Estimation，其中有一些理論的結果。因此這問題感覺沒有那麼值得現在深入研究。</p>
+<p>這週只讀了一篇文章。</p>
+<section id="artmann-oosterbeek-and-van-der-klaauw-2022" class="level3">
+<h3 class="anchored" data-anchor-id="artmann-oosterbeek-and-van-der-klaauw-2022">Artmann, Oosterbeek, and van der Klaauw (2022)</h3>
+<p>這篇文章發在 AEJ: Applied，標題是 Do Doctors Improve the Health Care of Their Parents? Evidence from Admission Lotteries。作者研究子女成為醫生是否會改善父母的健康照護和降低死亡率。</p>
+<p>民眾的醫療照護使用可能因為與健康無關的因素而存在差異，例如沒有充分的健康資訊、難以與醫療照護者溝通或者醫療照護的提供者可能差別對待不同背景的患者。作者注意到近期有一批文獻，透過比較醫生與其親屬與對照組，來研究以上這些原因的綜合影響。問題在於，醫生與其親屬這群人很可能與其他人很不一樣，以致我們不應該拿這群人與普羅大眾相比。那要如何研究健康資訊與近用對於健康照護的影響呢？</p>
+<p>荷蘭的大學原則上允許所有中學畢業生入學。然而，由於在 1960 年代末期，醫學院申請人數急劇增加，超過可用名額，因此引入了配額制度。在 1999 年之前，申請醫學院的學生需要參加抽籤，決定哪些學生可以進入醫學院，然後再將這些學生分配到荷蘭的八所醫學院。抽籤的權重依據學生中學畢業考試的 GPA 決定，學生會根據其 GPA 被劃分為不同的類別，每個類別在抽籤中擁有不同的權重。</p>
+<p>作者於是利用抽籤結果作為自然實驗，以申請醫學院的學生在第一次抽籤中獲得入學名額的機會作為工具變數，來研究子女成為醫生對父母健康照護的影響。本文的 structural equation 如下： <span class="math display">\[
+Y_{it} = \alpha_t + \delta D_i + X_{i} \beta + \mathit{LC}_{i} + U_{it},
+\]</span> 其中 <span class="math inline">\(Y_{it}\)</span> 是子女 <span class="math inline">\(i\)</span> 的父母在時間 <span class="math inline">\(t\)</span> 的結果變數，<span class="math inline">\(D_i\)</span> 是子女 <span class="math inline">\(i\)</span> 是否成為醫生的變數，而 <span class="math inline">\(\delta\)</span> 是作者感興趣的變數，<span class="math inline">\(X_{i}\)</span> 是數個控制變數與固定效果，<span class="math inline">\(\mathit{LC}_{i}\)</span> 是子女 <span class="math inline">\(i\)</span> 彩券類別和首次參與年份之間的交乘項（中籤機率完全取決於類別與參與年份），<span class="math inline">\(\alpha_t\)</span> 是時間固定效果。</p>
+<p>作者發現子女成為醫師對父母死亡率的因果效應接近於零，且統計上不顯著；對於其父母多數的醫療照護利用變數的影響在統計上也不顯著。作者認為至少在荷蘭的情境中，透過身為醫生的子女而獲得醫療專業知識和服務，並非造成父母醫療照護利用和死亡率差異的重要原因。</p>
+<p>這篇文章在計量上沒什麼創舉（通常那些說自己使用 novel identification strategy 但沒有給出嚴謹的論證的東西感覺比較值得多想想），不過作者在 hazard rate 的分析只有跑 reduced-form 模型，他在腳注裡說工具變數法不太容易與非線性的 hazard rate 模型結合。不過我似乎感覺（雖然還未仔細研究過）這種情況下可以用 control function 的方法來處理。簡單來說，就是把 first stage residuals 加進 second stage 的模型裡，以當作 unobserved confounders 的代理變數。我後來查了一下在存活分析中確實有這樣一招，就稱為 two-stage residual inclusion (2SRI)。</p>
 </section>
 </section>
 <section id="其他" class="level2">
 <h2 class="anchored" data-anchor-id="其他">其他</h2>
-<p>這週作息非常混亂。我很常弄到很晚才睡，因此白天精神不好。如此變成惡性循環。我對此有一些分析，但很懶得寫在這裡😔。</p>
+<p>這學期當 KM 的大二計量課助教。這學期的計量課用 Bruce Hansen 的課本（我也是看這本課本才真正入門計量的，因此我有買這本書！）。通常 Hansen 的課本會當作經濟系碩博班必修課的用書。所以這本書確實對大多數的大二學生來說比較難上手。為了讓學生知難而退，KM 在課程大綱中就提及這門課一週大約要花 20 小時，還考了期初考（平均 50 分）。可是不僅實體課堂的出席率不高，課程影片也沒什麼人在看，並除了 lab 的學生以外，很少人去他或助教的 office hour。因此，他上週發了一封信，名為 Volker shock，裡面講到 Fed 主席 Volker 在 1980 年代的時候，為了對抗通貨膨脹，將利率提高到 20%。這樣的做法造成很大的衝擊，但也讓通貨膨脹回落。KM 說必要的話他也會這樣做。</p>
+<p>結果這封信引起軒然大波，有一篇相關的討論文章，甚至一度成為 Dcard 臺大板的熱門文章。文章的作者覺得自己絕對不是不用功的學生，但是老師的教學品質非常差。當然留言區就是正反意見都有。後來 KM 也找我們簡單地開了個會。他說他心目中的模範就是他當年修的陳金次的高等微積分。這門課的負擔他估計大約是當時那門高微的 70%。他並堅持不會修改教學目標和要求。因為他希望這對來年的學生是個有效地訊號。那些想要一週花 20 小時學 Hansen 的才會來他的班。我覺得挺有趣的。不知道我會不會有機會當老師，也不知道屆時應該如何教學生、要求學生。</p>
+<hr>
+<p>努力想想除了工作、讀書和耍廢的時候在做些什麼。</p>
+<p>週一在住處自己煮了一些蔬菜和雞胸肉。最近覺得因為外食，自己真是吃太少蔬菜了。因此偶爾開始煮一些方便的蔬菜。</p>
+<p>週三和大學同學在忠孝復興站附近吃了烤魚、喝了雞湯，都還不錯。雞湯很適合獨食，是如果在附近不知道要吃什麼，會想去吃的餐廳。</p>
+<p>週四第一次去了遠企樓下的 city’Super，店內空間不大，但有很多舶來品。有空的話應該仔細逛逛。拿到了 F 的草莓蛋糕，好吃。</p>
+<p>週五去了好久沒去的未央。上次去可能是大四吧，熬夜準備線性代數的期考（結果考很爛😭）。蜂蜜柚子茶有點太甜。莓果蛋白餅好吃，但餅乾本人有點像是比較脆的旺仔小饅頭。</p>
+<p>週六練了一晚上的書法。</p>
 
 
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Wolfers 這整段都是以文字描述，詳細我還得再想想。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script>
   const emphasizedElements = document.querySelectorAll('.emphasis');
 
