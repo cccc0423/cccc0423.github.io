@@ -1,7 +1,7 @@
 ---
 title: "週記（十一）"
-subtitle: ""
-date: 2025-03-29
+subtitle: "天地玄黃，宇宙洪荒"
+date: 2025-04-05
 categories: [ "週記" ]
 include-after-body: "../emphasis-point.html"
 margin-header: |
