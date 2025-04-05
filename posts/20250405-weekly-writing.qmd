@@ -38,7 +38,7 @@ $$
 
 作者發現子女成為醫師對父母死亡率的因果效應接近於零，且統計上不顯著；對於其父母多數的醫療照護利用變數的影響在統計上也不顯著。作者認為至少在荷蘭的情境中，透過身為醫生的子女而獲得醫療專業知識和服務，並非造成父母醫療照護利用和死亡率差異的重要原因。
 
-這篇文章在計量上沒什麼創舉（通常那些說自己使用 novel identification strategy 但沒有給出嚴謹的論證的東西感覺比較值得多想想），不過作者在 hazard rate 的分析只有跑 reduced-form 模型，他在腳注裡說工具變數法不太容易與非線性的 hazard rate 模型結合。不過我似乎感覺（雖然還未仔細研究過）這種情況下可以用 control function 的方法來處理。簡單來說，就是把 first stage residuals 加進 second stage 的模型裡，以當作 unobserved confounders 的代理變數。我後來查了一下在存活分析中確實有這樣一招，就稱為 two-stage residual inclusion (2SRI)。
+這篇文章在計量上沒什麼創舉（通常那些說自己使用 novel identification strategy 但沒有給出嚴謹的論證的東西感覺比較值得多想想），不過作者在 hazard rate 的分析只有跑 reduced-form 模型，他在腳注裡說工具變數法不太容易與非線性的 hazard rate 模型結合。我感覺（雖然還未仔細研究過）這種情況下可以用 control function 的方法來處理。簡單來說，就是把 first stage residuals 加進 second stage 的模型裡，以當作 unobserved confounders 的代理變數。我後來查了一下在存活分析中確實有這樣一招，就稱為 two-stage residual inclusion (2SRI)。
 
 
 ## 其他

@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-04-05">
+<meta name="dcterms.date" content="2025-03-17">
 
-<title>週記（十一） – 小學生筆記</title>
+<title>Model Selection in Linear Regression – 小學生筆記</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -138,24 +138,21 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<blockquote class="blockquote">
-<ruby> 週<rt>ㄓㄡ</rt>記<rt>ㄐㄧˋ</rt> </ruby> <br>
-<div style="font-size: 0.8em">
-當週隨手寫下的流水帳。
-</div>
-</blockquote>
-</div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#修課" id="toc-修課" class="nav-link active" data-scroll-target="#修課">修課</a></li>
-  <li><a href="#研究與閱讀" id="toc-研究與閱讀" class="nav-link" data-scroll-target="#研究與閱讀">研究與閱讀</a>
+  <li><a href="#the-setup" id="toc-the-setup" class="nav-link active" data-scroll-target="#the-setup">The Setup</a></li>
+  <li><a href="#the-optimism" id="toc-the-optimism" class="nav-link" data-scroll-target="#the-optimism">The Optimism</a></li>
+  <li><a href="#the-bias-variance-decomposition" id="toc-the-bias-variance-decomposition" class="nav-link" data-scroll-target="#the-bias-variance-decomposition">The Bias-Variance Decomposition</a></li>
+  <li><a href="#estimating-the-optimism" id="toc-estimating-the-optimism" class="nav-link" data-scroll-target="#estimating-the-optimism">Estimating the Optimism</a>
   <ul class="collapse">
-  <li><a href="#artmann-oosterbeek-and-van-der-klaauw-2022" id="toc-artmann-oosterbeek-and-van-der-klaauw-2022" class="nav-link" data-scroll-target="#artmann-oosterbeek-and-van-der-klaauw-2022">Artmann, Oosterbeek, and van der Klaauw (2022)</a></li>
+  <li><a href="#mallows-c_p-criterion" id="toc-mallows-c_p-criterion" class="nav-link" data-scroll-target="#mallows-c_p-criterion">Mallows’ <span class="math inline">\(C_p\)</span> Criterion</a></li>
+  <li><a href="#akaike-information-criterion-aic" id="toc-akaike-information-criterion-aic" class="nav-link" data-scroll-target="#akaike-information-criterion-aic">Akaike Information Criterion (AIC)</a></li>
+  <li><a href="#bayesian-information-criterion-bic" id="toc-bayesian-information-criterion-bic" class="nav-link" data-scroll-target="#bayesian-information-criterion-bic">Bayesian Information Criterion (BIC)</a></li>
   </ul></li>
-  <li><a href="#其他" id="toc-其他" class="nav-link" data-scroll-target="#其他">其他</a></li>
+  <li><a href="#leave-one-out-cross-validation-loocv" id="toc-leave-one-out-cross-validation-loocv" class="nav-link" data-scroll-target="#leave-one-out-cross-validation-loocv">Leave-One-Out Cross-Validation (LOOCV)</a></li>
   </ul>
 </nav>
     </div>
@@ -164,12 +161,9 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">週記（十一）</h1>
-<p class="subtitle lead">天地玄黃，宇宙洪荒</p>
-  <div class="quarto-categories">
-    <div class="quarto-category">週記</div>
-  </div>
-  </div>
+<h1 class="title">Model Selection in Linear Regression</h1>
+<p class="subtitle lead">The ideas of <span class="math inline">\(C_p\)</span>, AIC, BIC, LOOCV, and their connections</p>
+</div>
 
 
 
@@ -179,7 +173,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 5, 2025</p>
+      <p class="date">March 17, 2025</p>
     </div>
   </div>
   
@@ -191,64 +185,85 @@ window.Quarto = {
 </header>
 
 
-<section id="修課" class="level2">
-<h2 class="anchored" data-anchor-id="修課">修課</h2>
-<p>書法課沒有上新的東西，因為下週要考試，因此這週稱為考前複習。</p>
-<p>統計學習課這週在教 model selection。老師不到三堂課就把 ESL 的第 7 章上完了。讀到現在我真不覺得 ESL 是一本適合入門統計學習或機器學習的書。有空的話或許應該也要去讀 Pattern Recognition and Machine Learning（PRML），這本書感覺更容易上手。說到 model selection，這個經濟系在計量課多少會教到一點點。不過我覺得大多數人的理解都很片面。改天來寫一篇短文介紹這邊的 big picture。</p>
+<section id="the-setup" class="level2">
+<h2 class="anchored" data-anchor-id="the-setup">The Setup</h2>
+<p>We begin with a more general setup. Then, we will focus on the linear regression model.</p>
+<p>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(p\)</span>-dimensional predictor and <span class="math inline">\(Y\)</span> be the outcome variable. We assume that the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> can be written as <span class="math display">\[
+Y = f(X) + \varepsilon,
+\]</span> where <span class="math inline">\(f(X)\)</span> is the true conditional expectation function of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>, and <span class="math inline">\(\varepsilon\)</span> is the error term with mean zero and variance <span class="math inline">\(\sigma^2\)</span>. For example, in a linear regression model, we have <span class="math display">\[
+Y = X^\intercal \beta + \varepsilon,
+\]</span> where <span class="math inline">\(\beta\)</span> is the vector of coefficients.</p>
+<p>Given a training set <span class="math inline">\(\mathcal{T} = \left\{x_i, y_i\right\}_{i = 1}^N\)</span>, we estimate the conditional expectation function <span class="math inline">\(f(X)\)</span> using a model <span class="math inline">\(\hat{f}(X)\)</span>, which is a function of the training data <span class="math inline">\(\mathcal{T}\)</span>. The loss function for measuring errors between <span class="math inline">\(Y\)</span> and <span class="math inline">\(\hat{f}(X)\)</span> is denoted by <span class="math inline">\(L(Y, \hat{f}(X))\)</span>.Typically, we use the squared error loss function: <span class="math display">\[
+L\left(Y, \hat{f}(X)\right) = \left(Y - \hat{f}(X)\right)^2.
+\]</span></p>
 </section>
-<section id="研究與閱讀" class="level2">
-<h2 class="anchored" data-anchor-id="研究與閱讀">研究與閱讀</h2>
-<p>這週只讀了一篇文章。</p>
-<section id="artmann-oosterbeek-and-van-der-klaauw-2022" class="level3">
-<h3 class="anchored" data-anchor-id="artmann-oosterbeek-and-van-der-klaauw-2022">Artmann, Oosterbeek, and van der Klaauw (2022)</h3>
-<p>這篇文章發在 AEJ: Applied，標題是 Do Doctors Improve the Health Care of Their Parents? Evidence from Admission Lotteries。作者研究子女成為醫生是否會改善父母的健康照護和降低死亡率。</p>
-<p>民眾的醫療照護使用可能因為與健康無關的因素而存在差異，例如沒有充分的健康資訊、難以與醫療照護者溝通或者醫療照護的提供者可能差別對待不同背景的患者。作者注意到近期有一批文獻，透過比較醫生與其親屬與對照組，來研究以上這些原因的綜合影響。問題在於，醫生與其親屬這群人很可能與其他人很不一樣，以致我們不應該拿這群人與普羅大眾相比。那要如何研究健康資訊與近用對於健康照護的影響呢？</p>
-<p>荷蘭的大學原則上允許所有中學畢業生入學。然而，由於在 1960 年代末期，醫學院申請人數急劇增加，超過可用名額，因此引入了配額制度。在 1999 年之前，申請醫學院的學生需要參加抽籤，決定哪些學生可以進入醫學院，然後再將這些學生分配到荷蘭的八所醫學院。抽籤的權重依據學生中學畢業考試的 GPA 決定，學生會根據其 GPA 被劃分為不同的類別，每個類別在抽籤中擁有不同的權重。</p>
-<p>作者於是利用抽籤結果作為自然實驗，以申請醫學院的學生在第一次抽籤中獲得入學名額的機會作為工具變數，來研究子女成為醫生對父母健康照護的影響。本文的 structural equation 如下： <span class="math display">\[
-Y_{it} = \alpha_t + \delta D_i + X_{i} \beta + \mathit{LC}_{i} + U_{it},
-\]</span> 其中 <span class="math inline">\(Y_{it}\)</span> 是子女 <span class="math inline">\(i\)</span> 的父母在時間 <span class="math inline">\(t\)</span> 的結果變數，<span class="math inline">\(D_i\)</span> 是子女 <span class="math inline">\(i\)</span> 是否成為醫生的變數，而 <span class="math inline">\(\delta\)</span> 是作者感興趣的變數，<span class="math inline">\(X_{i}\)</span> 是數個控制變數與固定效果，<span class="math inline">\(\mathit{LC}_{i}\)</span> 是子女 <span class="math inline">\(i\)</span> 彩券類別和首次參與年份之間的交乘項（中籤機率完全取決於類別與參與年份），<span class="math inline">\(\alpha_t\)</span> 是時間固定效果。</p>
-<p>作者發現子女成為醫師對父母死亡率的因果效應接近於零，且統計上不顯著；對於其父母多數的醫療照護利用變數的影響在統計上也不顯著。作者認為至少在荷蘭的情境中，透過身為醫生的子女而獲得醫療專業知識和服務，並非造成父母醫療照護利用和死亡率差異的重要原因。</p>
-<p>這篇文章在計量上沒什麼創舉（通常那些說自己使用 novel identification strategy 但沒有給出嚴謹的論證的東西感覺比較值得多想想），不過作者在 hazard rate 的分析只有跑 reduced-form 模型，他在腳注裡說工具變數法不太容易與非線性的 hazard rate 模型結合。我感覺（雖然還未仔細研究過）這種情況下可以用 control function 的方法來處理。簡單來說，就是把 first stage residuals 加進 second stage 的模型裡，以當作 unobserved confounders 的代理變數。我後來查了一下在存活分析中確實有這樣一招，就稱為 two-stage residual inclusion (2SRI)。</p>
+<section id="the-optimism" class="level2">
+<h2 class="anchored" data-anchor-id="the-optimism">The Optimism</h2>
+<p>The <em>test error</em>, also known as the <em>generalization error</em>, is the prediction error of a model on a test sample. The test error of a model <span class="math inline">\(\hat{f}\)</span> is defined as <span class="math display">\[
+\operatorname{Err}_{\mathcal{T}} = \operatorname{E}_{X^0, Y^0}\left[ L \left(Y^0, \hat{f}\left(X^0\right)\right) \;\middle|\; \mathcal{T} \right],
+\]</span> where <span class="math inline">\(\left(X^0, Y^0 \right)\)</span> is a new test data point. The test error measures how well the model generalizes to new data.</p>
+<p>The <em>expected test error</em> is the average of the test errors over all possible training sets <span class="math inline">\(\mathcal{T}\)</span>, <span class="math display">\[
+\operatorname{Err} = \operatorname{E}_{\mathcal{T}} \left[ \operatorname{E}_{X^0, Y^0}\left[ L \left(Y^0, \hat{f}\left(X^0\right)\right) \;\middle|\; \mathcal{T} \right] \right].
+\]</span></p>
+<p>The expected test error at a point <span class="math inline">\(x_0\)</span> is defined as <span class="math display">\[
+\operatorname{Err}(x_0) = \operatorname{E}\left[ L \left(Y, \hat{f}\left(x_0\right)\right) \;\middle|\; X = x_0 \right],
+\]</span> where <span class="math inline">\(Y\)</span> is the outcome variable and <span class="math inline">\(\hat{f}(x_0)\)</span> is the predicted value at <span class="math inline">\(x_0\)</span>. The expected test error measures how well the model predicts the outcome variable at a specific point <span class="math inline">\(x_0\)</span>.</p>
+<p>The <em>in-sample error</em> is the average of the expected test errors over the training data <span class="math inline">\(\mathcal{T}\)</span>, <span class="math display">\[
+\begin{aligned}
+\operatorname{Err}_{in}
+&amp;= \frac{1}{N} \sum_{i=1}^N \operatorname{Err}(x_i) \\
+&amp;= \frac{1}{N} \sum_{i=1}^N \operatorname{E}_{Y^0}\left[ L \left(Y_i^0, \hat{f}\left(x_i\right)\right) \;\middle|\; \mathcal{T} \right],
+\end{aligned}
+\]</span> where <span class="math inline">\(Y^0\)</span> notation indicates that we observe <span class="math inline">\(N\)</span> new response values at each of the training points <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i = 1, 2, \dots{}, N\)</span>. We define the optimism as</p>
+<p>The <em>training error</em> is the average loss over the training data <span class="math inline">\(\mathcal{T}\)</span>, <span class="math display">\[
+\overline{\operatorname{err}}
+= \frac{1}{N} \sum_{i=1}^N L \left(y_i, \hat{f}\left(x_i\right)\right).
+\]</span></p>
+</section>
+<section id="the-bias-variance-decomposition" class="level2">
+<h2 class="anchored" data-anchor-id="the-bias-variance-decomposition">The Bias-Variance Decomposition</h2>
+<p>Under the squared error loss function, the expected test error at a point <span class="math inline">\(x_0\)</span> can be decomposed into three components: <span class="math display">\[
+\begin{align*}
+&amp;\mathrel{\phantom{=}} \operatorname{Err}(x_0) \\
+&amp;= \operatorname{E}\left[ \left( Y - \hat{f}(x_0) \right)^2 \;\middle|\; X = x_0 \right] \\
+&amp;= \operatorname{E}\left[ \left( \varepsilon + f(x_0) - \hat{f}(x_0) \right)^2 \;\middle|\; X = x_0 \right] \\
+&amp;= \sigma^2 + \operatorname{E}\left[\left(f(x_0) - \hat{f}(x_0) \right)^2 \;\middle|\; X = x_0 \right] \\
+&amp;= \sigma^2 + \left( f(x_0) - \operatorname{E}  \hat{f}(x_0) \right)^2 + \operatorname{Var}\left( \hat{f}(x_0) \right) \\
+&amp;=  \sigma^2 + \text{Bias}^2 + \text{Variance},
+\end{align*}
+\]</span> The first term <span class="math inline">\(\sigma^2\)</span> is the <em>irreducible error</em>, which is the variance of the error term <span class="math inline">\(\varepsilon\)</span>. It cannot be avoided by any model. The second term is the <em>squared bias</em>, which measures how far the expected prediction <span class="math inline">\(\operatorname{E} \hat{f}(x_0)\)</span> is from the true value <span class="math inline">\(f(x_0)\)</span>. The third term <span class="math inline">\(\operatorname{Var}\left( \hat{f}(x_0) \right)\)</span> is the <em>variance</em>, which measures how much the predictions vary around their expected value.</p>
+<p>Although the true conditional expectation function <span class="math inline">\(f(X)\)</span> may not be linear, we can still use a linear model to approximate it. Let <span class="math inline">\(\beta_*\)</span> be the linear projection coefficient of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span>; that is, <span class="math display">\[
+\beta_* = \operatorname*{argmin}_{\beta} \operatorname{E}\left[ \left( Y - X^\intercal \beta \right)^2 \right]
+= \operatorname{E} \left[X X^\intercal \right]^{-1} \operatorname{E}\left[ X Y \right].
+\]</span> The ordinary least squares (OLS) estimator of <span class="math inline">\(\beta_*\)</span> is defined as the sample analogue of the above expression: <span class="math display">\[
+\hat{\beta} = \left( \sum_{i=1}^N X_i X_i^\intercal \right)^{-1} \left( \sum_{i=1}^N X_i Y_i \right).
+\]</span> Then, the squared bias at <span class="math inline">\(x_0\)</span> can be decomposed into two parts: <span class="math display">\[
+\begin{aligned}
+&amp;\mathrel{\phantom{=}} f(x_0) - \operatorname{E} \hat{f}(x_0) \\
+&amp;= f(x_0) - \operatorname{E} x_0^\intercal \hat{\beta} \\
+&amp;= \left( f(x_0) - x_0^\intercal \beta_* \right) + \left( x_0^\intercal \beta_* - \operatorname{E} x_0^\intercal \hat{\beta} \right).
+\end{aligned}
+\]</span> The first term is called the <em>model bias</em> or <em>specification bias</em>, which measures how far the true conditional expectation function <span class="math inline">\(f(x_0)\)</span> is from the linear projection <span class="math inline">\(x_0^\intercal \beta_*\)</span>. The second term is called the <em>estimation bias</em>, which measures how far the expected prediction <span class="math inline">\(\operatorname{E} x_0^\intercal \hat{\beta}\)</span> is from the linear projection <span class="math inline">\(x_0^\intercal \beta_*\)</span>. Notice that the OLS estimator <span class="math inline">\(\hat{\beta}\)</span> is an unbiased estimator of <span class="math inline">\(\beta_*\)</span>, so the estimation bias is zero.</p>
+</section>
+<section id="estimating-the-optimism" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-the-optimism">Estimating the Optimism</h2>
+<section id="mallows-c_p-criterion" class="level3">
+<h3 class="anchored" data-anchor-id="mallows-c_p-criterion">Mallows’ <span class="math inline">\(C_p\)</span> Criterion</h3>
+</section>
+<section id="akaike-information-criterion-aic" class="level3">
+<h3 class="anchored" data-anchor-id="akaike-information-criterion-aic">Akaike Information Criterion (AIC)</h3>
+</section>
+<section id="bayesian-information-criterion-bic" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-information-criterion-bic">Bayesian Information Criterion (BIC)</h3>
 </section>
 </section>
-<section id="其他" class="level2">
-<h2 class="anchored" data-anchor-id="其他">其他</h2>
-<p>這學期當 KM 的大二計量課助教。這學期的計量課用 Bruce Hansen 的課本（我也是看這本課本才真正入門計量的，因此我有買這本書！）。通常 Hansen 的課本會當作經濟系碩博班必修課的用書。所以這本書確實對大多數的大二學生來說比較難上手。為了讓學生知難而退，KM 在課程大綱中就提及這門課一週大約要花 20 小時，還考了期初考（平均 50 分）。可是不僅實體課堂的出席率不高，課程影片也沒什麼人在看，並除了 lab 的學生以外，很少人去他或助教的 office hour。因此，他上週發了一封信，名為 Volker shock，裡面講到 Fed 主席 Volker 在 1980 年代的時候，為了對抗通貨膨脹，將利率提高到 20%。這樣的做法造成很大的衝擊，但也讓通貨膨脹回落。KM 說必要的話他也會這樣做。</p>
-<p>結果這封信引起軒然大波，有一篇相關的討論文章，甚至一度成為 Dcard 臺大板的熱門文章。文章的作者覺得自己絕對不是不用功的學生，但是老師的教學品質非常差。當然留言區就是正反意見都有。後來 KM 也找我們簡單地開了個會。他說他心目中的模範就是他當年修的陳金次的高等微積分。這門課的負擔他估計大約是當時那門高微的 70%。他並堅持不會修改教學目標和要求。因為他希望這對來年的學生是個有效地訊號。那些想要一週花 20 小時學 Hansen 的才會來他的班。我覺得挺有趣的。不知道我會不會有機會當老師，也不知道屆時應該如何教學生、要求學生。</p>
-<hr>
-<p>努力想想除了工作、讀書和耍廢的時候在做些什麼。</p>
-<p>週一在住處自己煮了一些蔬菜和雞胸肉。最近覺得因為外食，自己真是吃太少蔬菜了。因此偶爾開始煮一些方便的蔬菜。</p>
-<p>週三和大學同學在忠孝復興站附近吃了烤魚、喝了雞湯，都還不錯。雞湯很適合獨食，是如果在附近不知道要吃什麼，會想去吃的餐廳。</p>
-<p>週四第一次去了遠企樓下的 city’Super，店內空間不大，但有很多舶來品。有空的話應該仔細逛逛。拿到了 F 的草莓蛋糕，好吃。</p>
-<p>週五去了好久沒去的未央。上次去可能是大四吧，熬夜準備線性代數的期考（結果考很爛😭）。蜂蜜柚子茶有點太甜。莓果蛋白餅好吃，但餅乾本人有點像是比較脆的旺仔小饅頭。</p>
-<p>週六練了一晚上的書法。</p>
+<section id="leave-one-out-cross-validation-loocv" class="level2">
+<h2 class="anchored" data-anchor-id="leave-one-out-cross-validation-loocv">Leave-One-Out Cross-Validation (LOOCV)</h2>
 
 
 </section>
 
 </main> <!-- /main -->
-<script>
-  const emphasizedElements = document.querySelectorAll('.emphasis');
-
-  emphasizedElements.forEach(emphasizedText => {
-    const text = emphasizedText.textContent;
-    emphasizedText.innerHTML = '';
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      const charSpan = document.createElement('span');
-      charSpan.textContent = char;
-      charSpan.style.position = 'relative';
-
-      const dotSpan = document.createElement('span');
-      dotSpan.className = 'dot';
-      dotSpan.textContent = '•';
-
-      charSpan.appendChild(dotSpan);
-      emphasizedText.appendChild(charSpan);
-    }
-  });
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
