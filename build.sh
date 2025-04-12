@@ -34,4 +34,4 @@ if [ -d "images" ]; then
     cp -r images/* docs/images/
 fi
 
-echo "網站生成完成！"
+echo "Done!"
