@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="$lang$">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁</title>
-    <meta name="description" content="小學生筆記">
-    
+    <title>$if(title)$$title$$else$小學生筆記$endif$</title>
+    <meta name="description" content="$if(description)$$description$$else$小學生筆記$endif$">
+    $if(keywords)$<meta name="keywords" content="$keywords$">$endif$
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,54 +34,28 @@
                 <span></span>
             </button>
             <div class="nav-links">
-                <a href="weekly.html" class="">週記</a>
-                <a href="about.html" class="">關於</a>
+                <a href="weekly.html" class="$if(is_weekly)$active$endif$">週記</a>
+                <a href="about.html" class="$if(is_about)$active$endif$">關於</a>
             </div>
         </div>
     </header>
     
     <main>
-        <h1>首頁</h1>
+        <h1>$title$</h1>
+        $if(date)$<p class="post-date">$date$</p>$endif$
         
+        $if(toc)$
+        <div class="toc">
+            <h2>目錄</h2>
+            $toc$
+        </div>
+        $endif$
         
-                
-        <div class="caution">
-        <p>網站還在架設中。</p>
-        </div>
-        <div class="comment">
-        <script src="js/confucius-said.js"></script>
-        <table style="width: 100%; margin-bottom: 4px;">
-        <tbody>
-        <tr>
-        <td>
-        <div id="analects-chapter" style="font-weight: bold;">
-
-        </div>
-        </td>
-        <td style="text-align: right;">
-        <btn onclick="previous_verse()" title="Previous verse"><i class="fa-solid fa-arrow-left"></i></btn>
-        <btn onclick="next_verse()" title="Next verse"><i class="fa-solid fa-arrow-right"></i></btn>
-        <btn onclick="confucius_said()" title="Random verse"><i class="fa-solid fa-arrow-rotate-right"></i></btn>
-        <btn title="Jesse C. Chen is credited with creating this widget."><i class="fa-solid fa-circle-info"></i></btn>
-        </td>
-        </tr>
-        </tbody>
-        </table>
-        <p id="analects-verse">
-        </p>
-        </div>
-        </div>
-        <h2 id="econometrics">Econometrics</h2>
-        <ul>
-        <li><a href="posts/iv-nutshell.html">Instrumental Variable in a
-        Nutshell</a>: A brief introduction to the IV, 2SLS, and control
-        function approaches.</li>
-        </ul>
-        <h2 id="miscellanea">Miscellanea</h2>
+        $body$
     </main>
     
     <footer>
-        <p>© 2025 小學生筆記</p>
+        <p>© $year$ 小學生筆記</p>
     </footer>
 </body>
 </html>

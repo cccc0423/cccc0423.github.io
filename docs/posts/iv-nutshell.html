@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrumental Variables in a Nutshell</title>
+    <meta name="description" content="小學生筆記">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Instrumental Variables in a Nutshell</h1>
+        <p class="post-date">2025-03-17</p>
+
+                <div class="toc">
+            <h2>目錄</h2>
+            <ul>
+            <li><a href="#the-setup" id="toc-the-setup">The
+            Setup</a></li>
+            <li><a href="#the-instrumental-variables-iv-estimation"
+            id="toc-the-instrumental-variables-iv-estimation">The
+            Instrumental Variables (IV) Estimation</a></li>
+            <li><a href="#the-two-stage-least-squares-2sls-estimation"
+            id="toc-the-two-stage-least-squares-2sls-estimation">The
+            Two-Stage Least Squares (2SLS) Estimation</a></li>
+            <li><a href="#the-control-function-approach"
+            id="toc-the-control-function-approach">The Control Function
+            Approach</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="the-setup">The Setup</h2>
+        <p>Suppose that the wage <span
+        class="math inline">\(Y_i\)</span> of individual <span
+        class="math inline">\(i\)</span> is linearly determined by
+        education <span class="math inline">\(D_i\)</span> (<span
+        class="math inline">\(1\)</span> if the individual has a college
+        degree and <span class="math inline">\(0\)</span> otherwise) and
+        an unobservable ability <span
+        class="math inline">\(A_i\)</span>: <span
+        class="math display">\[
+        Y_i = \beta_0 + \beta_1 D_i + \beta_2 A_i + e_i \coloneqq
+        \beta_0 + \beta_1 D_i + \varepsilon_i,
+        \]</span> where <span class="math inline">\(D_i\)</span> and
+        <span class="math inline">\(A_i\)</span> are mean independent of
+        <span class="math inline">\(e_i\)</span>, and <span
+        class="math inline">\(\varepsilon_i \coloneqq \beta_2 A_i +
+        e_i\)</span> is the structural error. We are interested in the
+        causal effect of education <span
+        class="math inline">\(D_i\)</span> on wages <span
+        class="math inline">\(Y_i\)</span>. This effect is given by
+        <span class="math inline">\(\beta_1\)</span> in the DGP.<a
+        href="#fn1" class="footnote-ref" id="fnref1"
+        role="doc-noteref"><sup>1</sup></a> If we can fit a linear
+        regression of <span class="math inline">\(Y_i\)</span> on <span
+        class="math inline">\(D_i\)</span> and <span
+        class="math inline">\(A_i\)</span>, then the OLS estimator of
+        <span class="math inline">\(\beta_1\)</span> is unbiased and
+        consistent. However, what if we cannot observe <span
+        class="math inline">\(A_i\)</span>?</p>
+        <p>This scenario is known as omitted variable bias in
+        traditional econometrics textbooks. The omitted variable bias
+        arises when the unobservable <span
+        class="math inline">\(A_i\)</span> appears in the outcome
+        equation and is correlated with <span
+        class="math inline">\(D_i\)</span>. In this case, the OLS
+        estimator of <span class="math inline">\(\beta_1\)</span> is
+        biased and inconsistent: <span class="math display">\[
+        \frac{\operatorname{Cov}(Y_i, D_i)}{\operatorname{Var}(D_i)} =
+        \beta_1 + \beta_2 \frac{\operatorname{Cov}(A_i,
+        D_i)}{\operatorname{Var}(D_i)}.
+        \]</span></p>
+        <h2 id="the-instrumental-variables-iv-estimation">The
+        Instrumental Variables (IV) Estimation</h2>
+        <p>A solution to the omitted variable bias is to find an
+        instrument <span class="math inline">\(Z_i\)</span> satisfying
+        two conditions:</p>
+        <ol type="1">
+        <li>Exogeneity: <span
+        class="math inline">\(\operatorname{Cov}(Z_i, \varepsilon_i) =
+        0\)</span>.</li>
+        <li>Relevance: <span
+        class="math inline">\(\operatorname{Cov}(Z_i, D_i) \neq
+        0\)</span>.</li>
+        </ol>
+        <p>The first condition ensures that the instrument <span
+        class="math inline">\(Z_i\)</span> is exogenous in the sense
+        that it is uncorrelated with <span
+        class="math inline">\(\varepsilon_i\)</span>, the factors other
+        than <span class="math inline">\(D_i\)</span> that affect <span
+        class="math inline">\(Y_i\)</span>. The second condition ensures
+        that the instrument <span class="math inline">\(Z_i\)</span> is
+        correlated with <span class="math inline">\(D_i\)</span>.</p>
+        <p>The idea of IV estimation is that the effect of <span
+        class="math inline">\(D_i\)</span> on <span
+        class="math inline">\(Y_i\)</span> can be determined by the
+        ratio of the effect of <span class="math inline">\(Z_i\)</span>
+        on <span class="math inline">\(Y_i\)</span> to the effect of
+        <span class="math inline">\(Z_i\)</span> on <span
+        class="math inline">\(D_i\)</span>.</p>
+        <p>To illustrate, suppose an increase of one unit in <span
+        class="math inline">\(Z_i\)</span> leads to an increase of <span
+        class="math inline">\(\delta_1\)</span> units in <span
+        class="math inline">\(Y_i\)</span> and an increase of <span
+        class="math inline">\(\pi_1\)</span> units in <span
+        class="math inline">\(D_i\)</span>. Here, <span
+        class="math inline">\(\delta_1\)</span> represents the effect of
+        <span class="math inline">\(Z_i\)</span> on <span
+        class="math inline">\(Y_i\)</span>, and <span
+        class="math inline">\(\pi_1\)</span> represents the effect of
+        <span class="math inline">\(Z_i\)</span> on <span
+        class="math inline">\(D_i\)</span>. Given that <span
+        class="math inline">\(Z_i\)</span> only affects <span
+        class="math inline">\(Y_i\)</span> through <span
+        class="math inline">\(D_i\)</span>, the effect of <span
+        class="math inline">\(D_i\)</span> on <span
+        class="math inline">\(Y_i\)</span>, denoted by <span
+        class="math inline">\(\beta_1\)</span>, can be identified as the
+        ratio <span class="math inline">\(\delta_1 / \pi_1\)</span>.</p>
+        <p>Following this logic, the IV estimand is <span
+        class="math display">\[
+        \begin{aligned}
+        \beta_{\text{IV}}
+        &amp;\coloneqq \frac{\operatorname{Cov}(Y_i, Z_i) /
+        \operatorname{Var}(Z_i)}{\operatorname{Cov}D_i, Z_i) /
+        \operatorname{Var}(Z_i)} \\
+        &amp;= \frac{\operatorname{Cov}(\beta_0 + \beta_1 D_i +
+        \varepsilon_i, Z_i)}{\operatorname{Cov}(D_i, Z_i)} \\
+        &amp;= \beta_1 + \frac{\operatorname{Cov}(\varepsilon_i,
+        Z_i)}{\operatorname{Cov}(D_i, Z_i)} \\
+        &amp;= \beta_1.
+        \end{aligned}
+        \]</span> Its sample counterpart is the IV estimator <span
+        class="math inline">\(\hat{\beta}_{\text{IV}}\)</span>: <span
+        class="math display">\[
+        \hat{\beta}_{\text{IV}} \coloneqq \frac{\sum_{i=1}^n (Y_i -
+        \bar{Y})(Z_i - \bar{Z})}{\sum_{i=1}^n (D_i - \bar{D})(Z_i -
+        \bar{Z})}.
+        \]</span> where <span class="math inline">\(\bar{Y}\)</span>,
+        <span class="math inline">\(\bar{D}\)</span>, and <span
+        class="math inline">\(\bar{Z}\)</span> are the sample means of
+        <span class="math inline">\(Y_i\)</span>, <span
+        class="math inline">\(D_i\)</span>, and <span
+        class="math inline">\(Z_i\)</span>, respectively.</p>
+        <h2 id="the-two-stage-least-squares-2sls-estimation">The
+        Two-Stage Least Squares (2SLS) Estimation</h2>
+        <p>The idea of 2SLS is to replace the endogenous regressor <span
+        class="math inline">\(D_i\)</span> with its fitted value from
+        the first stage regression. The first stage regression is the
+        regression of the endogenous regressor <span
+        class="math inline">\(D_i\)</span> on the instrument <span
+        class="math inline">\(Z_i\)</span>. This works because the
+        fitted value of <span class="math inline">\(D_i\)</span> from
+        the first stage regression contains only the variation in <span
+        class="math inline">\(D_i\)</span> that is explained by <span
+        class="math inline">\(Z_i\)</span> and is uncorrelated with the
+        error term <span
+        class="math inline">\(\varepsilon_i\)</span>.</p>
+        <p>Let the first stage population regression be <span
+        class="math display">\[
+        D_i = \pi_0 + \pi_1 Z_i + u_i,
+        \]</span> where <span class="math inline">\(u_i\)</span> is the
+        projection error. The linear projection of <span
+        class="math inline">\(D_i\)</span> on <span
+        class="math inline">\(Z_i\)</span> is denoted by <span
+        class="math inline">\(\mathscr{P}(D_i \mid Z_i) = \pi_0 + \pi_1
+        Z_i\)</span>. Then, the projection coefficient of <span
+        class="math inline">\(\mathscr{P}(D_i \mid Z_i)\)</span> in the
+        regression of <span class="math inline">\(Y_i\)</span> on <span
+        class="math inline">\(\mathscr{P}(D_i \mid Z_i)\)</span> is
+        <span class="math display">\[
+        \begin{aligned}
+        \beta_{\text{2SLS}}
+        &amp;= \frac{\operatorname{Cov}(Y_i, \mathscr{P}(D_i \mid
+        Z_i))}{\operatorname{Var}(\mathscr{P}(D_i \mid Z_i))} \\
+        &amp;= \frac{\operatorname{Cov}(\beta_0 + \beta_1 D_i +
+        \varepsilon_i, \pi_0 + \pi_1 Z_i)}{\operatorname{Var}(\pi_0 +
+        \pi_1 Z_i)}.
+        \end{aligned}
+        \]</span> Substituting <span class="math inline">\(D_i = \pi_0 +
+        \pi_1 Z_i + u_i\)</span> into the above expression, we have
+        <span class="math display">\[
+        \begin{aligned}
+        \beta_{\text{2SLS}}
+        &amp;= \frac{\operatorname{Cov}(\beta_0 + \beta_1(\pi_0 + \pi_1
+        Z_i + u_i) + \varepsilon_i, \pi_0 + \pi_1
+        Z_i)}{\operatorname{Var}(\pi_1 Z_i)} \\
+        &amp;= \beta_1 + \frac{\operatorname{Cov}(\beta_1 u_i +
+        \varepsilon_i, \pi_1 Z_i)}{\operatorname{Var}(\pi_1 Z_i)} \\
+        &amp;= \beta_1,
+        \end{aligned}
+        \]</span> where the last equality follows from the fact that
+        <span class="math inline">\(Z_i\)</span> is uncorrelated with
+        <span class="math inline">\(u_i\)</span> by construction and is
+        uncorrelated with <span
+        class="math inline">\(\varepsilon_i\)</span> by the exogeneity
+        assumption.</p>
+        <p>In practice, the 2SLS estimation is done in two stages.</p>
+        <ol type="1">
+        <li>First stage: Regress <span
+        class="math inline">\(D_i\)</span> on <span
+        class="math inline">\(Z_i\)</span> to obtain the fitted value
+        <span class="math inline">\(\hat{D}_i = \hat{\pi}_0 +
+        \hat{\pi}_1 Z_i\)</span>.</li>
+        <li>Second stage: Regress <span
+        class="math inline">\(Y_i\)</span> on <span
+        class="math inline">\(\hat{D}_i\)</span>, and the OLS estimator
+        of the coefficient of <span
+        class="math inline">\(\hat{D}_i\)</span> is the 2SLS estimator
+        of <span class="math inline">\(\beta_1\)</span>.</li>
+        </ol>
+        <p>Importantly, the 2SLS estimator is numerically equivalent to
+        the IV estimator when there is only one endogenous
+        regressor.</p>
+        <h2 id="the-control-function-approach">The Control Function
+        Approach</h2>
+        <p>Like the 2SLS estimation, the control function approach also
+        starts with the first stage regression of the endogenous
+        regressor <span class="math inline">\(D_i\)</span> on the
+        instrument <span class="math inline">\(Z_i\)</span>. However,
+        the control function approach differs from the 2SLS estimation
+        in the second stage regression. Instead of regressing <span
+        class="math inline">\(Y_i\)</span> on the fitted value of <span
+        class="math inline">\(D_i\)</span>, the control function
+        approach regresses <span class="math inline">\(Y_i\)</span> on
+        <span class="math inline">\(D_i\)</span> and the residuals <span
+        class="math inline">\(\hat{u}_i\)</span> from the first stage
+        regression.</p>
+        <p>To see why this works, note that the endogeneity problem
+        arises because <span class="math inline">\(D_i\)</span> is
+        correlated with the error term <span
+        class="math inline">\(\varepsilon_i\)</span>. This correlation
+        occurs because both <span class="math inline">\(D_i\)</span> and
+        <span class="math inline">\(\varepsilon_i\)</span> are affected
+        by the unobserved ability <span
+        class="math inline">\(A_i\)</span>. The key insight of the
+        control function approach is that the first-stage residuals
+        <span class="math inline">\(u_i\)</span> capture the component
+        of <span class="math inline">\(D_i\)</span> that is correlated
+        with <span class="math inline">\(\varepsilon_i\)</span>. By
+        including <span class="math inline">\(u_i\)</span> as a control
+        variable in the second stage regression, we “control for” the
+        endogeneity.</p>
+        <p>More formally, let’s examine the relationship between <span
+        class="math inline">\(u_i\)</span> and <span
+        class="math inline">\(\varepsilon_i\)</span>. From the first
+        stage regression, we have <span class="math display">\[
+        \begin{aligned}
+        D_i &amp;= \pi_0 + \pi_1 Z_i + u_i.
+        \end{aligned}
+        \]</span> The residuals <span class="math inline">\(u_i\)</span>
+        represents the part of <span class="math inline">\(D_i\)</span>
+        that cannot be explained by <span
+        class="math inline">\(Z_i\)</span>. Since <span
+        class="math inline">\(Z_i\)</span> is exogenous, this residual
+        must capture all the endogenous variation in <span
+        class="math inline">\(D_i\)</span>, including its correlation
+        with <span class="math inline">\(A_i\)</span>. Therefore, <span
+        class="math inline">\(u_i\)</span> serves as a proxy for the
+        unobserved ability <span class="math inline">\(A_i\)</span>
+        that’s causing the endogeneity problem.</p>
+        <p>When we include <span class="math inline">\(u_i\)</span> in
+        the outcome equation, we have <span class="math display">\[
+        \begin{aligned}
+        Y_i &amp;= \beta_0 + \beta_1 D_i + \gamma u_i + \eta_i,
+        \end{aligned}
+        \]</span> where <span class="math inline">\(\eta_i\)</span> is
+        the new error term that is uncorrelated with <span
+        class="math inline">\(D_i\)</span> and <span
+        class="math inline">\(u_i\)</span>. The coefficient <span
+        class="math inline">\(\gamma\)</span> captures the effect of
+        <span class="math inline">\(u_i\)</span> on <span
+        class="math inline">\(Y_i\)</span>. The control function
+        estimator <span
+        class="math inline">\(\hat{\beta}_{\text{CF}}\)</span> is the
+        OLS estimator of <span class="math inline">\(\beta_1\)</span> in
+        the regression of <span class="math inline">\(Y_i\)</span> on
+        <span class="math inline">\(D_i\)</span> and <span
+        class="math inline">\(u_i\)</span>.</p>
+        <p>Another way to understand why the regression of <span
+        class="math inline">\(Y_i\)</span> on <span
+        class="math inline">\(D_i\)</span> and <span
+        class="math inline">\(u_i\)</span> identifies the causal effect
+        of <span class="math inline">\(D_i\)</span> on <span
+        class="math inline">\(Y_i\)</span> is to consider the population
+        version of Frisch-Waugh-Lovell theorem. The projection
+        coefficient of <span class="math inline">\(D_i\)</span> in the
+        regression of <span class="math inline">\(Y_i\)</span> on <span
+        class="math inline">\(D_i\)</span> and <span
+        class="math inline">\(u_i\)</span> can be obtained by</p>
+        <ol type="1">
+        <li><p>Regressing <span class="math inline">\(D_i\)</span> on
+        the first-stage residuals <span
+        class="math inline">\(u_i\)</span> to obtain residuals. The
+        resulting residuals represent the component of <span
+        class="math inline">\(D_i\)</span> that is orthogonal to <span
+        class="math inline">\(u_i\)</span>, which is precisely the
+        linear projection of <span class="math inline">\(D_i\)</span> on
+        <span class="math inline">\(Z_i\)</span>, <span
+        class="math inline">\(\mathscr{P}(D_i \mid
+        Z_i)\)</span>.</p></li>
+        <li><p>Regressing <span class="math inline">\(Y_i\)</span> on
+        <span class="math inline">\(\mathscr{P}(D_i \mid Z_i)\)</span>,
+        and the coefficient of <span
+        class="math inline">\(\mathscr{P}(D_i \mid Z_i)\)</span> is
+        <span class="math inline">\(\beta_1\)</span>: <span
+        class="math display">\[
+        \begin{aligned}
+        \beta_{\text{CF}}
+        &amp;= \frac{\operatorname{Cov}(Y_i, \mathscr{P}(D_i \mid
+        Z_i))}{\operatorname{Var}(\mathscr{P}(D_i \mid Z_i))} \\
+        &amp;= \frac{\operatorname{Cov}(\beta_0 + \beta_1 D_i +
+        \varepsilon_i, \pi_0 + \pi_1 Z_i)}{\operatorname{Var}(\pi_0 +
+        \pi_1 Z_i)}.
+        \end{aligned}
+        \]</span> Substituting <span class="math inline">\(D_i = \pi_0 +
+        \pi_1 Z_i + u_i\)</span> into the above expression as we did for
+        the 2SLS estimation, we have <span class="math display">\[
+        \begin{aligned}
+        \beta_{\text{CF}}
+        &amp;= \beta_1 + \frac{\operatorname{Cov}(\beta_1 u_i +
+        \varepsilon_i, \pi_1 Z_i)}{\operatorname{Var}(\pi_1 Z_i)} \\
+        &amp;= \beta_1,
+        \end{aligned}
+        \]</span> where the last equality again follows from the fact
+        that <span class="math inline">\(Z_i\)</span> is uncorrelated
+        with <span class="math inline">\(u_i\)</span> by construction
+        and is uncorrelated with <span
+        class="math inline">\(\varepsilon_i\)</span> by the exogeneity
+        assumption.</p></li>
+        </ol>
+        <p>In practice, the control function approach is implemented as
+        follows:</p>
+        <ol type="1">
+        <li><p>First stage: Regress <span
+        class="math inline">\(D_i\)</span> on <span
+        class="math inline">\(Z_i\)</span> to obtain the residuals <span
+        class="math inline">\(\hat{u}_i = D_i - \hat{\pi}_0 -
+        \hat{\pi}_1 Z_i\)</span>.</p></li>
+        <li><p>Second stage: Regress <span
+        class="math inline">\(Y_i\)</span> on <span
+        class="math inline">\(D_i\)</span> and <span
+        class="math inline">\(\hat{u}_i\)</span>, and the OLS estimator
+        of the coefficient of <span class="math inline">\(D_i\)</span>
+        is the control function estimator of <span
+        class="math inline">\(\beta_1\)</span>.</p></li>
+        </ol>
+        <p>It is clear that under linear models, the 2SLS and control
+        function approaches are two sides of the same coin: they both
+        exploit the first-stage regression, but the 2SLS approach
+        replaces the endogenous regressor with its fitted value in the
+        second stage, while the control function approach includes the
+        residuals from the first stage as an additional control variable
+        in the second stage.</p>
+        <section id="footnotes"
+        class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li id="fn1"><p>For simplicity, we assume that there is no
+        treatment effect heterogeneity. This means that the effect of
+        education on wages is the same for all individuals. This
+        assumption is already encoded in the structural equation
+        above.<a href="#fnref1" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>

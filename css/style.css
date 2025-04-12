@@ -1,0 +1,338 @@
+:root {
+  --primary-color: #4b9cc9;
+  --secondary-color: #2c3e50;
+  --text-color: #333;
+  --light-bg: #f8f9fa;
+  --font-main: 'Fira Sans', 'Noto Sans KR', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --border-radius: 8px;
+  --toc-bg: #f8f9fa;
+  --toc-border: #e1e4e8;
+  --toc-active: #e6f3fb;
+  --content-max-width: 800px;
+}
+
+body {
+  font-family: var(--font-main);
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  position: relative;
+  z-index: 100;
+}
+
+/* Container for main content */
+main {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: calc(var(--content-max-width) + 500px);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.nav-brand {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+  margin-right: auto;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+}
+
+/*.nav-brand:hover { 
+  color: var(--primary-color);
+  background-color: rgba(52, 152, 219, 0.05);
+}*/
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: var(--primary-color);
+}
+
+.nav-links a.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Table of Contents Styling - Material Design inspired */
+.toc {
+  background-color: white;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 0.85rem;
+  margin: 2rem 0;
+}
+
+.toc h2 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  color: var(--secondary-color);
+}
+
+.toc ul {
+  padding-left: 0.75rem;
+  margin-bottom: 0;
+}
+
+.toc li {
+  margin-bottom: 0.4rem;
+  list-style-type: none;
+  position: relative;
+  padding-left: 0.8rem;
+}
+
+.toc li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.toc a {
+  color: rgba(0,0,0,0.75);
+  text-decoration: none;
+  display: block;
+  padding: 0.2rem 0;
+  transition: color 0.2s ease;
+  font-weight: 400;
+}
+
+.toc a:hover {
+  color: var(--primary-color);
+}
+
+.toc a.active {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Nested TOC items */
+.toc ul ul {
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.toc ul ul li::before {
+  width: 4px;
+  height: 4px;
+  background-color: rgba(75, 156, 201, 0.7);
+}
+
+/* Hamburger menu button */
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--secondary-color);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Footer styling */
+footer {
+  max-width: var(--content-max-width);
+  margin: 2rem auto;
+  padding: 1rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Other elements */
+h1, h2, h3 {
+  color: var(--secondary-color);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+code {
+  background-color: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.post-date {
+  color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+
+  /* Show hamburger menu */
+  .hamburger-menu {
+    display: block;
+    z-index: 101;
+  }
+  
+  /* Style for open hamburger (X) */
+  .hamburger-menu.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger-menu.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Mobile navigation menu */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    height: 100vh;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+    z-index: 100;
+  }
+  
+  /* Show the menu when active */
+  .nav-links.active {
+    right: 0;
+  }
+  
+  /* Menu items styling */
+  .nav-links a {
+    display: block;
+    margin: 1.5rem 0;
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Overlay when menu is open */
+  .nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 50;
+    display: none;
+  }
+  
+  .nav-overlay.active {
+    display: block;
+  }
+
+  .toc {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    box-sizing: border-box;
+  }
+}
+
+div.books, div.comment{
+  padding: 1.1em;
+  padding-bottom: 0em;
+  margin: 1em 0;
+  padding-left: 90px;
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  color: #212529;
+  background-color: #FFFFFF;
+  border-top: dashed 5px #B4D1E1;
+  border-bottom: dashed 5px #B4D1E1;
+  border-left: dashed 5px #B4D1E1;
+  border-right: dashed 5px #B4D1E1;
+}
+  
+div.books {
+    background-image: url("../images/books.svg");
+    background-size: 45px;
+}
+
+div.comment {
+  background-image: url("../images/speech-balloon.svg");
+  background-size: 45px;
+}
+
+div.caution {
+  padding: 1em;
+  padding-bottom: 1em;
+  margin: 1em 0;
+  padding-left: 90px;
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  color: #212529;
+  background-color: #FFFFFF;
+  border-top: dashed 5px #e1ddb4;
+  border-bottom: dashed 5px #e1ddb4;
+  border-left: dashed 5px #e1ddb4;
+  border-right: dashed 5px #e1ddb4;
+  background-image: url("../images/warning.svg");
+  background-size: 45px;
+}
