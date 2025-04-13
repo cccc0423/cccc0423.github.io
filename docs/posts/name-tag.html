@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名牌產生器</title>
+    <meta name="description" content="小學生筆記">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>名牌產生器</h1>
+        
+
+        
+        <p>這個產生器能讀 <code>.tsv</code> 檔。使用者需要把
+        <code>.tsv</code> 檔和 <code>.tex</code>
+        檔放在同個路徑之下。</p>
+        <p>如果我們從 NTU COOL 上下載了學生名單，那我們可以用 R
+        把學生名單轉換成 <code>.tsv</code> 檔。注意這個
+        <code>.tsv</code> 檔要有兩個欄位，一個是中文名字
+        <code>chinese</code>，另一個是英文名字
+        <code>english</code>。</p>
+        <div class="sourceCode" id="cb1"><pre
+        class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;Student-List.xlsx&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>student <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(file_path) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">english =</span> <span class="fu">str_extract</span>(Name, <span class="st">&quot;(?&lt;=</span><span class="sc">\\</span><span class="st">().*(?=</span><span class="sc">\\</span><span class="st">))&quot;</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">chinese =</span> <span class="fu">str_remove</span>(Name, <span class="st">&quot; </span><span class="sc">\\</span><span class="st">(.*&quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>student <span class="sc">%&gt;%</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(chinese, english) <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_tsv</span>(<span class="st">&quot;student.tsv&quot;</span>)</span></code></pre></div>
+        <p>檔案大概要是長這樣。</p>
+        <pre><code>chinese english
+林一一  LIN, YI-Yi
+張二二 CHANG, ER-ER
+...</code></pre>
+        <p>再來就是 <span class="math inline">\(\rm \LaTeX\)</span>
+        的部分。這個文件會讀取 <code>.tsv</code>
+        檔，然後把學生名字和學號印在 A4 紙上。注意這個文件要用
+        <code>xelatex</code> 編譯，因為我用了 <code>xeCJK</code>
+        套件來處理中文，而且要安裝相應的字型才能正常編譯（或者改成自己有的字型）。現在使用的幾個字型都是
+        overleaf 上有的。漢字字型是日文的 Harano Aji
+        Gothic，因為有點缺字，所以缺字的地方會用 Noto Sans CJK JP
+        來代替。英文字型則是 IBM Plex Sans Condensed，會使用 Condesed
+        是因為這樣能塞下比較多的字，不至於把字縮得太小。</p>
+        <pre><code>\documentclass[a4paper]{article}
+\usepackage[margin=-10pt]{geometry}
+\usepackage{fontspec}
+\usepackage[AutoFallBack=true]{xeCJK}
+\setCJKmainfont{Noto Sans CJK JP}
+\setCJKsansfont[FallBack=Noto Sans CJK JP]{Harano Aji Gothic}
+\setsansfont{IBM Plex Sans Condensed}
+\usepackage{graphicx}
+\pagestyle{empty}
+\usepackage{csvsimple}
+\usepackage{xcolor}
+\definecolor{gray02}{gray}{0.2}
+
+\newcommand{\NamePlate}[2]{%
+  \begin{center}
+    \begin{tabular}{@{}c@{}}
+      %---------------------------------
+      % (1) 第一等分：空白
+      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
+      \end{minipage}\\
+      \hline
+      %---------------------------------
+      % (2) 第二等分：旋轉 180° 的中英文姓名
+      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
+        \centering
+        \rotatebox{180}{%
+          \parbox{1\textwidth}{\centering
+            {\fontsize{65}{72}\selectfont\sffamily\bfseries\textcolor{gray02}{#1}}\\[1cm]
+            {\fontsize{60}{60}\selectfont\sffamily\bfseries\textcolor{gray02}{#2}}
+          }%
+        }
+      \end{minipage}\\
+      \hline
+      %---------------------------------
+      % (3) 第三等分：正常方向的中英文姓名
+      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
+        \centering
+        {\fontsize{65}{72}\selectfont\sffamily\bfseries\textcolor{gray02}{#1}}\\[1cm]
+        {\fontsize{60}{60}\selectfont\sffamily\bfseries\textcolor{gray02}{#2}}
+      \end{minipage}\\
+      \hline
+      %---------------------------------
+      % (4) 第四等分：空白
+      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
+      \end{minipage}\\
+    \end{tabular}
+  \end{center}
+}
+
+\begin{document}
+
+\csvreader[head to column names, separator=tab]{name_tab.tsv}{}{%
+   \NamePlate{\chinese}{\english}
+}
+
+\end{document}</code></pre>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>

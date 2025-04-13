@@ -15,11 +15,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVvQAgQKxuLQg29W6o9rkJB5/rTh7lYMQGxGgNhd7tCS+vepAZvg1jxKYvWJ0n" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQ5Cv9KtIZjod8Ded0NnqQyJvOE8lGdgfgKs9ElnPktBw1zUUv" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XWcW5q1YxfnKsCvKuhFZnsQ0p1QnrWnID+qJ+VTgWlXELVtSVRFCg5Yc" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <meta name="google-site-verification" content="Yzem9_xPjrCrNcCHmziBq7Ak2gQUxZeZ29IQMvNZdkc" />
     <script src="js/main.js" defer></script>

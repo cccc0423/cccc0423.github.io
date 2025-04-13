@@ -33,3 +33,5 @@ is_home: true
 - [Instrumental Variable in a Nutshell](posts/iv-nutshell.html): A brief introduction to the IV, 2SLS, and control function approaches.
 
 ## Miscellanea
+
+- [名牌產生器](posts/name-tag.html): 一個簡單的 $\rm \LaTeX$ 名牌產生器。
