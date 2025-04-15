@@ -318,7 +318,7 @@ blockquote {
   }
 }
 
-div.books, div.comment{
+div.books {
   padding: 1em;
   padding-bottom: 1em;
   margin: 1em 0;
@@ -339,6 +339,18 @@ div.books {
 }
 
 div.comment {
+  padding: 1em;
+  padding-bottom: 1em;
+  margin: 1em 0;
+  padding-left: 90px;
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  color: #212529;
+  background-color: #FFFFFF;
+  border-top: dashed 5px #B4D1E1;
+  border-bottom: dashed 5px #B4D1E1;
+  border-left: dashed 5px #B4D1E1;
+  border-right: dashed 5px #B4D1E1;
   background-image: url("../images/speech-balloon.svg");
   background-size: 45px;
 }
