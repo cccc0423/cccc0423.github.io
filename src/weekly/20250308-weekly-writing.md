@@ -1,0 +1,578 @@
+---
+title: "週記（七）"
+description: "超沒效率的另一週"
+date: 2025-03-08
+---
+
+## 修課
+
+不知道要寫什麼，來寫上課學到什麼好了。在此之前補述一下上週的學習。
+
+### 上週
+
+書法課分初學與進階兩組。這與練習的材料和評分標準有關。雖然我學了一陣子了，但還是沒把握自己能算是進階組，所以選了初學組。我修的這門課教智永的真書千字文。所謂真書，就是楷書的意思。當然在那個時代（隋朝），因為楷書似乎還沒有發展得那麼成熟（？），所以智永的楷書也帶有一點點行書的筆意。上週初學組從基本筆畫點、撇開始。
+
+至於統計學習，上課進度真的很快。上週老師教了 ESL 的第四章。第四章的主題是用於分類的線性方法。所謂線性方法，指的是那些判別函數 $\delta_k(x)$ 或後驗機率 $P(G = k \mid X = x)$ 模型（在單調轉換後）是線性的方法。
+
+具體而言，這章節最主要介紹 linear discriminant analysis (LDA) 和 logistic regression，與他們的一些變形。有趣的是 LDA 和 logistic regression 其實可以導出等價的判別準則，可是 LDA 卻需要假設資料從常態分配中抽出。這使 logistic regression 在理論上更穩健，而當資料真的從常態分配生成時，LDA 的漸進效率更好。另一件有趣的事情是 LDA 與線性迴歸有一個比較深的連結；課本習題 4.2 讓我們逐步推導，在二元分類問題中，如果兩類別的樣本數相當，那線性迴歸的決策邊界其實就是 LDA 的決策邊界。不過我還沒有參透背後的直觀意義。除此之外，最後還提了一點基於 separating hyperplanes 的分類方法，如 perceptron learning algorithm，然後為 support vector machine (SVM) 鋪路。
+
+### 本週
+
+這週書法課讓我們練習橫畫。不過，我當然已經很會了。就這樣沒什麼壓力地度過兩節課。
+
+這週的統計學習教 ESL 第五章的前半。第五章的內容是 basis expansions 和 regularization。我們這週就教各種 splines。我有感覺老師因為感覺自己上太快，所以刻意放慢速度。至於，有什麼有趣的東西嗎？我覺得課本習題 5.7，說 knots 在資料點 $x_i$ 上的 natrual cubic splines 可以最小化
+$$
+\operatorname{RSS}(f, \lambda)
+= \sum_{i=1}^N \left( y_i - f(x_i) \right)^2 + \lambda \int f''(t)^2 \, dt
+$$
+這個目標函數，是一件很有趣的事情。不過講 smoothing splines 的計算時介紹到 B-splines，我真的是對這部分感覺很陌生。有時間應該好好研究研究😅。
+
+## 研究與閱讀
+
+又是碩論毫無進展的一週。還沒拿定主意要做什麼。來說一下我到底是對什麼有興趣。
+
+我想要做好的應用個體。我不認爲我會、我有能力或我想成為一個純粹的 econometric theorist。與其說我對計量經濟學有興趣，更貼切的說法是，我在從事經驗研究的過程中，產生一些困惑。我發現其中有些困惑曾經被一些人，例如計量經濟學家、其他科學領域的學者或者科學哲學家詢問、嘗試解答過。我實在很著迷於這些根本的科學方法論問題。一個最簡單、最普遍的疑問是，什麼時候我們會說 $X$ 對 $Y$ 有因果關係？（這不是一個簡單的問題）。然後我們還可以退一步問，這個問題是有意義的嗎？
+
+回到正題，如果要在經濟系做一些相關的研究，最直接地就是我去做一些計量經濟學的方法研究。現在我有一些感興趣的關鍵字：
+
+1. 我對 difference-in-differences (DiD) 比較熟悉，這是做實證研究的經濟學家非常常用的研究設計。問題在於，DiD 的 papers 真的汗牛充棟，我不知道我有可能做出什麼新的貢獻。
+
+2. 我對 mediation analysis 有興趣但不熟悉，這並不是大多數經濟學家熟悉的東西，做這個的大多在流行病學、政治學等領域。我覺得這個領域有很多有趣的問題。其中之一，就是我們能不能放寬經典的 sequential ignorability 假設。我曾經在 JC 的機器學習課的期末報告，嘗試提出一個利用 parallel trends 假設來識別一些 mediation analysis 參數的想法（然後用 double ML 的方式估計）。這是一個 DiD 設計的應用。但是，後來我也有點難信服我下的 parallel trends 假設真的可能在現實世界成立。一個潛在的方向是去研究它的 empirical contents，如最近有文章在討論怎樣的 selection mechanism 會產生 parallel trends，但我對這方向很悲觀，我感覺我沒有能力，而且沒有好結果。另一個方向是往 principal stratification 的方向發展，可是這感覺最終又會太像某篇 JBES 的文章。
+
+3. 我對 treatment heterogeneity 也有興趣。這是另一個很冷門的主題。學過因果推論 101 的人都聽過 effect heterogeneity，但 treatment heterogeneity 是另一個問題。在 Rubin causal model 裡，通常假設 stable unit treatment value assumption (SUTVA)。這個假設可以分成兩個部分，第一是沒有干擾（interference），也就是說，任何人的 treatment condition 都不會影響其他人的 outcome；第二是 treatment 沒有多個「版本」，也就是說，那些被劃分成有同樣的 treatment condition 的人，他們的 treatment condition 真的是一樣的。第二個部分比較微妙，經濟學的文獻也很少人研究，既有的討論大部分在流行病學的文獻裡。所謂沒有多個版本，其實是要求 treatment 有清楚的定義。以血壓為例，研究者可能想了解降低血壓對健康的效果，但是這個 treatment 有很多版本，比如藥物治療、手術治療、飲食治療等等。如果放在 Heckman 那套「思想實驗」的框架的話，沒有多個版本的要求事實上也可以看成要求研究者所觀察到的實驗組和對照組，真的與他心目中的思想實驗的參數有關。這個問題在經濟學中似乎比較少被詳細討論。比如，我們經常測量婚姻的效果、生育的效果，但是這些 treatment 的定義其實是很模糊的，很難想像真的滿足 SUTVA。而這些研究者心目中的思想實驗是什麼？要怎麼把問題定義清楚？
+
+## 其他
+
+週四吃了個有點貴的晚餐。現在已經覺得自己對吃東西沒有太大興趣了😅。並且體悟到節制應該是重要的美德。另外，我還是覺得我更適合一些比較接地氣的食物，例如泰米香的油爆草蝦、聚的北海道昆布湯或者雙月的蒜好好瘦肉湯。
+
+### 用 Claude 3.7 Sonnet 完成 Perceptron 演算法的互動式視覺化
+
+現在的 LLM 真的不錯用。我用它寫了一個 perceptron 演算法的互動式視覺化。這個視覺化是基於 SVG 的，我只有手動修改一些美感的部分。
+
+Rosenblatt 的 perceptron 演算法是一個簡單的二元分類演算法。它的目標是找到一個 hyperplane，使得正類樣本（標籤為 $+1$ 的那些）在 hyperplane 的一邊，負類樣本（標籤為 $-1$ 的那些）在 hyperplane 的另一邊。這個 hyperplane 可以寫成 $\beta_1^\intercal x + \beta_0 = 0$ 或 $\beta^\intercal x^* = 0$，其中，$\beta = (\beta_1, \beta_0)$，而 $\beta_1$ 是該 hyperplane 的法向量，$x^* = (x, 1)$ 是樣本的擴增後的向量。
+
+那這個演算法實際上怎麼找到那個 hyperplane 呢？它使用一種隨機的梯度下降法。具體來說，對於一個被誤分類的樣本 $x_i^*$，我們更新 $\beta$ 的規則是 $\beta_{\text{new}} \leftarrow \beta_{\text{old}} + y_i z_i$，其中 $y_i$ 是樣本的標籤，$z_i = x_i^* / \| x_i^* \|$ 是樣本的標準化向量。所以如果 $x_i^*$ 是一個正類樣本，而使得 $\beta_1^\intercal x_i + \beta_0 < 0$，那麼我們就應該把 $\beta$ 向 $z_i$ 的方向移動一些，使得 hyperplane 能夠正確分類這個樣本。相反地，如果 $x_i^*$ 是一個負類樣本，而使得 $\beta_1^\intercal x_i + \beta_0 > 0$，那麼我們就應該把 $\beta$ 向 $z_i$ 的反方向移動一些，使得 hyperplane 能夠正確分類這個樣本。如果資料是是線性可分的，這個演算法最後會收斂到一個能正確分類所有樣本的 hyperplane。
+
+```{=html}
+<div id="perceptron-container" style="width:100%;max-width:900px;margin:0 auto;">
+  <div style="width:100%;position:relative;padding-bottom:62.5%;">
+    <svg id="perceptron-svg" width="100%" height="100%" style="position:absolute;top:0;left:0;display:block;border:1px solid #ddd;background-color:#fff;"></svg>
+  </div>
+
+  <div style="text-align:center;margin:20px 0;">
+    <button id="step-button" class="btn btn-primary">執行一步</button>
+    <button id="auto-button" class="btn btn-success">自動運行</button>
+    <button id="reset-button" class="btn btn-danger">重置</button>
+  </div>
+
+  <div class="callout callout-style-default callout-note callout-titled">
+  <div class="callout-header d-flex align-content-center">
+  <div class="callout-icon-container">
+  <i class="callout-icon"></i>
+  </div>
+  <div class="callout-title-container flex-fill">
+  當前狀態
+  </div>
+  </div>
+  <div class="callout-body-container callout-body">
+  <ul>
+    <li>迭代次數：<span id="iteration-count">0</span></li>
+    <li><span class="math inline">\(\beta\)</span>：(<span id="beta-x">0.00</span>, <span id="beta-y">0.00</span>, <span id="beta-bias">0.00</span>)</li>
+    <li id="selected-point-info" style="display:none;">
+      <ul>
+        <li>選中的點：(<span id="point-x"></span>, <span id="point-y"></span>)；標籤：<span id="point-label"></span></li>
+        <li>標準化向量 <span class="math inline">\(z\)</span>：(<span id="z-x"></span>, <span id="z-y"></span>, <span id="z-bias"></span>)</li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+  </div>
+
+  <div class="callout callout-style-default callout-tip callout-titled">
+  <div class="callout-header d-flex align-content-center">
+  <div class="callout-icon-container">
+  <i class="callout-icon"></i>
+  </div>
+  <div class="callout-title-container flex-fill">
+  演算法說明
+  </div>
+  </div>
+  <div class="callout-body-container callout-body">
+  <ul>
+    <li>紅色向量：<span class="math inline">\(\beta\)</span> 參數向量，決定決策邊界，垂直於決策邊界</li>
+    <li>藍色線：當前決策邊界</li>
+    <li>綠色點：正類樣本（<span class="math inline">\(+1\)</span>）</li>
+    <li>紅色點：負類樣本（<span class="math inline">\(-1\)</span>）</li>
+    <li>紫色虛線：標準化向量 <span class="math inline">\(z\)</span> </li>
+    <li>更新規則：<span class="math inline">\(\beta_{\text{new}} \leftarrow \beta_{\text{old}} + y_i z_i\)</span>（其中 <span class="math inline">\(y_i\)</span> 是點的標籤，<span class="math inline">\(z_i\)</span>  是標準化向量）</li>
+    <li>虛線框：當前被誤分類的點</li>
+  </ul>
+  </div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 獲取SVG元素
+  const svg = document.getElementById('perceptron-svg');
+  
+  // 與窗口大小有關的重設函數
+  function resizeSVG() {
+    const svgRect = svg.getBoundingClientRect();
+    const width = svgRect.width;
+    const height = svgRect.height;
+    
+    // 更新中心點和縮放因子
+    centerX = width / 2;
+    centerY = height / 2;
+    scale = Math.min(width, height) / 8;  // 動態調整縮放因子
+    margin = Math.min(width, height) * 0.08;  // 動態調整邊距
+    
+    // 重繪整個視覺化
+    initializeSVG();
+    redraw();
+  }
+  
+  // 添加窗口大小變化事件監聽器
+  window.addEventListener('resize', resizeSVG);
+  
+  // SVG 命名空間
+  const svgNS = "http://www.w3.org/2000/svg";
+  
+  // 感知機狀態
+  let beta = { x: 0, y: 0, bias: 0 };
+  let points = [
+    { id: 1, x: 2.5, y: 1.5, label: 1 },
+    { id: 2, x: 1.5, y: 2.5, label: 1 },
+    { id: 3, x: -0.5, y: 1.5, label: 1 },
+    { id: 4, x: -2.5, y: -1.5, label: -1 },
+    { id: 5, x: -1.5, y: -2.5, label: -1 },
+    { id: 6, x: 1.5, y: -1.5, label: -1 }
+  ];
+  let selectedPoint = null;
+  let iterations = 0;
+  let autoRunTimer = null;
+  
+  // 初始化可視化參數 - 將在resizeSVG中更新
+  let centerX, centerY, scale, margin;
+  
+  // 座標轉換函數
+  function toScreenX(x) {
+    return centerX + x * scale;
+  }
+  
+  function toScreenY(y) {
+    return centerY - y * scale;
+  }
+  
+  // 標準化向量
+  function normalize(vector) {
+    const norm = Math.sqrt(vector.x * vector.x + vector.y * vector.y + 1);
+    return {
+      x: vector.x / norm,
+      y: vector.y / norm,
+      bias: 1 / norm
+    };
+  }
+  
+  // 判斷點是否被錯誤分類
+  function isMisclassified(point) {
+    const normalizedPoint = normalize(point);
+    const dotProduct = beta.x * normalizedPoint.x + beta.y * normalizedPoint.y + beta.bias * normalizedPoint.bias;
+    
+    const threshold = 0.01;
+    
+    if (point.label > 0) {
+      return dotProduct < threshold;
+    } else {
+      return dotProduct > -threshold;
+    }
+  }
+  
+  // 找到第一個錯誤分類的點
+  function findMisclassifiedPoint() {
+    return points.find(point => isMisclassified(point)) || null;
+  }
+  
+  // 初始化 SVG
+  function initializeSVG() {
+    // 清空 SVG
+    while (svg.firstChild) {
+      svg.removeChild(svg.firstChild);
+    }
+    
+    // 定義箭頭標記 - 調小尺寸
+    const defs = document.createElementNS(svgNS, "defs");
+    const marker = document.createElementNS(svgNS, "marker");
+    marker.setAttribute("id", "arrowhead");
+    marker.setAttribute("markerWidth", "6");  // 從10減小到6
+    marker.setAttribute("markerHeight", "4");  // 從7減小到4
+    marker.setAttribute("refX", "6");  // 從9減小到6
+    marker.setAttribute("refY", "2");  // 從3.5減小到2
+    marker.setAttribute("orient", "auto");
+    
+    const polygon = document.createElementNS(svgNS, "polygon");
+    polygon.setAttribute("points", "0 0, 6 2, 0 4");  // 從"0 0, 10 3.5, 0 7"減小到"0 0, 6 2, 0 4"
+    
+    marker.appendChild(polygon);
+    defs.appendChild(marker);
+    svg.appendChild(defs);
+    
+    // 計算SVG的可視區域
+    const viewBox = `0 0 ${svg.getBoundingClientRect().width} ${svg.getBoundingClientRect().height}`;
+    svg.setAttribute("viewBox", viewBox);
+    
+    // 繪製坐標軸
+    const xAxis = document.createElementNS(svgNS, "line");
+    xAxis.setAttribute("x1", margin);
+    xAxis.setAttribute("x2", svg.getBoundingClientRect().width - margin);
+    xAxis.setAttribute("y1", centerY);
+    xAxis.setAttribute("y2", centerY);
+    xAxis.setAttribute("stroke", "black");
+    xAxis.setAttribute("stroke-width", "1.5");
+    svg.appendChild(xAxis);
+    
+    const yAxis = document.createElementNS(svgNS, "line");
+    yAxis.setAttribute("x1", centerX);
+    yAxis.setAttribute("x2", centerX);
+    yAxis.setAttribute("y1", margin);
+    yAxis.setAttribute("y2", svg.getBoundingClientRect().height - margin);
+    yAxis.setAttribute("stroke", "black");
+    yAxis.setAttribute("stroke-width", "1.5");
+    svg.appendChild(yAxis);
+    
+    // 調整字體大小根據SVG尺寸
+    const fontSize = Math.max(10, Math.round(scale * 0.15));
+    const smallFontSize = Math.max(8, Math.round(scale * 0.12));
+    
+    // x軸標籤
+    const xLabel = document.createElementNS(svgNS, "text");
+    xLabel.setAttribute("x", svg.getBoundingClientRect().width - margin + 20);
+    xLabel.setAttribute("y", centerY + 15);
+    xLabel.setAttribute("font-size", fontSize);
+    xLabel.textContent = "x₁";
+    svg.appendChild(xLabel);
+    
+    // y軸標籤
+    const yLabel = document.createElementNS(svgNS, "text");
+    yLabel.setAttribute("x", centerX - 15);
+    yLabel.setAttribute("y", margin - 20);
+    yLabel.setAttribute("font-size", fontSize);
+    yLabel.textContent = "x₂";
+    svg.appendChild(yLabel);
+    
+    // 繪製刻度
+    [-3, -2, -1, 1, 2, 3].forEach(val => {
+      // X軸刻度
+      const xTick = document.createElementNS(svgNS, "line");
+      xTick.setAttribute("x1", toScreenX(val));
+      xTick.setAttribute("x2", toScreenX(val));
+      xTick.setAttribute("y1", centerY - 5);
+      xTick.setAttribute("y2", centerY + 5);
+      xTick.setAttribute("stroke", "black");
+      xTick.setAttribute("stroke-width", "1");
+      svg.appendChild(xTick);
+      
+      const xText = document.createElementNS(svgNS, "text");
+      xText.setAttribute("x", toScreenX(val));
+      xText.setAttribute("y", centerY + 20);
+      xText.setAttribute("text-anchor", "middle");
+      xText.setAttribute("font-size", smallFontSize);
+      xText.textContent = val;
+      svg.appendChild(xText);
+      
+      // Y軸刻度
+      const yTick = document.createElementNS(svgNS, "line");
+      yTick.setAttribute("x1", centerX - 4);
+      yTick.setAttribute("x2", centerX + 4);
+      yTick.setAttribute("y1", toScreenY(val));
+      yTick.setAttribute("y2", toScreenY(val));
+      yTick.setAttribute("stroke", "black");
+      yTick.setAttribute("stroke-width", "1");
+      svg.appendChild(yTick);
+      
+      const yText = document.createElementNS(svgNS, "text");
+      yText.setAttribute("x", centerX - 20);
+      yText.setAttribute("y", toScreenY(val) + 5);
+      yText.setAttribute("text-anchor", "middle");
+      yText.setAttribute("font-size", smallFontSize);
+      yText.textContent = val;
+      svg.appendChild(yText);
+    });
+    
+    // 原點標記
+    const originText = document.createElementNS(svgNS, "text");
+    originText.setAttribute("x", centerX - 20);
+    originText.setAttribute("y", centerY + 20);
+    originText.setAttribute("font-size", smallFontSize);
+    originText.textContent = "O";
+    svg.appendChild(originText);
+  }
+  
+  // 繪製決策邊界
+  function drawDecisionBoundary() {
+    // 移除舊的決策邊界
+    const oldLine = svg.querySelector(".decision-boundary");
+    if (oldLine) {
+      svg.removeChild(oldLine);
+    }
+    
+    if (beta.x === 0 && beta.y === 0) {
+      return;
+    }
+    
+    // ax + by + c = 0 形式
+    const a = beta.x;
+    const b = beta.y;
+    const c = beta.bias;
+    
+    // 計算與畫布邊界的交點
+    let startX, startY, endX, endY;
+    
+    if (Math.abs(b) < 0.001) {
+      // 近似垂直線
+      startX = -c / a;
+      endX = startX;
+      startY = -4;
+      endY = 4;
+    } else {
+      // 一般情況
+      startX = -4;
+      startY = (-c - a * startX) / b;
+      endX = 4;
+      endY = (-c - a * endX) / b;
+    }
+    
+    const line = document.createElementNS(svgNS, "line");
+    line.setAttribute("x1", toScreenX(startX));
+    line.setAttribute("y1", toScreenY(startY));
+    line.setAttribute("x2", toScreenX(endX));
+    line.setAttribute("y2", toScreenY(endY));
+    line.setAttribute("stroke", "blue");
+    line.setAttribute("stroke-width", "2");
+    line.setAttribute("class", "decision-boundary");
+    svg.appendChild(line);
+  }
+  
+  // 繪製參數向量 beta
+  function drawBetaVector() {
+    // 移除舊的參數向量
+    const oldVector = svg.querySelector(".beta-vector");
+    if (oldVector) {
+      svg.removeChild(oldVector);
+    }
+    
+    if (beta.x === 0 && beta.y === 0) {
+      return;
+    }
+    
+    const line = document.createElementNS(svgNS, "line");
+    line.setAttribute("x1", centerX);
+    line.setAttribute("y1", centerY);
+    line.setAttribute("x2", toScreenX(beta.x));
+    line.setAttribute("y2", toScreenY(beta.y));
+    line.setAttribute("stroke", "red");
+    line.setAttribute("stroke-width", "2");
+    line.setAttribute("marker-end", "url(#arrowhead)");
+    line.setAttribute("class", "beta-vector");
+    svg.appendChild(line);
+  }
+  
+  // 繪製標準化向量 z
+  function drawNormalizedVector() {
+    // 移除舊的標準化向量
+    const oldVector = svg.querySelector(".normalized-vector");
+    if (oldVector) {
+      svg.removeChild(oldVector);
+    }
+    
+    if (!selectedPoint) {
+      return;
+    }
+    
+    const z = normalize(selectedPoint);
+    const zx = z.x * scale * 0.5;
+    const zy = z.y * scale * 0.5;
+    
+    const line = document.createElementNS(svgNS, "line");
+    line.setAttribute("x1", centerX);
+    line.setAttribute("y1", centerY);
+    line.setAttribute("x2", centerX + zx);
+    line.setAttribute("y2", centerY - zy);
+    line.setAttribute("stroke", "purple");
+    line.setAttribute("stroke-width", "2");
+    line.setAttribute("stroke-dasharray", "5,5");
+    line.setAttribute("marker-end", "url(#arrowhead)");
+    line.setAttribute("class", "normalized-vector");
+    svg.appendChild(line);
+  }
+  
+  // 繪製數據點
+  function drawPoints() {
+    // 移除舊的點
+    const oldPoints = svg.querySelectorAll(".data-point");
+    oldPoints.forEach(point => {
+      svg.removeChild(point);
+    });
+    
+    // 根據SVG大小動態調整點的大小和字體 - 調整比例
+    const circleRadius = Math.max(4, scale * 0.12);  // 略微減小點的尺寸
+    const selectedCircleRadius = circleRadius * 1.2;
+    const fontSize = Math.max(8, scale * 0.12);
+    
+    points.forEach(point => {
+      const isSelected = selectedPoint && selectedPoint.id === point.id;
+      const fillColor = point.label > 0 ? "#4CAF50" : "#F44336";
+      const isMisclassed = isMisclassified(point);
+      
+      const circle = document.createElementNS(svgNS, "circle");
+      circle.setAttribute("cx", toScreenX(point.x));
+      circle.setAttribute("cy", toScreenY(point.y));
+      circle.setAttribute("r", isSelected ? selectedCircleRadius : circleRadius);
+      circle.setAttribute("fill", fillColor);
+      
+      // 強調誤分類的點
+      if (isMisclassed) {
+        circle.setAttribute("opacity", 1);
+        circle.setAttribute("stroke", "black");
+        circle.setAttribute("stroke-width", 2);
+        circle.setAttribute("stroke-dasharray", "2,2");
+      } else {
+        circle.setAttribute("opacity", 0.8);
+        circle.setAttribute("stroke", isSelected ? "black" : "none");
+        circle.setAttribute("stroke-width", isSelected ? 2 : 0);
+      }
+      
+      circle.setAttribute("class", "data-point");
+      svg.appendChild(circle);
+      
+      const text = document.createElementNS(svgNS, "text");
+      text.setAttribute("x", toScreenX(point.x));
+      text.setAttribute("y", toScreenY(point.y) - circleRadius - 5);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("font-size", fontSize);
+      text.setAttribute("font-weight", "bold");
+      text.setAttribute("class", "data-point");
+      text.textContent = `(${point.x}, ${point.y})`;
+      svg.appendChild(text);
+    });
+  }
+  
+  // 更新狀態顯示
+  function updateStatusDisplay() {
+    document.getElementById("iteration-count").textContent = iterations;
+    document.getElementById("beta-x").textContent = beta.x.toFixed(2);
+    document.getElementById("beta-y").textContent = beta.y.toFixed(2);
+    document.getElementById("beta-bias").textContent = beta.bias.toFixed(2);
+    
+    const selectedPointInfo = document.getElementById("selected-point-info");
+    
+    if (selectedPoint) {
+      const z = normalize(selectedPoint);
+      
+      document.getElementById("point-x").textContent = selectedPoint.x;
+      document.getElementById("point-y").textContent = selectedPoint.y;
+      document.getElementById("point-label").textContent = selectedPoint.label;
+      document.getElementById("z-x").textContent = z.x.toFixed(2);
+      document.getElementById("z-y").textContent = z.y.toFixed(2);
+      document.getElementById("z-bias").textContent = z.bias.toFixed(2);
+      
+      selectedPointInfo.style.display = "block";
+    } else {
+      selectedPointInfo.style.display = "none";
+    }
+    
+    // 更新按鈕狀態
+    const stepButton = document.getElementById("step-button");
+    const autoButton = document.getElementById("auto-button");
+    
+    const misclassifiedPoint = findMisclassifiedPoint();
+    stepButton.disabled = !misclassifiedPoint;
+    autoButton.disabled = !misclassifiedPoint;
+    
+    if (!misclassifiedPoint && autoRunTimer) {
+      clearInterval(autoRunTimer);
+      autoRunTimer = null;
+      autoButton.textContent = "自動運行";
+    }
+  }
+  
+  // 重繪整個視覺化
+  function redraw() {
+    drawDecisionBoundary();
+    drawBetaVector();
+    drawNormalizedVector();
+    drawPoints();
+    updateStatusDisplay();
+  }
+  
+  // 執行一步感知機更新
+  function runStep() {
+    const misclassifiedPoint = findMisclassifiedPoint();
+    
+    if (misclassifiedPoint) {
+      selectedPoint = misclassifiedPoint;
+      
+      // 標準化點
+      const z = normalize(misclassifiedPoint);
+      
+      // 更新 beta
+      beta.x = beta.x + misclassifiedPoint.label * z.x;
+      beta.y = beta.y + misclassifiedPoint.label * z.y;
+      beta.bias = beta.bias + misclassifiedPoint.label * z.bias;
+      
+      iterations++;
+      
+      redraw();
+      return true;
+    } else {
+      selectedPoint = null;
+      redraw();
+      return false;
+    }
+  }
+  
+  // 重置感知機
+  function reset() {
+    beta = { x: 0, y: 0, bias: 0 };
+    selectedPoint = null;
+    iterations = 0;
+    
+    if (autoRunTimer) {
+      clearInterval(autoRunTimer);
+      autoRunTimer = null;
+      document.getElementById("auto-button").textContent = "自動運行";
+    }
+    
+    redraw();
+  }
+  
+  // 事件監聽器
+  document.getElementById("step-button").addEventListener("click", function() {
+    runStep();
+  });
+  
+  document.getElementById("auto-button").addEventListener("click", function() {
+    if (autoRunTimer) {
+      clearInterval(autoRunTimer);
+      autoRunTimer = null;
+      this.textContent = "自動運行";
+    } else {
+      this.textContent = "暫停";
+      autoRunTimer = setInterval(function() {
+        const hasMore = runStep();
+        if (!hasMore) {
+          clearInterval(autoRunTimer);
+          autoRunTimer = null;
+          document.getElementById("auto-button").textContent = "自動運行";
+        }
+      }, 1000);
+    }
+  });
+  
+  document.getElementById("reset-button").addEventListener("click", reset);
+  
+  // 初始計算SVG尺寸相關參數
+  resizeSVG();
+});
+</script>
+```
