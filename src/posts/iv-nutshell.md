@@ -8,9 +8,9 @@ date: 2025-03-17
 
 Suppose that the wage $Y_i$ of individual $i$ is linearly determined by education $D_i$ ($1$ if the individual has a college degree and $0$ otherwise) and an unobservable ability $A_i$:
 $$
-Y_i = \beta_0 + \beta_1 D_i + \beta_2 A_i + e_i \coloneqq \beta_0 + \beta_1 D_i + \varepsilon_i,
+Y_i = \beta_0 + \beta_1 D_i + \beta_2 A_i + e_i \equiv \beta_0 + \beta_1 D_i + \varepsilon_i,
 $$
-where $D_i$ and $A_i$ are mean independent of $e_i$, and $\varepsilon_i \coloneqq \beta_2 A_i + e_i$ is the structural error. We are interested in the causal effect of education $D_i$ on wages $Y_i$. This effect is given by $\beta_1$ in the DGP.^[For simplicity, we assume that there is no treatment effect heterogeneity. This means that the effect of education on wages is the same for all individuals. This assumption is already encoded in the structural equation above.] If we can fit a linear regression of $Y_i$ on $D_i$ and $A_i$, then the OLS estimator of $\beta_1$ is unbiased and consistent. However, what if we cannot observe $A_i$?
+where $D_i$ and $A_i$ are mean independent of $e_i$, and $\varepsilon_i \equiv \beta_2 A_i + e_i$ is the structural error. We are interested in the causal effect of education $D_i$ on wages $Y_i$. This effect is given by $\beta_1$ in the DGP.^[For simplicity, we assume that there is no treatment effect heterogeneity. This means that the effect of education on wages is the same for all individuals. This assumption is already encoded in the structural equation above.] If we can fit a linear regression of $Y_i$ on $D_i$ and $A_i$, then the OLS estimator of $\beta_1$ is unbiased and consistent. However, what if we cannot observe $A_i$?
 
 This scenario is known as omitted variable bias in traditional econometrics textbooks. The omitted variable bias arises when the unobservable $A_i$ appears in the outcome equation and is correlated with $D_i$. In this case, the OLS estimator of $\beta_1$ is biased and inconsistent:
 $$
@@ -34,7 +34,7 @@ Following this logic, the IV estimand is
 $$
 \begin{aligned}
 \beta_{\text{IV}}
-&\coloneqq \frac{\operatorname{Cov}(Y_i, Z_i) / \operatorname{Var}(Z_i)}{\operatorname{Cov}D_i, Z_i) / \operatorname{Var}(Z_i)} \\
+&\equiv \frac{\operatorname{Cov}(Y_i, Z_i) / \operatorname{Var}(Z_i)}{\operatorname{Cov}D_i, Z_i) / \operatorname{Var}(Z_i)} \\
 &= \frac{\operatorname{Cov}(\beta_0 + \beta_1 D_i + \varepsilon_i, Z_i)}{\operatorname{Cov}(D_i, Z_i)} \\
 &= \beta_1 + \frac{\operatorname{Cov}(\varepsilon_i, Z_i)}{\operatorname{Cov}(D_i, Z_i)} \\
 &= \beta_1.
@@ -42,7 +42,7 @@ $$
 $$
 Its sample counterpart is the IV estimator $\hat{\beta}_{\text{IV}}$:
 $$
-\hat{\beta}_{\text{IV}} \coloneqq \frac{\sum_{i=1}^n (Y_i - \bar{Y})(Z_i - \bar{Z})}{\sum_{i=1}^n (D_i - \bar{D})(Z_i - \bar{Z})}.
+\hat{\beta}_{\text{IV}} \equiv \frac{\sum_{i=1}^n (Y_i - \bar{Y})(Z_i - \bar{Z})}{\sum_{i=1}^n (D_i - \bar{D})(Z_i - \bar{Z})}.
 $$
 where $\bar{Y}$, $\bar{D}$, and $\bar{Z}$ are the sample means of $Y_i$, $D_i$, and $Z_i$, respectively.
 

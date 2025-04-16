@@ -78,12 +78,12 @@
         an unobservable ability <span
         class="math inline">\(A_i\)</span>: <span
         class="math display">\[
-        Y_i = \beta_0 + \beta_1 D_i + \beta_2 A_i + e_i \coloneqq
-        \beta_0 + \beta_1 D_i + \varepsilon_i,
+        Y_i = \beta_0 + \beta_1 D_i + \beta_2 A_i + e_i \equiv \beta_0 +
+        \beta_1 D_i + \varepsilon_i,
         \]</span> where <span class="math inline">\(D_i\)</span> and
         <span class="math inline">\(A_i\)</span> are mean independent of
         <span class="math inline">\(e_i\)</span>, and <span
-        class="math inline">\(\varepsilon_i \coloneqq \beta_2 A_i +
+        class="math inline">\(\varepsilon_i \equiv \beta_2 A_i +
         e_i\)</span> is the structural error. We are interested in the
         causal effect of education <span
         class="math inline">\(D_i\)</span> on wages <span
@@ -160,7 +160,7 @@
         class="math display">\[
         \begin{aligned}
         \beta_{\text{IV}}
-        &amp;\coloneqq \frac{\operatorname{Cov}(Y_i, Z_i) /
+        &amp;\equiv \frac{\operatorname{Cov}(Y_i, Z_i) /
         \operatorname{Var}(Z_i)}{\operatorname{Cov}D_i, Z_i) /
         \operatorname{Var}(Z_i)} \\
         &amp;= \frac{\operatorname{Cov}(\beta_0 + \beta_1 D_i +
@@ -172,7 +172,7 @@
         \]</span> Its sample counterpart is the IV estimator <span
         class="math inline">\(\hat{\beta}_{\text{IV}}\)</span>: <span
         class="math display">\[
-        \hat{\beta}_{\text{IV}} \coloneqq \frac{\sum_{i=1}^n (Y_i -
+        \hat{\beta}_{\text{IV}} \equiv \frac{\sum_{i=1}^n (Y_i -
         \bar{Y})(Z_i - \bar{Z})}{\sum_{i=1}^n (D_i - \bar{D})(Z_i -
         \bar{Z})}.
         \]</span> where <span class="math inline">\(\bar{Y}\)</span>,
