@@ -18,7 +18,7 @@ date: 2025-04-19
 
 這篇發在 Journal of Applied Econometrics，標題是 Standard Errors for Difference-in-Differences Regression。作者研究如何適當地計算 DiD 迴歸中的標準誤。之所以看這篇文章是因為家教課要用。
 
-這篇文章一言以蔽之，就是在說 DiD 迴歸的標準誤應該要用 jackknife 的方法來計算，然後他在另一篇文章裡證明他所提出的 jackknife 標準誤有 never-downward bias 的性質。也就是說，平均而言，這個 jackknife 標準誤不會低估 DiD 迴歸的標準誤。說是 jackknife 標準誤，其實他這就是文獻裡的 CR3 標準誤。我猜大概就是為了跟 Imbens and Kolesar (2016) 那篇 REStat 的文章打對臺吧，總覺得蠻無聊的。這些不同的 clustered standard errors 會有出入，核心原因多半是因為 cluster 數量太少。比如說，如果 cluster 數量只有 2 個，一個是實驗組，一個是控制組，那要算 jackknife 標準誤就會很 tricky，因為我們要是把其中一個 cluster 拿掉，這樣迴歸係數就沒辦法識別了。所以無論是 Imbens and Kolesar (2016) 的 CR2 還是 Hansen (2025) 的 CR3，都在計算 design matrix 的 Moore-Penrose pseudo inverse，而不是通常意義的反矩陣。可能我悟性不夠，目前是覺得這還蠻虛假的，這問題就像是如果我們只有一個樣本，我們根本沒辦法同時估計樣本平均值與其標準誤。
+這篇文章一言以蔽之，就是在說 DiD 迴歸的標準誤應該要用 jackknife 的方法來計算，然後他在另一篇文章裡證明他所提出的 jackknife 標準誤有 never-downward bias 的性質。也就是說，平均而言，這個 jackknife 標準誤不會低估 DiD 迴歸的標準誤。說是 jackknife 標準誤，其實他這就是文獻裡的 CR3 標準誤。我猜大概就是為了跟 Imbens and Kolesar (2016) 那篇 REStat 的文章打對臺吧，總覺得蠻無聊的。這些不同的 clustered standard errors 會有出入，核心原因多半是因為 cluster 數量太少。比如說，如果 cluster 數量只有 2 個，一個是實驗組，一個是控制組，那要算 jackknife 標準誤就會很 tricky，因為我們要是把其中一個 cluster 拿掉，這樣迴歸係數就沒辦法識別了。所以無論是 Imbens and Kolesar (2016) 的 CR2 還是 Hansen (2025) 的 CR3，都在計算 Gram matrix $\mathbf{X}^\intercal \mathbf{X}$ 的 Moore-Penrose pseudo inverse，而不是通常意義的反矩陣。可能我悟性不夠，目前是覺得這還蠻虛假的，這問題就像是如果我們只有一個樣本，我們根本沒辦法同時估計樣本平均值與其標準誤。
 
 ### Hussam et al. (2022)
 

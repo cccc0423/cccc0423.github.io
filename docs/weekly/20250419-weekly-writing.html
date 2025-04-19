@@ -101,8 +101,9 @@
         個，一個是實驗組，一個是控制組，那要算 jackknife 標準誤就會很
         tricky，因為我們要是把其中一個 cluster
         拿掉，這樣迴歸係數就沒辦法識別了。所以無論是 Imbens and Kolesar
-        (2016) 的 CR2 還是 Hansen (2025) 的 CR3，都在計算 design matrix
-        的 Moore-Penrose pseudo
+        (2016) 的 CR2 還是 Hansen (2025) 的 CR3，都在計算 Gram matrix
+        <span class="math inline">\(\mathbf{X}^\intercal
+        \mathbf{X}\)</span> 的 Moore-Penrose pseudo
         inverse，而不是通常意義的反矩陣。可能我悟性不夠，目前是覺得這還蠻虛假的，這問題就像是如果我們只有一個樣本，我們根本沒辦法同時估計樣本平均值與其標準誤。</p>
         <h3 id="hussam-et-al.-2022">Hussam et al. (2022)</h3>
         <p>作者研究就業對孟加拉羅興亞難民的心理社會價值。</p>
