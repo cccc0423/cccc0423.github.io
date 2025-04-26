@@ -34,7 +34,7 @@ chinese	english
 
 再來就是 $\rm \LaTeX$ 的部分。這個文件會讀取 `.tsv` 檔，然後把學生名字和學號印在 A4 紙上。注意這個文件要用 `xelatex` 編譯，因為我用了 `xeCJK` 套件來處理中文，而且要安裝相應的字型才能正常編譯（或者改成自己有的字型）。現在使用的幾個字型都是 overleaf 上有的。漢字字型是日文的 Harano Aji Gothic，因為有點缺字，所以缺字的地方會用 Noto Sans CJK JP 來代替。英文字型則是 IBM Plex Sans Condensed，會使用 Condesed 是因為這樣能塞下比較多的字，不至於把字縮得太小。
 
-```
+```latex
 \documentclass[a4paper]{article}
 \usepackage[margin=-10pt]{geometry}
 \usepackage{fontspec}

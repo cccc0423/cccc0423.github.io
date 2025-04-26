@@ -6,7 +6,6 @@
     <title>名牌產生器</title>
     <meta name="description" content="小學生筆記">
     
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -89,62 +88,63 @@
         Gothic，因為有點缺字，所以缺字的地方會用 Noto Sans CJK JP
         來代替。英文字型則是 IBM Plex Sans Condensed，會使用 Condesed
         是因為這樣能塞下比較多的字，不至於把字縮得太小。</p>
-        <pre><code>\documentclass[a4paper]{article}
-\usepackage[margin=-10pt]{geometry}
-\usepackage{fontspec}
-\usepackage[AutoFallBack=true]{xeCJK}
-\setCJKmainfont{Noto Sans CJK JP}
-\setCJKsansfont[FallBack=Noto Sans CJK JP]{Harano Aji Gothic}
-\setsansfont{IBM Plex Sans Condensed}
-\usepackage{graphicx}
-\pagestyle{empty}
-\usepackage{csvsimple}
-\usepackage{xcolor}
-\definecolor{gray02}{gray}{0.2}
-
-\newcommand{\NamePlate}[2]{%
-  \begin{center}
-    \begin{tabular}{@{}c@{}}
-      %---------------------------------
-      % (1) 第一等分：空白
-      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
-      \end{minipage}\\
-      \hline
-      %---------------------------------
-      % (2) 第二等分：旋轉 180° 的中英文姓名
-      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
-        \centering
-        \rotatebox{180}{%
-          \parbox{1\textwidth}{\centering
-            {\fontsize{65}{72}\selectfont\sffamily\bfseries\textcolor{gray02}{#1}}\\[1cm]
-            {\fontsize{60}{60}\selectfont\sffamily\bfseries\textcolor{gray02}{#2}}
-          }%
-        }
-      \end{minipage}\\
-      \hline
-      %---------------------------------
-      % (3) 第三等分：正常方向的中英文姓名
-      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
-        \centering
-        {\fontsize{65}{72}\selectfont\sffamily\bfseries\textcolor{gray02}{#1}}\\[1cm]
-        {\fontsize{60}{60}\selectfont\sffamily\bfseries\textcolor{gray02}{#2}}
-      \end{minipage}\\
-      \hline
-      %---------------------------------
-      % (4) 第四等分：空白
-      \begin{minipage}[c][.25\textheight][c]{.95\textwidth}
-      \end{minipage}\\
-    \end{tabular}
-  \end{center}
-}
-
-\begin{document}
-
-\csvreader[head to column names, separator=tab]{name_tab.tsv}{}{%
-   \NamePlate{\chinese}{\english}
-}
-
-\end{document}</code></pre>
+        <div class="sourceCode" id="cb3"><pre
+        class="sourceCode latex"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[a4paper]{<span class="ex">article</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[margin=-10pt]{<span class="ex">geometry</span>}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">fontspec</span>}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[AutoFallBack=true]{<span class="ex">xeCJK</span>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\setCJKmainfont</span>{Noto Sans CJK JP}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\setCJKsansfont</span>[FallBack=Noto Sans CJK JP]{Harano Aji Gothic}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\setsansfont</span>{IBM Plex Sans Condensed}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">graphicx</span>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\pagestyle</span>{empty}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">csvsimple</span>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">xcolor</span>}</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\definecolor</span>{gray02}{gray}{0.2}</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\newcommand</span>{<span class="ex">\NamePlate</span>}[2]{<span class="co">%</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">\begin</span>{<span class="ex">center</span>}</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\begin</span>{<span class="ex">tabular</span>}{<span class="ch">@{}</span>c<span class="ch">@{}</span>}</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="co">%---------------------------------</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="co">% (1) 第一等分：空白</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\begin</span>{<span class="ex">minipage</span>}[c][.25<span class="fu">\textheight</span>][c]{.95<span class="fu">\textwidth</span>}</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\end</span>{minipage}<span class="fu">\\</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\hline</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      <span class="co">%---------------------------------</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="co">% (2) 第二等分：旋轉 180° 的中英文姓名</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\begin</span>{<span class="ex">minipage</span>}[c][.25<span class="fu">\textheight</span>][c]{.95<span class="fu">\textwidth</span>}</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\centering</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\rotatebox</span>{180}{<span class="co">%</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>          <span class="fu">\parbox</span>{1<span class="fu">\textwidth</span>}{<span class="fu">\centering</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            {<span class="fu">\fontsize</span>{65}{72}<span class="fu">\selectfont\sffamily\bfseries\textcolor</span>{gray02}{#1}}<span class="fu">\\</span>[1cm]</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            {<span class="fu">\fontsize</span>{60}{60}<span class="fu">\selectfont\sffamily\bfseries\textcolor</span>{gray02}{#2}}</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>          }<span class="co">%</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\end</span>{minipage}<span class="fu">\\</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\hline</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      <span class="co">%---------------------------------</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      <span class="co">% (3) 第三等分：正常方向的中英文姓名</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\begin</span>{<span class="ex">minipage</span>}[c][.25<span class="fu">\textheight</span>][c]{.95<span class="fu">\textwidth</span>}</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\centering</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        {<span class="fu">\fontsize</span>{65}{72}<span class="fu">\selectfont\sffamily\bfseries\textcolor</span>{gray02}{#1}}<span class="fu">\\</span>[1cm]</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        {<span class="fu">\fontsize</span>{60}{60}<span class="fu">\selectfont\sffamily\bfseries\textcolor</span>{gray02}{#2}}</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\end</span>{minipage}<span class="fu">\\</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\hline</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>      <span class="co">%---------------------------------</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>      <span class="co">% (4) 第四等分：空白</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\begin</span>{<span class="ex">minipage</span>}[c][.25<span class="fu">\textheight</span>][c]{.95<span class="fu">\textwidth</span>}</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>      <span class="kw">\end</span>{minipage}<span class="fu">\\</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">center</span>}</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="fu">\csvreader</span>[head to column names, separator=tab]{name_tab.tsv}{}{<span class="co">%</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>   <span class="fu">\NamePlate</span>{<span class="fu">\chinese</span>}{<span class="fu">\english</span>}</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
     </main>
 
     <footer>
