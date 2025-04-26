@@ -18,7 +18,7 @@ date: 2025-04-26
 
 相較之下，我學習比較多的是 Angrist 和 Pischke 的 Mostly Harmless Econometrics: An Empiricist's Companion和 Hernan 和 Robins 的 Causal Inference: What If。這兩本書因為不是統計學家寫的，兩組作者分別是勞動經濟學兼經濟計量學家和流行病學兼生物統計學家，所以他們的切入點和丁鵬的書很不一樣。Angrist 和 Pischke 的書大致上就是介紹各種經濟學的實證研究中常用的自然實驗方法，而統計推論的部分並沒有很深的著墨（就是回到 Newey and McFadden (1994) 的那套大樣本理論）。Hernan 和 Robins 的書則是從流行病學的角度切入，也因此有更多因果圖，更多流行病學領域發展出的方法（例如 marginal structural model 和 g-computation），幾乎完完全全沒有統計推論。
 
-感覺是時候離開傳統經濟計量的那套舒適圈了。事實上這應該也是近年來經濟計量的一個的研究趨勢，調查統計、實驗設計和因果推論其實有非常深刻的連結，而 design-based inference 這個主題也有很多新的發展（但沒有 IID 抽樣以後什麼都好難😔）。
+感覺是時候離開傳統經濟計量的那套舒適圈了。事實上這應該也是近年來經濟計量的一個研究趨勢，調查統計、實驗設計和因果推論其實有非常深刻的連結，而 design-based inference 這個主題也有很多新的發展（但沒有 IID 抽樣以後什麼都好難😔）。
 
 ## 其他
 
