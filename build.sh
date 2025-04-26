@@ -19,6 +19,15 @@ for file in src/weekly/*.md; do
     fi
 done
 
+# Generate posts
+for file in src/posts/*.md; do
+    if [ -f "$file" ]; then
+        filename=$(basename "$file" .md)
+        pandoc "$file" \
+            -o "docs/posts/$filename.html" --template=templates/post.html --standalone --variable=year:$(date +%Y) --variable=is_weekly:true --toc --mathjax
+    fi
+done
+
 
 # Copy static assets
 cp -r css/* docs/css/
