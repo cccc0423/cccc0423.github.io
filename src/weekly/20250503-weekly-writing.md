@@ -135,3 +135,5 @@ $$
 本來週日（5/4）要考 GRE，但因為這陣子真的太忙了，又過著渾渾噩噩的生活，真無暇顧及這件事，於是付錢改期到 7 月初。希望我真能好好準備到時候的考試。我應該要制定一個完善的備考計畫。
 
 在 YouTube 看到 [The idea that won the 2025 "Nobel Prize in Statistics”](https://youtu.be/8Ae_QzwwR_U?si=TNEI0Issmq7BF2IY)，原來今年的 International Prize in Statistics 是頒給 Grace Wahba，發明 smoothing spline 的人。影片還不錯，很簡潔地介紹了 smoothing spline 與 RKHS。
+
+租屋處的燈壞了，第一次自己換了燈管。
