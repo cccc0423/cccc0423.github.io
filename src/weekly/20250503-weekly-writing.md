@@ -1,0 +1,137 @@
+---
+title: 週記（十五）
+description: 渾渾噩噩的一週
+date: 2025-05-03
+---
+
+## 修課
+
+這週的書法課同樣接續練習智永的真書千字文。現在有點擔心自己平常練習時間不夠，會不會到時候考試的時候寫得很爛。
+
+這週的統計學習課繼續教 function PCA。不知道要寫什麼，大概說一下這在幹嘛。假設資料從隨機函數 $U(t) \in L^2(\mathcal{T})$ 抽出，而平均函數是 $\mu(t) = \operatorname{E}[U(t)]$，共變異函數是 $\Gamma(s, t) = \operatorname{E}[(U(s) - \mu(s))(U(t) - \mu(t))]$。根據 Mercer's theorem，共變異函數可以展開成
+$$
+\Gamma(s, t) = \sum_{i=1}^\infty \xi_k \phi_i(s) \phi_i(t),
+$$
+其中 $\xi_i$ 是特徵值，$\phi_i$ 是對應的特徵函數。而 Karhunen-Loeve theorem 告訴我們，$U_i(t)$ 可以展開成
+$$
+U_i(t) = \mu(t) + \sum_{k=1}^\infty A_{i,k} \phi_k(t),
+$$
+其中 $\phi_k$ 是特徵函數，$A_{i,k} = \int_\mathcal{T} \{ U_i(t) - \mu(t) \} \phi_k(t) dt$ 是 functional principal component (PC) score，而 $\operatorname{E}[A_{i,k}] = 0$，$\operatorname{Var}[A_{i,k}] = \xi_k$。
+實際上，我們只觀察到
+$$
+V_{ij} = U(t_{ij}) + \varepsilon_{ij} = \mu(t_{ij}) + \sum_{k=1}^\infty A_{i,k} \phi_k(t_{ij}) + \varepsilon_{ij},
+$$
+其中 $j = 1, \ldots, n_i$，$i = 1, \ldots, n$，而 $V_{ij}$ 是函數 $i$ 在時點 $j$ 的觀測值，$\varepsilon_{ij}$ 是 IID 的誤差項，$\operatorname{E}[\varepsilon_{ij}] = 0$，$\operatorname{Var}[\varepsilon_{ij}] = \sigma^2$。要做 PCA 的話，我們首先估計平均函數 $\mu(t)$ 與共變異函數 $\Gamma(s, t)$。如果每個函數 $i$ 都以同樣的頻率被觀測到的話，這件事就簡單一些。比方說，可以用
+$$
+\begin{align*}
+\hat{\mu}(t_j) &= \frac{1}{n} \sum_{i=1}^n V_{ij}, \\
+\hat{\Gamma}(t_j, t_k) &= \frac{1}{n} \sum_{i=1}^n (V_{ij} - \hat{\mu}(t_{ij}))(V_{ik} - \hat{\mu}(t_{ik})),
+\end{align*}
+$$
+來估計每一個時點的平均函數與共變異函數，接下來就直接做平滑內插就可以了。但如果每個函數 $i$ 的採樣頻率不一樣的話，這件事就變得複雜一些，通常需要用到之前教過的無母數平滑的方法。具體而言，考慮
+$$
+\{ (t_{ij}, V_{ij}) \}_{j=1}^{n_i} \text{ for } i = 1, \ldots, n.
+$$
+如果我們要用局部線性迴歸來估計 $\mu(t)$，那麼我們可以用
+$$
+(\hat{\beta}_0, \hat{\beta}_1) = \operatorname*{argmin}_{\beta_0, \beta_1} \sum_{i=1}^n \sum_{j=1}^{n_i} \kappa_{h_\mu}(t - t_{ij}) \{V_{ij} - \beta_0 - \beta_1 (t - t_{ij})\}^2,
+$$
+其中 $\kappa_{h_\mu}$ 是一個核函數，$h_\mu$ 是帶寬參數，而 $\hat{\mu}(t)$ 就是 $\hat{\beta}_0$。同樣地，共變異函數 $\Gamma(s, t)$ 也可以用類似的方式來估計。（簡要地講解完了幾頁投影片的內容，我懶得打了，再來的東西應該也沒人想看了。）
+
+## 研究與閱讀
+
+### Durante, Pinotti, and Tesei (2019)
+
+這篇文章發表在 AER，標題是 The Political Legacy of Entertainment TV。作者研究商業娛樂電視的政治影響。
+
+義大利法律直到 1976 年才允許私人電視廣播。1980 年，義大利的傳媒大亨（後來成為總理） Silvio Berlusconi 成立第一家私營電視臺 Canale 5，並收購 Italia 1 與 Rete 4，後來成為 Mediaset。因為 Bettino Craxi 的影響之下，最終解除對私人廣播在全國層級的所有限制。此後，確保優勢地位後，Mediaset 開始收購新的發射器並迅速將其覆蓋範圍逐漸擴展到全國人口。在早期，Mediaset 專注於娛樂節目，幾乎沒有教育內容，而新聞節目直到 1991 年才推出。
+
+注意到因為 Berlusconi 在 Mediaset 早期擴張（主要在 1980 年代）完成後近十年才進入政壇，這使得作者認為，Mediaset 在 1985 年前的地理覆蓋差異，不太可能是出於 Berlusconi 後來的政治野心而預先規劃的，提供了一個自然實驗可以檢驗早期電視接觸的長期影響。
+
+本研究搜集 Mediaset 在 1985 年營運的 1710 個發射器的詳細資訊，計算了每個發射器到義大利各市鎮的訊號強度。以下是本文主要的模型：
+$$
+\text{Vote}_m = \beta \text{Signal}_m + \gamma \text{SignalFree}_m + \delta' X_m + \text{ED}_{i(m)} + \text{LLM}_{j(m)} + \varepsilon_m,
+$$
+其中 $\text{Vote}_m$ 是市鎮 $m$ 的得票率，$\text{Signal}_m$ 與 $\text{SignalFree}_m$ 分別是訊號強度與如果沒有地形阻礙的假設性訊號強度，$X_m$ 是控制變數，$\text{ED}_{i(m)}$ 與 $\text{LLM}_{j(m)}$ 分別是選區與地方勞動市場的固定效果。這個設計應該最早出自 [Olken (2009)](https://www.aeaweb.org/articles?id=10.1257/app.1.4.1)。
+
+結果發現，在 1985 年之前較早接觸到 Mediaset 電視訊號的市鎮，在 Berlusconi 首次參選的 1994 年大選中，Forza Italia 的得票率顯著較高，而對 Forza Italia 的正面影響持續了五次選舉，直到 2008 年才消失。而在 2013 年的選舉中，較早接觸 Mediaset 的市鎮更支持新興的民粹主義政黨 M5S。作者並利用個體的調查資料發現，Mediaset 訊號每增加 1 個標準差，受訪者在上次選舉中投票給 Forza Italia 的機率增加近 3 個百分點，而早期暴露也與受訪者容易同意民粹主義的陳述有關聯。
+
+### Wang (2021)
+
+這篇文章發表在 AER，，標題是 Media, Pulpit, and Populist Persuasion: Evidence from Father Coughlin。作者研究美國史上第一位民粹廣播名人天主教神父 Charles Coughlin 的政治影響。
+
+1920 年代無線電廣播問世，可以長距離地向廣大聽眾播送聲音。而 Coughlin 原先播送宗教佈道的內容，在大蕭條開始後轉而談論社會與經濟議題，他在 1930 年代透過廣播節目吸引了數千萬聽眾，是當時世界上最多人收聽的廣播節目。一開始他支持羅斯福新政，但因為羅斯福並未依照他的想法來處理蕭條，他轉而指控羅斯福是「反上帝」的，被國際銀行家給操控，而他當時並成為美國戰前反猶主義與法西斯主義的代表。
+
+$$
+\text{Vote}_{c} = \beta \text{Signal}_c + \gamma \text{SignalFree}_c + \delta' X_{c} + \eta_s + \varepsilon_c,
+$$
+其中 $\text{Vote}_c$ 是政黨 1936 年的總統大選中在 $c$ 郡獲得的得票率百分比，而 $\text{Signal}_c$ 是 Coughlin 的廣播節目 1936 年在 $c$ 郡的預測訊號強度，$\text{SignalFree}_c$ 是假如沒有地理障礙（例如山脈）的訊號強度，而 $X_c$ 是郡的地理與社經特質和過去投票的結果，$\eta_s$ 是州固定效果，$\varepsilon_c$ 是誤差項。為何要控制 $\text{SignalFree}_c$？作者聲稱
+
+> Hence, identification comes from the residual variation in signal strength as a result of idiosyncratic topographic factors along the signal transmission route, ...
+
+概念上這招也可以想成類似 control function。其中，地理因素扮演工具變數的角色，作者假設它只會透過訊號強度來影響投票率，而 $\text{SignalFree}_c$ 就像是 $\text{Signal}_c$ 對地理因素迴歸所得的殘差。
+
+此外，$\beta$ 可以說扮演暴露在 Coughlin 的廣播節目的效果的 reduced-form 估計，而背後的假設就是 訊號強度在控制以上變數以後，不與其他影響得票率的因素有關聯。
+
+作者發現，暴露在 Coughlin 的廣播節目的地區，羅斯福的得票率顯著地較低，而且這效果在天主教人口較多的郡更大。此外，這些地區更容易形成親納粹的德裔組織，並且人均二戰戰爭債券的購買量較低。他也確認這個效果是來自 Coughlin 的廣播節目，而不單只因為一般的廣播。作者並估計了一些靜態與動態的 TWFE 模型，發現效果持續存在。
+
+### Cameron, Seager, and Shah (2021)
+
+這篇文章發表在 QJE，標題是 Crimes Against Morality: Unintended Consequences of Criminalizing Sex Work。作者研究將性工作定罪的影響。
+
+性工作在印尼的東爪哇普遍存在。本研究的區域包括東爪哇的 Malang、Pasuruan 與 Batu 三地，共約 450 萬人居住。性工作者有些在合法的中心工作，這些中心每月有健康與性病檢查，官方與非官方組織也會提供免費保險套以推廣安全性行為。其他性工作者則在非正式的場所工作，如市場或社區。2014 年 7 月，Malang 區政府突然宣布在該年 11 月底要關閉所有當地的合法場所。這件事情至少在 2、3 月時，作者們都不知道，還因為被告知 Surabaya 區可能會關閉合法場所，因此選定 Malang 區，打算進行隨機實驗的研究。場所關閉後，因為警方突襲執法，性市場活動變得更加地下化和隱蔽，政府也不再於原先的合法場所提供保險套。不過與此同時，Pasuruan 與 Batu 的合法場所仍然繼續營運。
+
+作者們首先在進行普查，找出所有在正式或非正式場所的性工作者。除了性工作者和客戶外，作者還對場所附近社區的居民進行了住戶調查。
+
+本文主要的模型是
+$$
+Y_{ist} = \beta_1 \text{Crim}_{s} \times \text{Post}_t + \beta_2 \text{Post}_t + X_{ist} \xi + \alpha_1 S_{s} + \varepsilon_{ist},
+$$
+其中 $Y_{ist}$ 是性工作者或客戶 $i$ 在工作場所 $s$ 時間 $t$ 的結果變數，$\text{Crim}_s$ 為虛擬變數，表示場所 $s$ 是否變成非法，$Post_t$ 則是政策實施後的虛擬變數，$X_{ist}$ 是不同的控制變數，$S_s$ 是場所固定效果（用於性工作者的分析）或地區與工作場所類型固定效果（用於客戶的分析），而 $\beta_1$ 是感興趣的係數。標準誤 cluster 在場所的層級，但因為實驗組與控制組分別只有 6 與 11 個 clusters，所以利用 Cameron, Gelbach, and Miller (2008) 介紹的 bootstrap 來計算標準誤與 $p$-值。
+
+為了檢查平行趨勢假設是否可能成立，作者利用印尼國家社會經濟調查 2010 至 2013 年的資料，看看在刑事定罪前，Malang 與其他區域在保險套使用、健康症狀、就業、收入的趨勢是否存在差異。
+
+研究結果顯示，在被刑事定罪的場所，性工作者的性病感染率顯著增加。此外，因為保險套變得更難取得、價格上漲，而無套性行為增加，作者認為這是性病感染率增加的原因。
+
+題外話，不知道有沒有研究討論面對一筆 panel data，我們應該如何適當地 binning 或者加總資料？
+
+前者的兩個極端分別是靜態與動態的 TWFE，又或者設置不同大小的 effect window。經過搜尋，我發現 Borusyak, Jaravel, and Spiess (2024) 討論到 binned specifications 的影響，而這也是 Wolfers (2006) 對於前人的實證研究的質疑。
+
+而後者則不改變 specifications，但改變丟進去的資料，例如我們觀察到以月為單位的資料，但把它加總成以年為單位。後者還沒有看到什麼文獻。有一種常見想法是這會增加 power，但真的嗎？
+
+### Arold (2024)
+
+這篇文章發表在 QJE，標題是 Evolution vs. Creationism in the Classroom: The Lasting Effects of Science Education。作者研究科學教育的內容對於反科學態度、知識與選擇的影響。
+
+作者認為，反科學態度會對公共衛生、環境和經濟造成巨大的成本。而演化論在科學中舉足輕重，但教學上因為宗教因素而備受爭議，所以作者以此探討演化論的教學內容的效果。既有的研究發現各州所規定的科學標準（Science Standard）， 其規劃了公立學校的科學教育內容，在 2000 年至 2009 年期間在演化論的涵蓋範圍上有增有減。作者利用三筆調查資料，評估科學標準改革如何影響學生能否正確地回答演化論的知識、學生在成年後對演化論的信念，以及成年後從事生命科學工作的機率。
+
+研究主要的 TWFE 模型如
+
+$$
+Y_{istu} = \beta \cdot \text{EvolutionScore}_{st} + \gamma \cdot \mathbf{X}_i + \delta_s + \lambda_s + \theta_u + \varepsilon_{istu},
+$$
+其中 $Y_{istu}$ 是個人 $i$ 在 $s$ 州 $t$ 年進入學校而在 $u$ 年接受調查的結果變數，$\text{EvolutionScore}_{st}$ 是 $s$ 州在 $t$ 年的演化評分（evolution score），一個介於 $0$ 到 $1$ 之間的指數，用於衡量教學規範中演化論內容的豐富程度，$0$ 表示幾乎沒有涵蓋演化論，$1$ 表示非常全面涵蓋演化論，而 $\beta$ 是感興趣的參數，$\mathbf{X}_i$ 是個人的控制變數，$\delta_s$、$\lambda_s$ 與 $\theta_u$ 分別是州、入學世代，與調查世代的固定效果。
+
+為了檢查平行趨勢假設，作者也將資料分成「曾經歷演化論內容增加」與「曾經歷演化論內容減少」的兩筆資料（似乎沒有放入為改變的州），把改革變成二元的變數，利用 staggered adoption 的設計來識別動態效果，他估計了動態的 TWFE 與 Callway & Sant'Anna (2021) 的估計式。
+
+首先，作者發現科學標準中演化論涵蓋範圍的增加會讓學生更能正確回答演化論的相關問題。其次，他發現科學標準的改革對成年後對演化的信仰產生了影響，但並沒有排擠宗教信仰或影響政治態度。最後，他發現改革影響了學生的重要人生決定，即在生科領域工作的機率。
+
+計量上有一些不明白的點：
+
+1. 在沒有完整的 panel data，而只有 repeated cross-sectional data 時，大家通常都是加入出生世代（或者年齡組）與時期的固定效果（只能加入其中兩個，否則會產生共線性）。這到底具體而言涉及怎樣的 identification assumption？
+
+此外，感覺作者有些理解或操作很奇怪，包括但不限於：
+
+1. p.2340 "Online Appendix A.3 provides quantitative evidence on the exogenous timing of the reforms. I regress state-by-year characteristics, ..." 這與檢查 timing 的外生性有何關係？
+2. p.2347 "Moreover, the state fixed effects rule out time-varying state-specific shocks as long as they affect adjacent cohorts equally." 看不懂州固定效果如何處理 time-varying 的干擾因子。
+3. 他的兩種 event study 估計式（TWFE 與 CS）應該是在估計很不一樣的東西。根據他的 event plot，如圖 2，如果他用的是 Callaway 他們做的套件，那他的圖的 pre-treated periods 的參數估計應該是拿前一期的資料當成基期（也因此圖上不會有任何一期的估計值要被設置成 $0$，因為 pre-treated periods 的估計的基期都不一樣），這跟 dynamic TWFE 的 pre-treated periods 的參數估計是拿 $-1$ 期當成基期很不一樣。既然在估計很不一樣的東西，這兩個東西本身就很不適合放在同一張圖，僅以不同顏色區分。而且在許多參數的估計中，CS 的 95% CI 非常窄，但這實際上並不常見，因為相對於 TWFE，CS 不太有效率。
+
+## 其他
+
+週一在市政府的時代百貨吃了米達人的壽司，其實不難吃，但有點貴，難怪評價不高（這家分店似乎有洗評價，看其他分店的評價比較準）。週五吃了角屋關東煮，這間店似乎小有名氣，不過很不幸的是我去的時候已經快打烊了，湯不太熱，而且被 Google 評價誤導點了玉子燒，但他玉子燒的流派不是我喜歡的那種。
+
+花了一段時間閱讀這幾年 top journals 的一些應用個體實證研究來搜尋計量的研究題目，不過感覺不是很成功，遲遲沒有找到一個絕佳的合適的題目。我反省後認為，讀應用的研究確實很重要（畢竟我還是會花很多時間做應用的研究），但是我需要一雙銳利的眼睛，才能發現別人或自己做的實證研究有什麼計量上的問題，或者有什麼可以改進的地方。而這件事情不是單純地閱讀實證研究就能做到的，我需要花更大的功夫去瞭解經濟計量和因果推論的文獻。
+
+本來週日（5/4）要考 GRE，但因為這陣子真的太忙了，又過著渾渾噩噩的生活，真無暇顧及這件事，於是付錢改期到 7 月初。希望我真能好好準備到時候的考試。我應該要制定一個完善的備考計畫。
+
+在 YouTube 看到 [The idea that won the 2025 "Nobel Prize in Statistics”](https://youtu.be/8Ae_QzwwR_U?si=TNEI0Issmq7BF2IY)，原來今年的 International Prize in Statistics 是頒給 Grace Wahba，發明 smoothing spline 的人。影片還不錯，很簡潔地介紹了 smoothing spline 與 RKHS。

@@ -26,7 +26,7 @@ date: 2025-04-26
 
 現在的家教課比較像是另一份研究助理工作😅。努力正向思考的話是我從中學習了一些技能。現在需要把所有的分析都改為計算 jackknife 標準誤。為了方便，我直接使用 Bruce Hansen 網站提供的 R 程式。但這時候產生一個問題，就是我該如何有效率地輸出迴歸報表。我研究了一下，發現我平常慣用的 R 的 `modelsummary` 套件在生成迴歸報表時就是調用 `broom::tidy()` 和 `broom::glance()`，然後去提取裡頭的數字，所以我只要把 Hansen 寫的函數改成輸出成有 `jregress` 類別的物件，然後編寫可以用在 `jregress` 類別的 `tidy` 和 `glance` 函數，就可以讓 `modelsummary` 知道自己要做什麼，如下。
 
-```
+```r
 tidy.jregress <- function(x, ...) {
   coefs <- as.numeric(x$coefficients)
   terms <- row.names(x$coefficients)

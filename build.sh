@@ -15,6 +15,7 @@ for file in src/weekly/*.md; do
     if [ -f "$file" ]; then
         filename=$(basename "$file" .md)
         pandoc "$file" \
+            --highlight-style=kate \
             -o "docs/weekly/$filename.html" --template=templates/post.html --standalone --variable=year:$(date +%Y) --variable=is_weekly:true --toc --mathjax
     fi
 done
@@ -24,7 +25,7 @@ for file in src/posts/*.md; do
     if [ -f "$file" ]; then
         filename=$(basename "$file" .md)
         pandoc "$file" \
-            -o "docs/posts/$filename.html" --template=templates/post.html --standalone --variable=year:$(date +%Y) --variable=is_weekly:true --toc --mathjax
+            -o "docs/posts/$filename.html" --template=templates/post.html --highlight-style=pygments --standalone --variable=year:$(date +%Y) --variable=is_weekly:true --toc --mathjax
     fi
 done
 
