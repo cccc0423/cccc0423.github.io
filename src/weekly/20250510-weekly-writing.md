@@ -16,7 +16,7 @@ date: 2025-05-10
 
 為了統計學習課的 paper presentation，讀了這篇文章。文章發表在 JRSSB，標題是 Achieving near Perfect Classification for Functional Data。雖然我不是 functional data 的專家（連初心者都稱不上），但有感覺到這篇文章確實提供了一種觀點。好的學術期刊，作為一種好的寫作，確實就是提供讀者一種新的觀點。
 
-假如我們看到一筆資料 $(X_i, I_i)$，其中 $X_i$ 是一個定義在 compact set $\mathcal{I}$ 上的隨機函數，而 $I_i$ 是一個二元變數，表示 $X_i$ 的類別。如同很多 functional data 的文章，首先作者定義共變異數函數
+假如我們看到一個資料集 $(X_i, I_i)$，其中 $X_i$ 是一個定義在 compact set $\mathcal{I}$ 上的隨機函數，而 $I_i$ 是一個二元變數，表示 $X_i$ 的類別。如同很多 functional data 的文章，首先作者定義共變異數函數
 $$
 \operatorname{Cov}\{X(u), X(v)\} = K(u, v) = \sum_{j = 1}^\infty \theta_j \phi_j(u) \phi_j(v),
 $$
@@ -56,7 +56,7 @@ $$
 
 作者的主要發現是，改道而水源消失的地區更容易出現政府。這與合作論的預測一致，因為這些地區需要協調來建設和維護公共灌溉系統。
 
-## 其他
+### 其他
 
 還看了一些別的東西，不過就寫到這裡了。
 
