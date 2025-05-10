@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（十六）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（十六）</h1>
+        <p class="post-date">2025-05-10</p>
+
+                <div class="toc">
+            <h2>目錄</h2>
+            <ul>
+            <li><a href="#修課" id="toc-修課">修課</a></li>
+            <li><a href="#研究與閱讀" id="toc-研究與閱讀">研究與閱讀</a>
+            <ul>
+            <li><a href="#delaigle-and-hall-2012"
+            id="toc-delaigle-and-hall-2012">Delaigle and Hall
+            (2012)</a></li>
+            <li><a href="#robert-et-al.-2023"
+            id="toc-robert-et-al.-2023">Robert et al. (2023)</a></li>
+            </ul></li>
+            <li><a href="#其他" id="toc-其他">其他</a></li>
+            <li><a href="#其他-1" id="toc-其他-1">其他</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="修課">修課</h2>
+        <p>書法課繼續練習智永千字文。老師給大家發了一個迷你扇子，希望大家可以自己設計扇子的形式，然後寫上兩個字（示例是「清風」）。總覺得寫什麼字都挺裝的，但寫諸如「吉娃」這類的字又似乎太沒情調。目前沒什麼靈感。</p>
+        <p>統計學習課繼續上 functional data analysis。</p>
+        <h2 id="研究與閱讀">研究與閱讀</h2>
+        <h3 id="delaigle-and-hall-2012">Delaigle and Hall (2012)</h3>
+        <p>為了統計學習課的 paper presentation，讀了這篇文章。文章發表在
+        JRSSB，標題是 Achieving near Perfect Classification for
+        Functional Data。雖然我不是 functional data
+        的專家（連初心者都稱不上），但有感覺到這篇文章確實提供了一種觀點。好的學術期刊，作為一種好的寫作，確實就是提供讀者一種新的觀點。</p>
+        <p>假如我們看到一筆資料 <span class="math inline">\((X_i,
+        I_i)\)</span>，其中 <span class="math inline">\(X_i\)</span>
+        是一個定義在 compact set <span
+        class="math inline">\(\mathcal{I}\)</span> 上的隨機函數，而
+        <span class="math inline">\(I_i\)</span> 是一個二元變數，表示
+        <span class="math inline">\(X_i\)</span> 的類別。如同很多
+        functional data 的文章，首先作者定義共變異數函數 <span
+        class="math display">\[
+        \operatorname{Cov}\{X(u), X(v)\} = K(u, v) = \sum_{j = 1}^\infty
+        \theta_j \phi_j(u) \phi_j(v),
+        \]</span> 其中 <span class="math inline">\(\theta_1 \geq
+        \theta_2 \geq \cdots{}\)</span> 是特徵值，而 <span
+        class="math inline">\(\phi_j\)</span>
+        是對應的標準正交的特徵函數。</p>
+        <p>作者定義了 centroid classfier，即對於一個新的隨機函數 <span
+        class="math inline">\(X\)</span>，我們可以計算它與兩個類別的
+        centroid 的距離，然後選擇距離較近的類別。</p>
+        <p>所謂 centroid classifier，就是計算以下的統計量 <span
+        class="math display">\[
+        T(X) = D^2(X, \bar{X}_1) - D^2(X, \bar{X}_0),
+        \]</span> 其中 <span class="math inline">\(D^2(x, y)\)</span>
+        是某種距離，而 <span class="math inline">\(X\)</span>
+        是一筆新資料（在多變量的統計學中是歐氏空間中的點，在函數資料中是一個函數），<span
+        class="math inline">\(\bar{X}_1\)</span> 和 <span
+        class="math inline">\(\bar{X}_0\)</span> 是兩個類別的
+        centroid。當 <span class="math inline">\(T(X) &gt; 0\)</span>
+        時，我們就判斷 <span class="math inline">\(X\)</span> 屬於類別
+        1，否則屬於類別 0。所以顯然地，多變量的 LDA 是一種 centroid
+        classifier，只是 <span class="math inline">\(D^2\)</span> 是
+        Mahalanobis distance，定義為 <span
+        class="math inline">\(D^2_{\Sigma^{-1}}(x, y) = (x -
+        y)^\intercal \Sigma^{-1} (x - y)\)</span>，其中 <span
+        class="math inline">\(\Sigma\)</span>
+        是資料的共變異數矩陣。在文章中，作者則是定義 <span
+        class="math display">\[
+        D(X, \bar{X}_k) = | \langle X, \psi \rangle - \langle \bar{X}_k,
+        \psi \rangle |,
+        \]</span> 其中 <span class="math inline">\(\psi\)</span>
+        是一個定義在 <span class="math inline">\(\mathcal{I}\)</span>
+        上的函數，<span class="math inline">\(\langle \cdot, \cdot
+        \rangle\)</span> 是 <span
+        class="math inline">\(\mathcal{I}\)</span> 上的內積。因此，
+        <span class="math display">\[
+        T(X) = (\langle X, \psi \rangle - \langle \bar{X}_1, \psi
+        \rangle)^2 - (\langle X, \psi \rangle - \langle \bar{X}_0, \psi
+        \rangle)^2.
+        \]</span> 不失一般性地假設類別 1 的母體平均函數是 <span
+        class="math inline">\(\mu\)</span>，而類別 0 的母體平均函數是
+        <span class="math inline">\(0\)</span>，則根據大數法則，<span
+        class="math inline">\(T(X)\)</span> 收斂到 <span
+        class="math display">\[
+        T^0(X) = (\langle X, \psi \rangle - \langle \mu, \psi \rangle)^2
+        - \langle X, \psi \rangle^2.
+        \]</span> 至於 <span class="math inline">\(\psi\)</span>
+        要選什麼呢？在文章中，作者定義 <span class="math display">\[
+        \psi^{(r)} = \sum_{j = 1}^r \theta_j^{-1} \mu_j \phi_j,
+        \]</span> 其中 <span class="math inline">\(\mu_j\)</span> 是
+        <span class="math inline">\(\mu\)</span> 在 <span
+        class="math inline">\(\phi_j\)</span> 方向上的投影，<span
+        class="math inline">\(\theta_j\)</span> 是 <span
+        class="math inline">\(\phi_j\)</span> 所對應的特徵值。這樣的
+        <span class="math inline">\(\psi\)</span> 在 <span
+        class="math inline">\(r\)</span>
+        趨近於無窮大的時候，可以給我們最適的分類結果，而特別在 <span
+        class="math inline">\(\sum_{j = 1}^\infty \theta_j^{-1} \mu^2_j
+        = \infty\)</span> 時，漸進錯誤率為 <span
+        class="math inline">\(0\)</span>。這看起來是很厲害的結果，但其實也很好理解，<span
+        class="math inline">\(\sum_{j = 1}^\infty \theta_j^{-1} \mu^2_j
+        = \infty\)</span>
+        意味著（不只有）無窮大的信噪比，因此能達成完美分類，而這也是
+        functional data 的特性。事實上，正因為很多分類方法都是一種
+        centroid classifier，因此這篇文章的結果說明為何在 functional
+        data
+        的情境中，這些簡單的線性方法就可以達到非常好的分類效果。</p>
+        <h3 id="robert-et-al.-2023">Robert et al. (2023)</h3>
+        <p>這篇發在 AER，標題是 The Economic Origin of
+        Government。本文探討政府起源的兩個主要理論：<strong>合作論（cooperative
+        theory）</strong> 和 <strong>榨取論（extractive
+        theory）</strong>。</p>
+        <p>伊拉克南部是一個乾旱的沙漠地區，因此在遠離河流的地方，農業活動必須依賴灌溉。當河流從某個地方改道離開後，由於私人灌溉變得困難，當地社區會產生對公共運河系統的需求，這需要協調才能實現。這種情境符合合作理論，認為政府的出現是為了提供個人無法有效提供的公共財貨，如大型灌溉系統的建設和維護，以解決外部性或協調失敗問題。相反地，河流改道離開也會導致稅基消失，削弱了精英進行榨取的誘因。如果政府主要是由精英為了榨取而建立（榨取理論），那麼政府更可能在河流移至的地方或河流未發生變化的地方形成，因為這些地方仍然有穩定的農產品或稅基。</p>
+        <p>作者使用芝加哥大學東方研究所搜集的考古資料，並以此為基礎，補充了關於國家形成、國家能力、公共財提供和貢品支付的衡量指標。研究的觀察單位是一個個
+        <span class="math inline">\(5 \times 5\)</span>
+        公里的網格，資料共有 <span class="math inline">\(1374\)</span>
+        個網格，每個網格單元在 <span class="math inline">\(31\)</span>
+        個歷史時期都有資料。從約西元前 5000
+        年至今，底格里斯河和幼發拉底河共發生了六次突然的改道。研究主要關注約西元前
+        2850
+        年的第一次改道，將其作為一個自然實驗。研究主要包括改道前的四個史前時期與改道後的一個時期，共五個時期的
+        panel dataset，時間範圍是西元前 3900 年至西元前 2700
+        年。在這個樣本中，平均每個時期約長 240
+        年。這真是不得了，千年的迴歸分析（不曉得究竟可信與否但挺有趣的）。</p>
+        <p>作者的主要發現是，改道而水源消失的地區更容易出現政府。這與合作論的預測一致，因為這些地區需要協調來建設和維護公共灌溉系統。</p>
+        <h2 id="其他">其他</h2>
+        <p>還看了一些別的東西，不過就寫到這裡了。</p>
+        <h2 id="其他-1">其他</h2>
+        <p>一件趣事。有天晚上跟兩個高中同學，YH 和
+        YT，晚上去吃舊丘（六張犁附近的串燒店，還不錯）。<a href="#fn1"
+        class="footnote-ref" id="fnref1"
+        role="doc-noteref"><sup>1</sup></a> 席間聊到我們的另個高中同學
+        WC，他非常狂熱於支持某政黨與某些政治人物，例如
+        ○○○，也想說服他身邊的人改變政治立場或觀點。YH
+        很不滿意這點，他認為 WC「魔怔」了（引用 YH
+        的原話），所以特別喜歡跟他討論政治，問他一些問題，然後 WC
+        就會很激動地跟他講一堆東西。YH 認為
+        WC（畢業於臺北某大學文學院）不懂物理化學，也不懂政治經濟，只會看那些政治人物和智庫的談話，完全像是被洗腦。他說，他當年上
+        TM
+        老師的經原的時候，考試有一題，問同學如果今天有一個問題，你必須在很短的時間內做出決定，而你對它一無所知，而有
+        50 個臺大教授一致認為應該選擇 A，1 個諾貝爾獎得主認為應該選擇
+        B，你會選擇哪一個？<a href="#fn2" class="footnote-ref"
+        id="fnref2" role="doc-noteref"><sup>2</sup></a> TM
+        認為，應該要相信權威，因此要選擇 B。</p>
+        <p>我和 YT 當下就覺得這個問題本身很無厘頭。因為跟 YH
+        蠻熟的，因此我直言不諱。我首先不能理解，為何要相信權威，而不是理性地判斷？我們覺得某些政治人物真是惡劣，不是因為他講起話來真是沒有邏輯有雙重標準嗎？而覺得
+        TM
+        老師講得不錯，不也是因為他講的經濟學確實有一套嗎？而且，難道就算權威真的比較懂，難道他就不會昧著良心說話嗎？YH
+        嘗試說明 TM
+        當時用來論證的理由，但是講得不是很能服人，他也說他不是很記得確切的推論過程。因此我又說，即便
+        TM
+        說的有道理，我們該相信權威，那誰是權威呢？如果這件事情也要訴諸權威，那又是誰可以決定誰是權威呢？YH
+        似乎覺得有道理。我又接著說，搞不好其實你跟 WC
+        是一樣的，只是你們認為不同的東西是權威而已。為什麼他每次都要聲稱自己看了哪些哪些智庫的報告呢？你可能認為
+        TM 老師是權威，但他也可能只是認為 ○○○ 是權威而已。為什麼 TM
+        老師就是權威，而 ○○○
+        就不可能是權威呢？他說他覺得我說得有道理，應該要去聯絡 TM
+        或者是當時的助教 KH
+        確認一下。不過最後，他又說，或許他被我說服，只是因為他潛意識中覺得我是權威而已。</p>
+        <section id="footnotes"
+        class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li
+        id="fn1"><p>這些都是威妥瑪拼音，實際上他們本人可能不使用這樣的拼音方式，不過就是方便我取代號<a
+        href="#fnref1" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        <li
+        id="fn2"><p>據說，後來這題被放在作業裡，描述的框架變成網球，50
+        個臺大教授變成你的教練，而諾貝爾獎得主似乎變成費德勒<a
+        href="#fnref2" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>
