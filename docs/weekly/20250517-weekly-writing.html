@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（十七）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（十七）</h1>
+        <p class="post-date">2025-05-17</p>
+
+                <div class="toc">
+            <h2>目錄</h2>
+            <ul>
+            <li><a href="#修課" id="toc-修課">修課</a></li>
+            <li><a href="#研究與閱讀"
+            id="toc-研究與閱讀">研究與閱讀</a></li>
+            <li><a href="#其他" id="toc-其他">其他</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="修課">修課</h2>
+        <p>書法課繼續練習智永千字文。</p>
+        <p>統計學習課繼續上 functional data
+        analysis。不過越上越令人恍惚。</p>
+        <h2 id="研究與閱讀">研究與閱讀</h2>
+        <p>這週完全沒讀新文章，因為太忙了。</p>
+        <hr />
+        <p>有個很粗淺的研究點子。我一直對中介分析很有興趣，但這東西很少經濟學家在做，大部分是生物統計、流行病學或者政治學家在做，老師就不建議我做。不過我去年暑假某天突然想到，其實
+        Heckman correction (Heckit)
+        的目的應該可以被看成是想要估計一種類似 controlled direct effects
+        的參數。事實上 sample selection 與 causal mediation analysis
+        應該有很密切的連結。</p>
+        <p>假設 <span class="math inline">\(D\)</span> 是處理，<span
+        class="math inline">\(Y\)</span> 是結果，而 <span
+        class="math inline">\(M\)</span> 是中介變數，那 controlled
+        direct effect 的定義是 <span class="math display">\[
+        \operatorname{CDE}(m) = \operatorname{E}[Y(1, m) - Y(0, m)],
+        \]</span> 其中 <span class="math inline">\(Y(d, m)\)</span> 是在
+        <span class="math inline">\(D = d\)</span> 和 <span
+        class="math inline">\(M = m\)</span>
+        時的潛在結果。比如說，我們可能想要了解去醫院 <span
+        class="math inline">\(D\)</span> 對健康 <span
+        class="math inline">\(Y\)</span> 的影響，<span
+        class="math inline">\(M\)</span>
+        可能是某種特定的健康習慣。一般而言，大家會估計的 <span
+        class="math inline">\(\operatorname{ATE}\)</span>
+        是衡量平均而言去醫院對健康的影響，但如果我們想要了解去醫院對健康的影響是透過某種特定的健康習慣來實現的，那就需要估計
+        <span
+        class="math inline">\(\operatorname{CDE}(m)\)</span>。這個參數衡量，假設我們讓所有人都從事某種特定的健康習慣
+        <span class="math inline">\(M =
+        m\)</span>，那麼去醫院的影響如何？事實上這跟 Heckman correction
+        的目的很像，Heckman correction 的目的是要估計在沒有 sample
+        selection 的情況下，<span class="math inline">\(D\)</span> 對
+        <span class="math inline">\(Y\)</span>
+        的影響；換言之就是，假設所有人都參與了勞動市場，那麼 <span
+        class="math inline">\(D\)</span> 對 <span
+        class="math inline">\(Y\)</span> 的影響如何？</p>
+        <p>當然現在經濟學家不那麼喜歡 1979 年的
+        Heckit，因為它的參數假設太強。如果需要處理樣本選擇偏誤，現在更流行計算
+        Lee bounds，一種基於 partial identification 的方法。我前陣子也看
+        arXiv 上有兩篇處理帶有樣本選擇偏誤的 DiD
+        的新文章的摘要，大概都是去結合 Lee bounds
+        的想法。而我猜生物統計那邊應該有不少關於 controlled direct
+        effects 的 partial identification
+        文獻，其實應該是能應用在樣本選擇的議題，搞不好有一些大家沒看到的套利空間。不過講一講覺得挺心虛的，何況我總覺得
+        Lee (2009) 已經寫得非常好，不曉得還有什麼有趣的東西可以做。</p>
+        <hr />
+        <p>去年上計論二 A 的時候（雖然我都沒去上課，照著 syllabus
+        自己讀），老師第一週教 Charles Manski 談 identification
+        的書本章節。可能因為作業習題太簡單，當時只覺得是一些腦筋急轉彎，沒什麼實際用處。不過最近體悟到，partial
+        identification 確實才是真實的，希望最近有空來讀 Manski
+        的東西😔</p>
+        <hr />
+        <p>要找到有趣的題目並做好它真的不容易。因為審稿時間很長，所以經濟系的學生大多在
+        pre-doctoral
+        的階段較少有正式的期刊發表。但當然還是會有人有些研討會或期刊的發表紀錄。不過總感覺即便看那些
+        pre-doctoral 階段已經有學術發表的人，多半在 PhD
+        幾年內（甚至剛畢業的幾年）都完全沒有任何正式發表。如果問他們博士班的階段都在做什麼，有沒有在用功做研究，我猜應該是有的吧，但為什麼沒有任何學術發表呢？我猜差別在於大部分的人可能是被要求自己找到一些題目，然後發展成為博士論文，但要自己找到
+        publishable
+        的點子並不容易。我又猜，隨著眼界提高，看過更多好作品，對自己的要求也會隨之提高，越不願意只是做一些還可以東西。這時候應該很容易產生挫折感吧，就是品味變得越來越挑剔，但能力和研究進度的成長幅度卻追趕不上（印象中似乎看過某個數學系教授的訪談，他回憶博班的最後一段時光，有類似的感嘆）。</p>
+        <hr />
+        <p>網路上隨處閒晃的時候發現一個很酷的作者，Isaiah Andrews，他是
+        2021 年的克拉克獎得主。希望有空可以看看他的文章。</p>
+        <h2 id="其他">其他</h2>
+        <p>最近真的是有點過忙，而且感覺壓力很大，但也不知道在忙什麼。</p>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>
