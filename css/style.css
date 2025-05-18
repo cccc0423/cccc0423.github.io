@@ -267,6 +267,71 @@ h1, h2, h3 {
   color: var(--text-secondary);
 }
 
+div.books, div.comment, div.caution {
+  padding: 16px 16px 16px 76px;
+  margin: 24px 0;
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  background-size: 40px;
+  color: var(--text-color);
+  background-color: var(--bg-white);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  border: none;
+  overflow: hidden;
+ }
+ 
+ div.books:hover, div.comment:hover, div.caution:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+ }
+ 
+ div.books::before, div.comment::before, div.caution::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+ }
+ 
+ div.books {
+  background-image: url("../images/books.svg");
+  background-color: var(--primary-light);
+ }
+ 
+ div.books::before {
+  background-color: var(--primary-color);
+ }
+ 
+ div.comment {
+  background-image: url("../images/speech-balloon.svg");
+  background-color: var(--light-bg);
+ }
+ 
+ div.comment::before {
+  background-color: var(--secondary-color);
+ }
+ 
+ div.caution {
+  background-image: url("../images/warning.svg");
+  background-color: rgba(255, 248, 225, 0.5);
+ }
+ 
+ div.caution::before {
+  background-color: #FFC107;
+ }
+ 
+ @media (max-width: 768px) {
+  div.books, div.comment, div.caution {
+    padding: 12px 12px 12px 64px;
+    background-position: 12px center;
+    background-size: 36px;
+  }
+ }
+
 main a {
   color: var(--primary-color);
   font-weight: 400;
@@ -279,7 +344,7 @@ main a:hover {
   background: none;
 }
 
-main a::after {
+main a::before {
   content: '';
   position: absolute;
   left: 0;
@@ -292,7 +357,25 @@ main a::after {
   transition: opacity 0.2s ease;
 }
 
-main a:hover::after {
+main a:hover::before {
+  opacity: 1;
+}
+
+main a[href^="http"]::after {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234b9cc9'%3E%3Cpath d='M19 19H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: text-top;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+main a[href^="http"]:hover::after {
   opacity: 1;
 }
 
@@ -383,46 +466,69 @@ main a:hover::after {
   }
 }
 
+div.books, div.comment, div.caution {
+ padding: 16px 16px 16px 76px;
+ margin: 24px 0;
+ background-repeat: no-repeat;
+ background-position: 16px center;
+ background-size: 40px;
+ color: var(--text-color);
+ background-color: var(--bg-white);
+ border-radius: 4px;
+ box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+ transition: box-shadow 0.3s ease;
+ position: relative;
+ border: none;
+ overflow: hidden;
+}
+
+div.books:hover, div.comment:hover, div.caution:hover {
+ box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+div.books::before, div.comment::before, div.caution::before {
+ content: '';
+ position: absolute;
+ left: 0;
+ top: 0;
+ height: 100%;
+ width: 4px;
+ border-radius: 4px 0 0 4px;
+}
+
 div.books {
-  padding: 1em;
-  padding-bottom: 1em;
-  margin: 1em 0;
-  padding-left: 90px;
-  background-repeat: no-repeat;
-  background-position: 20px center;
-  color: var(--text-color);
-  background-color: var(--bg-white);
-  border: dashed 5px var(--books-border);
-  background-image: url("../images/books.svg");
-  background-size: 45px;
+ background-image: url("../images/books.svg");
+ background-color: var(--primary-light);
+}
+
+div.books::before {
+ background-color: var(--primary-color);
 }
 
 div.comment {
-  padding: 1em;
-  padding-bottom: 1em;
-  margin: 1em 0;
-  padding-left: 90px;
-  background-repeat: no-repeat;
-  background-position: 20px center;
-  color: var(--text-color);
-  background-color: var(--bg-white);
-  border: dashed 5px var(--books-border);
-  background-image: url("../images/speech-balloon.svg");
-  background-size: 45px;
+ background-image: url("../images/speech-balloon.svg");
+ background-color: var(--light-bg);
+}
+
+div.comment::before {
+ background-color: var(--secondary-color);
 }
 
 div.caution {
-  padding: 1em;
-  padding-bottom: 1em;
-  margin: 1em 0;
-  padding-left: 90px;
-  background-repeat: no-repeat;
-  background-position: 20px center;
-  color: var(--text-color);
-  background-color: var(--bg-white);
-  border: dashed 5px var(--caution-color);
-  background-image: url("../images/warning.svg");
-  background-size: 45px;
+ background-image: url("../images/warning.svg");
+ background-color: rgba(255, 248, 225, 0.5);
+}
+
+div.caution::before {
+ background-color: #FFC107;
+}
+
+@media (max-width: 768px) {
+ div.books, div.comment, div.caution {
+   padding: 12px 12px 12px 64px;
+   background-position: 12px center;
+   background-size: 36px;
+ }
 }
 
 .fab-scroll {
