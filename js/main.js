@@ -75,3 +75,53 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const backToTopButton = document.getElementById('back-to-top');
+  
+  function toggleBackToTopButton() {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add('show');
+    } else {
+      backToTopButton.classList.remove('show');
+    }
+  }
+  
+  let scrollAnimationFrame;
+  
+  window.addEventListener('scroll', function() {
+    if (scrollAnimationFrame) {
+      window.cancelAnimationFrame(scrollAnimationFrame);
+    }
+    
+    scrollAnimationFrame = window.requestAnimationFrame(function() {
+      toggleBackToTopButton();
+    });
+  });
+  
+  backToTopButton.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    let rect = this.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+    
+    let ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    
+    this.appendChild(ripple);
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+  
+  toggleBackToTopButton();
+});
