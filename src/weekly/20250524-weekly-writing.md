@@ -89,7 +89,7 @@ Judea Pearl（2011 年的圖靈獎得主）則說，在他的書 Causality 的�
 
 下一個是 Guido Imbens（2021 年的諾貝爾經濟學獎得主）。他首先描述自己對這段歷史的理解。他說，potential outcomes framework 大約在 90 年代在經濟計量的文獻開始流行起來，例如 Heckman (1990) 的 Varieties of Selection Bias 或 Manski (1990) 的 Nonparametric Bounds on Treatment Effects。這形成一片新氣象，對比起幾年前的經濟計量中方案評估的文獻，都沒有使用 potential outcomes 的符號。他說當時很少人提及 Rubin 的工作，但在 Heckman 和 Manski 的論文中也沒有引用 Neyman (1923)、Roy (1951) 或 Quandt (1958)。當時大家似乎並不覺得這種符號上的轉變重要到需要歸功於任何人。
 
-但是，他提及，Heckman 後來的著作試圖將潛在結果框架置於歷史視角中。首先，Heckman (1996) 提到，Rubin 模型是經濟計量中 switching regression 的一個特例。而在 Heckman (2008) 中，他寫道，「許多統計學家和社會科學家使用反事實模型，Paul Holland (1986) 將其歸因於 Donald Rubin，而這個框架最初由 Neyman (1923)、Cox (1958) 等人在統計學中發展起來。心理測量 (Thurstone, 1927) 和經濟學 (Haavelmo, 1943; Quandt, 1958, 1972; Roy, 1951) 中也獨立發展出了平行的框架。」
+但是，他提及，Heckman 後來的著作試圖將潛在結果框架置於歷史視角中。首先，Heckman (1996) 提到，Rubin 模型是經濟計量中 switching regression 的一個特例。而在 Heckman (2008) 中寫道，「許多統計學家和社會科學家使用反事實模型，Paul Holland (1986) 將其歸因於 Donald Rubin，而這個框架最初由 Neyman (1923)、Cox (1958) 等人在統計學中發展起來。心理測量 (Thurstone, 1927) 和經濟學 (Haavelmo, 1943; Quandt, 1958, 1972; Roy, 1951) 中也獨立發展出了平行的框架。」
 
 他又說，不要將 Heckman 在這方面的觀點解釋為反映了經濟學界的共識。不過，他認為 Haavelmo (1943) 確實考慮了 potential outcomes，這是經濟學中最接近 Rubin Causal Model 的前身。然而，Haavelmo 的符號並未流行開來。
 
