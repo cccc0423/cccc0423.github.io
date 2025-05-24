@@ -86,7 +86,7 @@
         href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8644432&amp;tag=1">Machine
         Learning-based Occupancy Estimation Using Multivariate Sensor
         Nodes</a>
-        這篇文章所搜集的。這研究的動機是，如果我們能夠知道確切的房間即時人數，那就可以智慧化地調控建築物內的空調與照明系統。基於隱私需求，大家並不偏好有視訊監控的系統。不過因為物聯網發展，有許多感測器可以用來測量環境參數，例如溫度、濕度、二氧化碳濃度、光照強度等等。這研究的目的就在於利用這些感測器的資料來預測房間內的人數。不禁令人感嘆真是非常實際的研究，不像經濟學研究多半只是為了滿足智識上的好奇心。</p>
+        這篇文章所搜集的。這研究的動機是，如果我們能夠知道確切的房間即時人數，那就可以智慧化地調控建築物內的空調與照明系統。基於隱私需求，大家並不偏好有視訊監控的系統。不過因為物聯網發展，有許多感測器可以用來測量環境參數，例如溫度、濕度、二氧化碳濃度、光照強度等等。這研究的目的就在於利用這些感測器的資料來預測房間內的人數。不禁令人感嘆真是非常實際的研究，不像經濟學研究多半只是為了滿足智識上的好奇心。另一方面又感嘆，這樣的研究，僅僅只是搜集了資料，然後利用既有的機器學習方法分析，就能獲得三百多次引用，從這方面來說，這個領域（似乎算是電機工程的一個非常小的子領域）確實比較不那麼內捲。</p>
         <h2 id="研究與閱讀">研究與閱讀</h2>
         <h3 id="athey-chetty-and-imbens-2025">Athey, Chetty, and Imbens
         (2025)</h3>
@@ -148,8 +148,8 @@
         W_i \perp\!\!\!\perp \alpha_i^\text{S} \mid X_i, G_i = E.
         \]</span> 而一般而言觀察性資料則沒有這個條件獨立性： <span
         class="math display">\[
-        W_i \cancel{\perp\!\!\!\perp} \alpha_i^\text{S} \mid X_i, G_i =
-        O.
+        W_i \not{\mathrel{\!\!\perp\!\!\!\perp}} \alpha_i^\text{S} \mid
+        X_i, G_i = O.
         \]</span> 我們同樣假設 <span
         class="math inline">\(Y_i^{\text{P}}\)</span>
         的潛在結果模型是線性的，並且沒有異質性處理效果： <span
@@ -166,8 +166,8 @@
         class="math inline">\(W_i\)</span> 可能與 <span
         class="math inline">\(\alpha_i^\text{P}\)</span> 相關： <span
         class="math display">\[
-        W_i \cancel{\perp\!\!\!\perp} \alpha_i^\text{P} \mid X_i, G_i =
-        O.
+        W_i \not{\mathrel{\!\!\perp\!\!\!\perp}} \alpha_i^\text{P} \mid
+        X_i, G_i = O.
         \]</span> 所謂的 latent unconfoundedness，就是要求 <span
         class="math display">\[
         \begin{align*}
@@ -195,7 +195,7 @@
         W_i \perp\!\!\!\perp \varepsilon_i \mid X_i, \alpha_i^\text{S},
         G_i = O.
         \]</span> 這就是 control function
-        的方法。這件事情在非線性的一般情況下也是成立的。</p>
+        的方法。而這件事情在非線性的一般情況下也是成立的。</p>
         <hr />
         <p>雖然實際上跟我們的研究沒什麼關係，不過看了以後覺得外部效度和結合實驗資料與觀察性資料確實是值得研究的方向。</p>
         <h2 id="其他">其他</h2>

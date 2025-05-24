@@ -12,7 +12,7 @@ date: 2025-05-24
 
 這週的統計學習課是同學的 paper presentation。印象比較深刻的是第二組，他們被分派要報告的是 [Hard or Soft Classification? Large-Margin Unified Machines](https://www.tandfonline.com/doi/abs/10.1198/jasa.2011.tm10319)，2011 年刊登在 JASA 上。不過倒不是對文章的內容印象深刻，而是他們的報告方式。第一位同學似乎是財金所的學生，他就死死盯著講桌（上面擺著他的手機）講話。他一直說一些 AI 用語，諸如「條件概率」、「超參數」、「超平面」等等，感覺應該是請 AI 生成了一份講稿照念。第二位同學似乎是物理系（或所）的學生，他似乎想要營造有趣的氣氛。一拿到麥克風就說，他的組員因為很想上廁所，所以講得比較快。他在整個報告過程中一直嘗試講一些笑話，雖然大家都沒什麼反應。我是覺得尷尬得蠻有趣的。下週輪到我們組要報告，希望順利。
 
-統計學習課還要交期末報告，可以選擇一筆乾旱資料或一筆房間人數資料，挑選三種統計學習方法分析，並且再進一步分析、解釋模型。我現在傾向分析房間人數資料。這筆資料來自 UCI Machine Learning Repository，原先是 [Machine Learning-based Occupancy Estimation Using Multivariate Sensor Nodes](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8644432&tag=1) 這篇文章所搜集的。這研究的動機是，如果我們能夠知道確切的房間即時人數，那就可以智慧化地調控建築物內的空調與照明系統。基於隱私需求，大家並不偏好有視訊監控的系統。不過因為物聯網發展，有許多感測器可以用來測量環境參數，例如溫度、濕度、二氧化碳濃度、光照強度等等。這研究的目的就在於利用這些感測器的資料來預測房間內的人數。不禁令人感嘆真是非常實際的研究，不像經濟學研究多半只是為了滿足智識上的好奇心。
+統計學習課還要交期末報告，可以選擇一筆乾旱資料或一筆房間人數資料，挑選三種統計學習方法分析，並且再進一步分析、解釋模型。我現在傾向分析房間人數資料。這筆資料來自 UCI Machine Learning Repository，原先是 [Machine Learning-based Occupancy Estimation Using Multivariate Sensor Nodes](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8644432&tag=1) 這篇文章所搜集的。這研究的動機是，如果我們能夠知道確切的房間即時人數，那就可以智慧化地調控建築物內的空調與照明系統。基於隱私需求，大家並不偏好有視訊監控的系統。不過因為物聯網發展，有許多感測器可以用來測量環境參數，例如溫度、濕度、二氧化碳濃度、光照強度等等。這研究的目的就在於利用這些感測器的資料來預測房間內的人數。不禁令人感嘆真是非常實際的研究，不像經濟學研究多半只是為了滿足智識上的好奇心。另一方面又感嘆，這樣的研究，僅僅只是搜集了資料，然後利用既有的機器學習方法分析，就能獲得三百多次引用，從這方面來說，這個領域（似乎算是電機工程的一個非常小的子領域）確實比較不那麼內捲。
 
 ## 研究與閱讀
 
@@ -41,7 +41,7 @@ W_i \perp\!\!\!\perp \alpha_i^\text{S} \mid X_i, G_i = E.
 $$
 而一般而言觀察性資料則沒有這個條件獨立性：
 $$
-W_i \cancel{\perp\!\!\!\perp} \alpha_i^\text{S} \mid X_i, G_i = O.
+W_i \not{\mathrel{\!\!\perp\!\!\!\perp}} \alpha_i^\text{S} \mid X_i, G_i = O.
 $$
 我們同樣假設 $Y_i^{\text{P}}$ 的潛在結果模型是線性的，並且沒有異質性處理效果：
 $$
@@ -51,7 +51,7 @@ Y_i^{\text{P}}(1) = Y_i^{\text{P}}(0) + \tau^\text{P}.
 $$
 同樣地，這裏 的 $\alpha_i^\text{P}$ 也可以想成是一些會同時影響 $Y_i^{\text{P}}$ 和 $W_i$ 的變數。並且，$W_i$ 可能與 $\alpha_i^\text{P}$ 相關：
 $$
-W_i \cancel{\perp\!\!\!\perp} \alpha_i^\text{P} \mid X_i, G_i = O.
+W_i \not{\mathrel{\!\!\perp\!\!\!\perp}} \alpha_i^\text{P} \mid X_i, G_i = O.
 $$
 所謂的 latent unconfoundedness，就是要求
 $$
@@ -71,7 +71,7 @@ $$
 $$
 W_i \perp\!\!\!\perp \varepsilon_i \mid X_i, \alpha_i^\text{S}, G_i = O.
 $$
-這就是 control function 的方法。這件事情在非線性的一般情況下也是成立的。
+這就是 control function 的方法。而這件事情在非線性的一般情況下也是成立的。
 
 ---
 
