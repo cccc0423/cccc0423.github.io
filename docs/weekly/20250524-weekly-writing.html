@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（十八）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
+    <span class="material-icons">arrow_upward</span>
+</button>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（十八）</h1>
+        <p class="post-date">2025-05-24</p>
+
+                <div class="toc">
+            <h2>目錄</h2>
+            <ul>
+            <li><a href="#修課" id="toc-修課">修課</a></li>
+            <li><a href="#研究與閱讀" id="toc-研究與閱讀">研究與閱讀</a>
+            <ul>
+            <li><a href="#athey-chetty-and-imbens-2025"
+            id="toc-athey-chetty-and-imbens-2025">Athey, Chetty, and
+            Imbens (2025)</a></li>
+            </ul></li>
+            <li><a href="#其他" id="toc-其他">其他</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="修課">修課</h2>
+        <p>這週的書法課繼續練習智永千字文。另外，我終於決定扇子要寫什麼了——就寫「誠意」兩字（如果還有餘裕的話可以再寫「正心」）。就是我一直沒有想到什麼好笑的字可以寫在扇子上，於是《大學》裡的這兩字就成了最後選擇。</p>
+        <hr />
+        <p>這週的統計學習課是同學的 paper
+        presentation。印象比較深刻的是第二組，他們被分派要報告的是 <a
+        href="https://www.tandfonline.com/doi/abs/10.1198/jasa.2011.tm10319">Hard
+        or Soft Classification? Large-Margin Unified Machines</a>，2011
+        年刊登在 JASA
+        上。不過倒不是對文章的內容印象深刻，而是他們的報告方式。第一位同學似乎是財金所的學生，他就死死盯著講桌（上面擺著他的手機）講話。他一直說一些
+        AI
+        用語，諸如「條件概率」、「超參數」、「超平面」等等，感覺應該是請
+        AI
+        生成了一份講稿照念。第二位同學似乎是物理系（或所）的學生，他似乎想要營造有趣的氣氛。一拿到麥克風就說，他的組員因為很想上廁所，所以講得比較快。他在整個報告過程中一直嘗試講一些笑話，雖然大家都沒什麼反應。我是覺得尷尬得蠻有趣的。下週輪到我們組要報告，希望順利。</p>
+        <p>統計學習課還要交期末報告，可以選擇一筆乾旱資料或一筆房間人數資料，挑選三種統計學習方法分析，並且再進一步分析、解釋模型。我現在傾向分析房間人數資料。這筆資料來自
+        UCI Machine Learning Repository，原先是 <a
+        href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8644432&amp;tag=1">Machine
+        Learning-based Occupancy Estimation Using Multivariate Sensor
+        Nodes</a>
+        這篇文章所搜集的。這研究的動機是，如果我們能夠知道確切的房間即時人數，那就可以智慧化地調控建築物內的空調與照明系統。基於隱私需求，大家並不偏好有視訊監控的系統。不過因為物聯網發展，有許多感測器可以用來測量環境參數，例如溫度、濕度、二氧化碳濃度、光照強度等等。這研究的目的就在於利用這些感測器的資料來預測房間內的人數。不禁令人感嘆真是非常實際的研究，不像經濟學研究多半只是為了滿足智識上的好奇心。</p>
+        <h2 id="研究與閱讀">研究與閱讀</h2>
+        <h3 id="athey-chetty-and-imbens-2025">Athey, Chetty, and Imbens
+        (2025)</h3>
+        <p>KM 傳了這篇文章給我，他似乎覺得跟我們正在做的研究有關。這是
+        NBER 今年五月的一篇 working paper，標題是 The Experimental
+        Selection Correction Estimator: Using Experiments to Remove
+        Biases in Observational Estimates。</p>
+        <p>有時候我們手上會有一筆觀察性資料和一筆實驗資料。其中，觀察性資料紀錄我們感興趣的處理變數，以及主要與次要感興趣的結果變數，但是沒有隨機化的實驗設計，而實驗資料則有隨機分派的處理變數，但可能囿於研究時間的限制，沒有紀錄主要的結果變數，僅有次要的結果變數。比如說，研究者可能有
+        Project STAR 的資料，其中班級大小 <span
+        class="math inline">\(W_i\)</span>
+        是隨機分派的，我們可能感興趣高中畢業率 <span
+        class="math inline">\(Y_i^\text{P}\)</span>，但資料僅記錄了考試成績
+        <span
+        class="math inline">\(Y_i^\text{S}\)</span>，並有紐約市的學區資料，其中我們觀察到（沒有隨機分派的）班級大小
+        <span class="math inline">\(W_i\)</span>、考試成績 <span
+        class="math inline">\(Y_i^\text{S}\)</span> 與高中畢業率 <span
+        class="math inline">\(Y_i^\text{P}\)</span>。作者的目標是要回答，在哪些假設之下，我們可以如何利用這兩筆資料來估計高中畢業率
+        <span class="math inline">\(Y_i^\text{P}\)</span>
+        的因果效應。</p>
+        <p>我們看到的資料是 <span class="math inline">\((W_i, G_i,
+        Y_i^\text{S}, Y_i^\text{P}\mathbf{1}\{G_i = O\},
+        X_i)\)</span>，其中 <span class="math inline">\(G_i \in \{O,
+        E\}\)</span> 是觀察性資料或實驗資料，<span
+        class="math inline">\(X_i\)</span>
+        是其他的控制變數。我們的目標是要估計 <span
+        class="math inline">\(Y_i^\text{P}\)</span> 的平均處理效應 <span
+        class="math display">\[
+        \tau^{\text{P}} \equiv \operatorname{E}[Y_i^\text{P}(1) -
+        Y_i^\text{P}(0)].
+        \]</span>
+        這裏重要的假設有三。首先，實驗樣本要有內在效度，也就是真能幫我們識別真實的處理效果。其次，這些樣本要有外在效度，也就是說，實驗樣本的處理效果要能夠推廣到觀察性樣本。最後是
+        latent unconfoundedness，也就是在觀察性資料中，<span
+        class="math inline">\(W_i\)</span> 與 <span
+        class="math inline">\(Y_i^\text{P}\)</span> 之間的干擾因子和
+        <span class="math inline">\(W_i\)</span> 與 <span
+        class="math inline">\(Y_i^\text{S}\)</span>
+        之間的干擾因子是一樣的。概念上就是說，如果我們有一個外生的隨機分派，就能幫助我們估計
+        <span class="math inline">\(W_i\)</span> 與 <span
+        class="math inline">\(Y_i^\text{S}\)</span>
+        之間的干擾因子，而基於 latent
+        unconfoundedness，我們只要控制它就能控制選擇偏誤。</p>
+        <p>簡單起見，先假設我們的實驗與觀察性資料背後的同一個 <span
+        class="math inline">\(Y_i^\text{S}\)</span>
+        的潛在結果模型是線性的，並且沒有異質性處理效果，也就是 <span
+        class="math display">\[
+        Y_i^{\text{S}}(0) = X_i^\intercal \gamma^\text{S} +
+        \alpha_i^\text{S},
+        \quad
+        Y_i^{\text{S}}(1) = Y_i^{\text{S}}(0) + \tau^S.
+        \]</span> 其中，我們可以把 <span
+        class="math inline">\(\alpha_i^\text{S}\)</span>
+        想成是一些會同時影響 <span
+        class="math inline">\(Y_i^{\text{S}}\)</span> 和 <span
+        class="math inline">\(W_i\)</span> 的變數。
+        因為實驗資料有隨機分派，所以 <span
+        class="math inline">\(W_i\)</span> 與 <span
+        class="math inline">\(\alpha_i^\text{S}\)</span> 條件獨立：
+        <span class="math display">\[
+        W_i \perp\!\!\!\perp \alpha_i^\text{S} \mid X_i, G_i = E.
+        \]</span> 而一般而言觀察性資料則沒有這個條件獨立性： <span
+        class="math display">\[
+        W_i \cancel{\perp\!\!\!\perp} \alpha_i^\text{S} \mid X_i, G_i =
+        O.
+        \]</span> 我們同樣假設 <span
+        class="math inline">\(Y_i^{\text{P}}\)</span>
+        的潛在結果模型是線性的，並且沒有異質性處理效果： <span
+        class="math display">\[
+        Y_i^{\text{P}}(0) = X_i^\intercal \gamma^\text{P} +
+        \alpha_i^\text{P},
+        \quad
+        Y_i^{\text{P}}(1) = Y_i^{\text{P}}(0) + \tau^\text{P}.
+        \]</span> 同樣地，這裏 的 <span
+        class="math inline">\(\alpha_i^\text{P}\)</span>
+        也可以想成是一些會同時影響 <span
+        class="math inline">\(Y_i^{\text{P}}\)</span> 和 <span
+        class="math inline">\(W_i\)</span> 的變數。並且，<span
+        class="math inline">\(W_i\)</span> 可能與 <span
+        class="math inline">\(\alpha_i^\text{P}\)</span> 相關： <span
+        class="math display">\[
+        W_i \cancel{\perp\!\!\!\perp} \alpha_i^\text{P} \mid X_i, G_i =
+        O.
+        \]</span> 所謂的 latent unconfoundedness，就是要求 <span
+        class="math display">\[
+        \begin{align*}
+        \alpha_i^{\text{P}} = \delta \alpha_i^{\text{S}} +
+        \varepsilon_i,
+        \end{align*}
+        \]</span> 其中 <span class="math inline">\(\varepsilon_i \equiv
+        \alpha_i^{\text{P}} - \operatorname{E}[\alpha_i^{\text{P}} \mid
+        \alpha_i^{\text{S}}]\)</span>。換言之，這兩個干擾因子是一樣的。再來就是要估計
+        <span
+        class="math inline">\(\tau^\text{P}\)</span>。假如我們能夠利用實驗資料估計
+        <span class="math inline">\(\tau^\text{S}\)</span> 與 <span
+        class="math inline">\(\gamma^\text{S}\)</span>，記為 <span
+        class="math inline">\(\hat{\tau}^\text{S}\)</span> 與 <span
+        class="math inline">\(\hat{\gamma}^\text{S}\)</span>，那麼我們就可以對觀察性樣本估計
+        <span class="math inline">\(\alpha_i^\text{P}\)</span>： <span
+        class="math display">\[
+        \hat{\alpha}_i^{\text{P}} = Y_i^{\text{P}} - W_i
+        \hat{\tau}^\text{S} - X_i^\intercal \hat{\gamma}^\text{S}.
+        \]</span> 然後估計以下的線性迴歸模型： <span
+        class="math display">\[
+        Y_i^{\text{P}} = W_i \tau + X_i^\intercal \gamma + \delta
+        \hat{\alpha}_i^{\text{P}} + \varepsilon_i,
+        \]</span> 其中 <span class="math display">\[
+        W_i \perp\!\!\!\perp \varepsilon_i \mid X_i, \alpha_i^\text{S},
+        G_i = O.
+        \]</span> 這就是 control function
+        的方法。這件事情在非線性的一般情況下也是成立的。</p>
+        <hr />
+        <p>雖然實際上跟我們的研究沒什麼關係，不過看了以後覺得外部效度和結合實驗資料與觀察性資料確實是值得研究的方向。</p>
+        <h2 id="其他">其他</h2>
+        <p>網路上閒晃時看到 KM 似乎在利用 ChatGPT
+        備課。他丟了一份簡介因果推論的簡報給 ChatGPT，然後讓它幫他弄成
+        beamer
+        簡報。我當時就猜這份簡報或許是他當年在芝加哥上課的時候老師用的。簡報的第二頁就提到
+        “Also known as the Neyman-Fisher-Roy-Quandt-Rubin causal
+        model”。我第一次看到這些人名被擺在一起，就是兩年前他的勞動經濟學課上。在此之前，我也上過一門因果推論的課，但從來沒聽過這些人名同時被提到。我突然覺得有趣，上網查一下都是哪些人會使用
+        “Neyman-Fisher-Roy-Quandt-Rubin causal model”
+        這個詞，結果幾乎搜尋不到什麼公開的頁面。不過倒是證實了我的猜測——那份簡報來自
+        Alexander Torgovitsky。</p>
+        <p>另外我看到 Andrew Gelman（非常大咖的統計學家，另一個身份是
+        Donald Rubin 的學生）的一篇部落格文章，<a
+        href="https://statmodeling.stat.columbia.edu/2013/07/30/the-roy-causal-model/">The
+        Roy causal model?</a>。文章大概是說，他看到 Heckman 寫了一篇文章
+        <a
+        href="https://www.tandfonline.com/doi/abs/10.1080/07474938.2013.807103">Treatment
+        Effects: A Bayesian Perspective</a>，感覺很有趣，一來他不知道
+        Heckman 也做貝氏統計，二來他知道 Heckman 與 Rubin
+        素有積怨，好奇他會如何追溯 potential outcomes
+        模型的歷史。但他看完以後發現 Heckman 把因果模型的歷史歸功於 Roy
+        (1951)，而沒有提到 Rubin (1974) 的工作。看了 Roy
+        (1951)，他覺得他看不到有什麼明顯的連結。他覺得 Heckman 過分誇大
+        Roy 的貢獻。</p>
+        <p>留言踴躍，不乏名人。我認得的第一位是丁鵬（他也是 Rubin
+        的學生），提到 Rubin 對於 Heckman 引用 Roy model 的看法。在
+        Fisher lecture <a
+        href="https://www.tandfonline.com/doi/abs/10.1198/016214504000001880">Causal
+        Inference Using Potential Outcomes</a>，Rubin 認為 Heckman
+        把因果模型歸功於 Roy (1951) 和 Quandt (1958)
+        這件事很奇怪，因為這兩篇文章都不是談因果推論。</p>
+        <p>Judea Pearl（2011 年的圖靈獎得主）則說，在他的書 Causality
+        的第三章的腳注有提到 Heckman 把因果模型歸功於 Roy (1951) 和
+        Quandt (1958) 這件事。他認為，Roy
+        是有提到反事實量，但沒有為此發明符號，但是 Neyman 是有的，因此
+        Roy
+        並未踏出關鍵的那一步。最後他又說，頂尖的學者抗拒承認其他相關領域的貢獻是普遍的現象，並非經濟學獨有（似乎是暗指某些統計學家忽視電腦科學領域的貢獻）。</p>
+        <p>下一個是 Guido Imbens（2021
+        年的諾貝爾經濟學獎得主）。他首先描述自己對這段歷史的理解。他說，potential
+        outcomes framework 大約在 90
+        年代在經濟計量的文獻開始流行起來，例如 Heckman (1990) 的
+        Varieties of Selection Bias 或 Manski (1990) 的 Nonparametric
+        Bounds on Treatment
+        Effects。這形成一片新氣象，對比起幾年前的經濟計量中方案評估的文獻，都沒有使用
+        potential outcomes 的符號。他說當時很少人提及 Rubin 的工作，但在
+        Heckman 和 Manski 的論文中也沒有引用 Neyman (1923)、Roy (1951)
+        或 Quandt
+        (1958)。當時大家似乎並不覺得這種符號上的轉變重要到需要歸功於任何人。</p>
+        <p>但是，他提及，Heckman
+        後來的著作試圖將潛在結果框架置於歷史視角中。首先，Heckman (1996)
+        提到，Rubin 模型是經濟計量中 switching regression
+        的一個特例。而在 Heckman (2008)
+        中，他寫道，「許多統計學家和社會科學家使用反事實模型，Paul
+        Holland (1986) 將其歸因於 Donald Rubin，而這個框架最初由 Neyman
+        (1923)、Cox (1958) 等人在統計學中發展起來。心理測量 (Thurstone,
+        1927) 和經濟學 (Haavelmo, 1943; Quandt, 1958, 1972; Roy, 1951)
+        中也獨立發展出了平行的框架。」</p>
+        <p>他又說，不要將 Heckman
+        在這方面的觀點解釋為反映了經濟學界的共識。不過，他認為 Haavelmo
+        (1943) 確實考慮了 potential outcomes，這是經濟學中最接近 Rubin
+        Causal Model 的前身。然而，Haavelmo 的符號並未流行開來。</p>
+        <p>最後，他隔空評論 Judea Pearl
+        「頂尖研究人員不願承認鄰近領域貢獻」的評論。他說 Pearl
+        可能是對的，但因果推論實際上是一個有很多跨學科引用與跨學科合作的領域。</p>
+        <p>對 Imbens 的留言，Pearl 回覆說 Imbens
+        的理解與他類似，但他想補充說明為什麼經濟學家沒有沿用 Haavelmo
+        的符號，而是用實現的（realized）結果而非潛在的（potential）結果來構建模型。首先，Haavelmo
+        並沒有發明新的符號。其次，經濟學家使用實現結果而非潛在結果來構建模型，是因為他們不需要；反事實已經被封裝在結構方程中。</p>
+        <hr />
+        <p>不說都沒意識到原來週六就是畢業典禮。KM
+        似乎很希望有人邀請他去參加。從上週到這週，向所有可能要去小畢典的學生提及都沒有人邀請他去。但最後還是事與願違。挺有趣的。</p>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>
