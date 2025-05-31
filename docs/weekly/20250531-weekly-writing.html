@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（十九）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
+    <span class="material-icons">arrow_upward</span>
+</button>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（十九）</h1>
+        <p class="post-date">2025-05-31</p>
+
+                <div class="toc">
+            <h2>目錄</h2>
+            <ul>
+            <li><a href="#修課" id="toc-修課">修課</a></li>
+            <li><a href="#研究與閱讀"
+            id="toc-研究與閱讀">研究與閱讀</a></li>
+            <li><a href="#其他" id="toc-其他">其他</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="修課">修課</h2>
+        <p>這週書法課是總複習。平常都沒什麼練習，現在只覺得自己寫得不甚好。</p>
+        <hr />
+        <p>這週的統計學習課仍舊是 paper
+        presentation，報告的期刊論文主題都是 functional data
+        analysis。花了一些時間思考應該怎麼報告，最後總算安全下莊。另外，聽了別人的報告以後，慶幸自己被隨機分派到一篇技術上比較簡單，但卻提供了新觀點的論文。希望自己也能做出這樣的研究。</p>
+        <p>至於期末報告。沒有意外的話，我應該會選擇那筆預測房間人數的資料（資料本身並沒有比另一筆預測乾旱的來得好做，但因為資料量小得多，只要在本地端就能跑完）。如上週提到，那是一筆時間序列的資料。相對地，我們上課時教的方法多半是針對橫斷資料的。ArXiv
+        上有一篇<a href="https://arxiv.org/abs/2312.14426">文章</a>
+        重新分析了那筆資料，他們是覺得即便忽略時序的建模，傳統的機器學習方法還是能夠得到非常好的結果，甚至以
+        K-fold cross-validation 估計的平均正確率達到 99.8%
+        以上。但我很懷疑這種情境下使用 K-fold CV
+        是不是正當的，據說時間自相關會導致 data leakage，也就是 K-fold
+        CV
+        的結果過於樂觀。不過根本的問題似乎在於，我們到底需要模型學習到什麼模式？因此我也還在猶豫
+        futher analysis 的方向。</p>
+        <h2 id="研究與閱讀">研究與閱讀</h2>
+        <p>因為忙著期末，所以這週幾乎沒有讀新東西。</p>
+        <h2 id="其他">其他</h2>
+        <p>有時候在對話中提到自己在學書法，對方就會表示捧場地說想看看我寫的字。說實話，我覺得要寫得讓一般沒有學過的人覺得好看，並不容易。其中最重要的原因大概是學習書法並非朝著讓一般人覺得好看的方向練習。比如說，YouTube
+        上會有一些人以誇張的方式寫下瀟灑的榜書。其中大部分都僅僅只能被稱為江湖體。所謂江湖體，泛指沒有經過系統的臨帖訓練寫出來的字。為了提供震撼的視覺效果，這些人會刻意利用誇張的筆墨或者線條。說白了就是在表演，在討好觀眾，並不真誠。而也確實江湖體更受大眾歡迎，但是這樣寫字，以及背後的心理狀態，與傳統書法家更嚮往的人格修養完全不同。因此，並不是拿毛筆寫字就能稱之為書法。<a
+        href="#fn1" class="footnote-ref" id="fnref1"
+        role="doc-noteref"><sup>1</sup></a></p>
+        <p>學書法從臨帖開始，而臨帖的目的在於學習古人的筆法與結字。所謂筆法，指的是用筆的方法，而結字則指涉筆畫之間的組合關係。不過，趙孟頫在《蘭亭十三跋・第七》說：「書法以用筆為上，而結字亦須用工；蓋結字因時相傳，用筆千古不易。」可見筆法又比結字更重要。而之所以說「千古不易」，是因為毛筆有其特性，而透過腕力掌握筆毛、筆鋒在紙上的運動的方式，並不會隨著時間而改變，而也是技術上比較困難的部分。初學者（例如我）首先要先透過長時間的練習，掌握一定的技術，才能夠自在地、適當地表現自己的心志。</p>
+        <p>話又說回來，江湖書法為何常寫行草書呢？為何常寫榜書呢？背後原因都在於手腕無法精確地指揮筆毛的運動。寫大字除了霸氣，而且更依賴手臂的力量。而宣紙的漲墨特性和行草書的視覺效果，又進一步掩蓋書寫者筆法的不足。</p>
+        <p>總之，學書法的過程是漫長的，並且需要長時間的練習。這也是為什麼我一直沒有寫出讓人滿意的字。真是給自己找了一個冠冕堂皇的藉口。不過畢竟可能我還算是初學書法的階段，總感覺練習書法帶給我的邊際報酬比起讀書或做研究來得高，比較能夠肉眼可見地進步😔。<a
+        href="#fn2" class="footnote-ref" id="fnref2"
+        role="doc-noteref"><sup>2</sup></a></p>
+        <section id="footnotes"
+        class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li
+        id="fn1"><p>當然，這並不是在說人不能寫江湖體，畢竟每個人都有選擇自己喜歡的、想要的風格的自由。而很多人喜歡江湖體，也是因為喜歡毛筆與紙面接觸的感覺，這點是所有寫毛筆字的人共通的感覺。<a
+        href="#fnref1" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        <li id="fn2"><p>整體而言就是做什麼事都不太擅長。<a
+        href="#fnref2" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>
