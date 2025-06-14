@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（二十一）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
+    <span class="material-icons">arrow_upward</span>
+</button>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（二十一）</h1>
+        <p class="post-date">2025-06-12</p>
+
+                <div class="toc">
+            <h2>目錄</h2>
+            <ul>
+            <li><a href="#研究與閱讀" id="toc-研究與閱讀">研究與閱讀</a>
+            <ul>
+            <li><a href="#lin-2013" id="toc-lin-2013">Lin
+            (2013)</a></li>
+            <li><a href="#kline-2011" id="toc-kline-2011">Kline
+            (2011)</a></li>
+            </ul></li>
+            <li><a href="#其他" id="toc-其他">其他</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="研究與閱讀">研究與閱讀</h2>
+        <h3 id="lin-2013">Lin (2013)</h3>
+        <p>這篇文章名為 Agnostic Notes on Regression Adjustments to
+        Experimental Data: Reexamining Freedman’s Critique，發表在
+        Annals of Applied Statistics。</p>
+        <p>這篇文章主要是針對 Freedman (2008)
+        的批評進行回應。假設我們有一個 completely randomized trial
+        (CRT)，並且有一些 pretreatment
+        covariates。有些人認為利用線性迴歸分析 CRT 的資料時，應該要將
+        pretreatment covariates
+        加入迴歸模型中，以提高估計的效率。然而，Freedman (2008)
+        認為這樣做會降低漸進的準確性，讓傳統的 covariance matrix
+        的估計壞掉，並且會導致小樣本偏誤。</p>
+        <p>Lin (2013)
+        針對這個問題進行了詳細的討論，並且提出了一些建議。他認為，雖然
+        Freedman 的批評是有道理的，但實際上如果我們在 CRT
+        中使用線性迴歸分析，加入 pretreatment covariates 與 treatment
+        的所有交乘項，在大樣本之下估計的準確性可以提升，信賴區間可以用
+        sandwich estimator
+        來構造，而雖然會有小樣本偏誤，但偏誤的收斂速度是 <span
+        class="math inline">\(1/n\)</span>（很快！）。</p>
+        <p>這篇的方法可以利用 R 的 <code>estimatr::lm_lin()</code>
+        來實現。</p>
+        <h3 id="kline-2011">Kline (2011)</h3>
+        <p>這是一篇正文僅有 5 頁的文章，名為 Oaxaca-Blinder as a
+        Reweighting Estimator，發表在 AER。</p>
+        <p>勞動經濟學的應用研究中，有一種古老的技巧，稱為 Oaxaca-Blinder
+        decomposition，在 1973 年分別由 Oaxaca 與 Blinder
+        兩人同時發明。<a href="#fn1" class="footnote-ref" id="fnref1"
+        role="doc-noteref"><sup>1</sup></a></p>
+        <p>假如我們現在想要研究兩組人（如不同種族、性別等等）的工資差距。我們可能從總體的統計資料發現，兩組人工資有別。問題是這不一定代表勞動市場存在歧視，有可能其實是因為這兩組人的生產力有別。例如，假設其中一組人的教育水平更高，那工資差距或許反映的是這兩組人教育水平的差距。</p>
+        <p>令兩組人分別為 <span class="math inline">\(A\)</span> 與
+        <span class="math inline">\(B\)</span>，而 <span
+        class="math inline">\(Y\)</span> 為工資，<span
+        class="math inline">\(X\)</span>
+        為生產力（如教育水平、工作經驗等等）。令 <span
+        class="math inline">\(Y^A\)</span> 為 <span
+        class="math inline">\(A\)</span> 組人的工資向量，<span
+        class="math inline">\(X^A\)</span> 為 <span
+        class="math inline">\(A\)</span> 組人的生產力，<span
+        class="math inline">\(Y^B\)</span> 與 <span
+        class="math inline">\(X^B\)</span>
+        同理。我們可以把兩組人的工資分別分解為 <span
+        class="math display">\[
+        \begin{align*}
+        Y^A &amp;= X^A \beta^A + \varepsilon^A, \\
+        Y^B &amp;= X^B \beta^B + \varepsilon^B.
+        \end{align*}
+        \]</span> 其中，<span class="math inline">\(\beta^A\)</span> 與
+        <span class="math inline">\(\beta^B\)</span> 分別為 <span
+        class="math inline">\(A\)</span> 與 <span
+        class="math inline">\(B\)</span>
+        組人的工資對於生產力的線性投影係數。假設 <span
+        class="math inline">\(i\)</span> 這個人來自 <span
+        class="math inline">\(A\)</span> 組。請問，如果他變成 <span
+        class="math inline">\(B\)</span>
+        組的人，但有相同的生產力，根據以上模型，我們猜測他的期望工資會是多少？Oaxaca-Blinder
+        的答案是 <span class="math inline">\(X_i
+        \beta^B\)</span>。細心的讀者可能會發現，Oaxaca-Blinder
+        的答案本身是一個反事實的預測：如果改變 <span
+        class="math inline">\(i\)</span>
+        的組別，但保持生產力不變，那麼他的工資會是什麼？<a href="#fn2"
+        class="footnote-ref" id="fnref2"
+        role="doc-noteref"><sup>2</sup></a></p>
+        <p>Kline (2011) 的文章指出，在因果推論的應用中，Oaxaca-Blinder
+        其實可以被視為一種 reweighting estimator。</p>
+        <p>令 <span class="math inline">\(D_i \in \{0, 1\}\)</span> 表示
+        <span class="math inline">\(i\)</span> 人是否接受處理，而 <span
+        class="math inline">\(Y_i^1\)</span> 與 <span
+        class="math inline">\(Y_i^0\)</span> 分別為 <span
+        class="math inline">\(i\)</span>
+        人接受處理與未接受處理時的結果，並假設 <span
+        class="math inline">\(Y_i = D_i Y_i^1 + (1 - D_i)
+        Y_i^0\)</span>。Oaxaca-Blinder 的方法其實就是假設對於 <span
+        class="math inline">\(d \in \{0, 1\}\)</span>， <span
+        class="math display">\[
+        \begin{align*}
+        Y_i^d &amp;= X_i&#39; \beta^d + \varepsilon_i^d, \\
+        \operatorname{E}[\varepsilon_i^d \mid D_i, X_i] &amp;= 0.
+        \end{align*}
+        \]</span> 換言之，兩 potential outcomes
+        的模型都是線性的，而且除了 <span
+        class="math inline">\(D_i\)</span> 與 <span
+        class="math inline">\(X_i\)</span>
+        之外，沒有其他的干擾因子。假設我們的目標是估計
+        ATT，那我們就需要識別 <span class="math display">\[
+        \mu_{0}^{1} \equiv \operatorname{E}\left[Y_i^0\mid D_i=1\right],
+        \]</span> 也就是處理組如果沒有接受處理的話，他們的期望結果。</p>
+        <p>給定 unconfoundedness 與 common support 的假設，Kline
+        首先提供了經典的 Hàjek 式的 weighting estimatand： <span
+        class="math display">\[
+        \mu_{0}^{1} = \operatorname{E} \left[\frac{e(X_i)}{\pi} \frac{1
+        - D_i}{1 - e(X_i)} Y_i\right] = \operatorname{E}[w(X_i) Y_i\mid
+        D_i = 0],
+        \]</span> 其中，<span class="math inline">\(e(X_i) \equiv P(D_i
+        = 1 \mid X_i)\)</span> 為傾向分數，<span
+        class="math inline">\(\pi \equiv P(D_i = 1)\)</span>
+        為處理組的比例，而 <span class="math inline">\(w(X_i) \equiv
+        \frac{1 - \pi}{\pi} \frac{e(X_i)}{1 - e(X_i)}\)</span>
+        為權重函數。</p>
+        <p>接著，他又證明 O-B 也可以寫成一個極為相似的 reweighting
+        estimand，而其權重 <span
+        class="math inline">\(\tilde{w}(X_i)\)</span> 即 <span
+        class="math inline">\(w(X_i)\)</span> 對 <span
+        class="math inline">\(X_i\)</span> 的線性投影。 <span
+        class="math display">\[
+        \begin{align*}
+        \delta^{\text{OB}} &amp;= \operatorname{E}[\tilde{w}(X_i) Y_i
+        \mid D_i = 0], \\
+        \tilde{w}(X_i) &amp;= X_i&#39; \operatorname{E}
+        \left[X_iX_i&#39;\mid D_i=0 \right]^{-1} \operatorname{E}
+        \left[X_i \frac{1 - \pi}{\pi} \frac{e(X_i)}{1 - e(X_i)}
+        \;\middle|\; D_i = 0 \right].
+        \end{align*}
+        \]</span></p>
+        <p>這個小發現蠻有趣的。首先，當然，我們知道當 potential outcomes
+        模型真是線性的時候，Oaxaca-Blinder 的方法就可以讓我們識別 <span
+        class="math inline">\(\mu_0^1\)</span>。但如果 potential
+        outcomes 模型不是線性的呢？這結果告訴我們，如果 <span
+        class="math inline">\(w(X_i)\)</span> 是線性的，那麼 <span
+        class="math inline">\(\tilde{w}(X_i)\)</span> 就相當於 <span
+        class="math inline">\(w(X_i)\)</span>，而這樣的話，Oaxaca-Blinder
+        的方法也就可以識別 <span
+        class="math inline">\(\mu_0^1\)</span>。同樣地，細心的讀者可能會發現，這就是
+        double robustness 的概念：只要我們的 potential outcomes
+        模型是線性的，或者我們的 treatment odds 是線性的，那麼
+        Oaxaca-Blinder 的方法就可以識別 <span
+        class="math inline">\(\mu_0^1\)</span>。</p>
+        <h2 id="其他">其他</h2>
+        <p>沒想到最佳辯士的事情還有後續：甄選會竟然在記者會上說這件事。真難以想像政府機關需要把這件事公諸於眾。另外，有趣的是，中一中的學霸高同學科展疑似涉及抄襲的事件，卻在
+        threads 上蠻順風。</p>
+        <hr />
+        <p>雖然書法課結束了，但偶爾還是會撥空練習。希望能夠繼續保持這個習慣。</p>
+        <hr />
+        <p>不知道要寫什麼，來分享一下利用 LLM + Obsidian 準備 GRE
+        的流程好了（雖然還在三天捕魚兩天曬網的狀態）。</p>
+        <p>我七月初要考試，這幾天才開始準備。大概五月時我背了 Magoosh
+        的單字（雖然應該忘記大半了😅）。但再來就不知道要背什麼了。首先，我以前買的一本
+        GRE
+        單字書弄丟了，我也不想再買一本新的。並且如果現在要背任何一本書的單字，可能都有點太趕了。所以決定破罐破摔，就開始寫考滿分的題目，然後紀錄不會的單字。</p>
+        <p>但要怎麼有效地記錄呢？我不是很喜歡手抄筆記（常常會太斟酌自己的字跡，以致非常沒有效率），故打從一開始就打算用電腦來記錄。除了紀錄單字，也要方便複習、查詢、分類等等。這時候考慮過幾種選項：</p>
+        <ul>
+        <li><p>Anki 作為單字卡是不錯的選擇。它有很好的間隔重複（spaced
+        repetition）功能，並且可以很方便地分類單字。但是 iOS 版的 Anki
+        需要付費，我不太想要花錢，也不想打開瀏覽器來使用 Anki
+        Web。</p></li>
+        <li><p>Quizlet
+        也同樣是有間隔重複功能的單字卡軟體。但它似乎並不是那麼靈活，而且不知道是不是我不會用，我不知道如何非常有效率地建立內容豐富的單字卡。</p></li>
+        <li><p>Notion
+        是一個靈活的筆記軟體，優點是我方便我整理同義字、反義字、例句等等。缺點是它沒有間隔重複功能。</p></li>
+        <li><p>Obsidian 是一個基於 Markdown
+        的筆記軟體，優點是免費，而且我可以很方便地使用 Markdown
+        語法來編輯筆記，這是單字卡軟體做不到的；並可以利用 Obsidian
+        的外掛程式 <a
+        href="https://www.stephenmwangi.com/obsidian-spaced-repetition/">Spaced
+        Repetition</a> 來實現間隔重複功能，而這是 Notion
+        做不到的。</p></li>
+        </ul>
+        <p>從 Obsidian 的社群外掛程式（community plugins）中，可以安裝
+        Spaced Repetition 外掛程式，我的工作流程大概是這樣：</p>
+        <ol type="1">
+        <li><p>在考滿分上做題目，並把不會的單字記錄下來。</p></li>
+        <li><p>把不會的單字丟給
+        LLM，讓他按照我規定的格式生成單字卡，以下是一個範例。在 Spaced
+        Repetition 插件的預設格式中，單字卡以 <code>#flashcards</code>
+        開頭。這是個多行的單字卡。正面是單字，背面我會要求 LLM
+        生成單字的詞性、定義、例句、中文翻譯、詞源等等，而正面與背面之間用
+        <code>?</code> 分隔。</p>
+        <div class="sourceCode" id="cb1"><pre
+        class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>#flashcards amalgam</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n. 混合物、合金</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>🔠 The new style was an amalgam of traditional and contemporary designs.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>🀄️ 新風格是傳統和當代設計的混合物。</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>📚 來自阿拉伯語，原指水銀合金，記憶：多種金屬混合在一起</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>同義詞：mixture, blend, combination, fusion</span></code></pre></div></li>
+        <li><p>點擊左側邊欄的按鈕複習卡片！</p></li>
+        </ol>
+        <p>想要在手機上複習的話，可以使用 Obsidian 的 iOS
+        App，配合適當的同步方式（像我是用
+        iCloud）就可以在手機上複習了。</p>
+        <section id="footnotes"
+        class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li id="fn1"><p>雖然據說，芝加哥大學的社會系教授 Evelyn Kitagawa
+        早在 1956 年就已經提出類似的方法。<a href="#fnref1"
+        class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+        <li
+        id="fn2"><p>不過很多人相信，因果推論的必要條件是可操縱性（manipulability），而性別、種族等組別是不可操縱的，所以這並不是合法的因果推論。這是另一個很深的問題了。<a
+        href="#fnref2" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>

@@ -36,11 +36,11 @@ $(DOCS_DIR)/about.html: $(SRC_DIR)/about.md templates/index.html | dirs
 
 # Weekly posts
 $(DOCS_DIR)/weekly/%.html: $(SRC_DIR)/weekly/%.md templates/post.html | dirs
-	pandoc $< --highlight-style=kate -o $@ --template=templates/post.html --standalone --variable=year:$(YEAR) --variable=is_weekly:true --toc --mathjax
+	pandoc $< -o $@ --template=templates/post.html --standalone --variable=year:$(YEAR) --variable=is_weekly:true --toc --mathjax
 
 # Posts
 $(DOCS_DIR)/posts/%.html: $(SRC_DIR)/posts/%.md templates/post.html | dirs
-	pandoc $< -o $@ --template=templates/post.html --highlight-style=pygments --standalone --variable=year:$(YEAR) --variable=is_weekly:true --toc --mathjax
+	pandoc $< -o $@ --template=templates/post.html --standalone --variable=year:$(YEAR) --variable=is_weekly:true --toc --mathjax
 
 # Copy static assets
 assets: | dirs
