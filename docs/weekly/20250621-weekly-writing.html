@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（二十二）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+</head>
+<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
+    <span class="material-icons">arrow_upward</span>
+</button>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（二十二）</h1>
+        <p class="post-date">2025-06-21</p>
+
+                <div class="toc">
+            <h2>目錄</h2>
+            <ul>
+            <li><a href="#東京行流水帳上"
+            id="toc-東京行流水帳上">東京行流水帳（上）</a></li>
+            <li><a href="#研究與閱讀"
+            id="toc-研究與閱讀">研究與閱讀</a></li>
+            <li><a href="#其他" id="toc-其他">其他</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="東京行流水帳上">東京行流水帳（上）</h2>
+        <h2 id="研究與閱讀">研究與閱讀</h2>
+        <h2 id="其他">其他</h2>
+        <div class="books">
+        <p>AdaBoost 是一種集成學習（ensemble
+        learning）的分類方法。給定一組訓練樣本，一開始每個樣本有相同的權重。然後，對於每一輪迭代：</p>
+        <ol type="1">
+        <li><p>使用當前樣本權重訓練一個弱分類器。</p></li>
+        <li><p>計算誤分類率，並更新樣本權重。粗略地說，對於正確分類的樣本，權重減少；對於錯誤分類的樣本，權重增加。</p></li>
+        </ol>
+        <p>最後，將所有弱分類器組合成最終的分類器。</p>
+        </div>
+        <p>突然發現我在學習如何與他人相處的過程，無意識地類似於
+        Adaboost。</p>
+        <p>就像 Adaboost
+        一開始給每個樣本相同的權重，我一開始與人互動時，使用一套（我心目中）普遍被認為合宜的方式。</p>
+        <p>但隨後在我的生命裡，我發現一些我喜歡的人、與我親近的人，對這些方式反應不佳，就像分類器對某些樣本錯誤分類。這些人就像
+        Adaboost
+        中被賦予較高權重的樣本，因為他們的重要性與複雜性促使我重新思考自己的與人相處的方式。</p>
+        <p>顧及他們的感受（就像想讓分類器更準確），我不自覺地調整自己應對人的方式，把注意力集中在那些難以應對、卻對我很重要的對象身上，這很像重新訓練下一個弱分類器，把重點放在「被錯誤分類」的部分。</p>
+        <p>但截至目前，這個無意識的學習方式並不是很成功，不像 Adaboost
+        一樣。照理來說，經過反覆的調整、學習和集成，我應對人的方式應該要變得更有層次、更細緻。</p>
+        <p>畢竟我對 Adaboost
+        的了解也僅限於課堂上聽過，並不熟悉他的理論和實踐性質，不過我猜失效的原因包括但不限於此：</p>
+        <ol type="1">
+        <li><p>迭代次數太少，還沒有成功收斂（整體來說還是太少跟人相處了，因此終究沒有成功學會）。</p></li>
+        <li><p>我用錯誤的方式調整權重，但這是我不能解決的，我畢竟不是電腦。</p></li>
+        <li><p>我可能就像 Adaboost
+        可能對離群值過於敏感，過於關注難分類的樣本。</p></li>
+        </ol>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>
