@@ -5,6 +5,7 @@ lang: zh-TW
 is_weekly: true
 ---
 
+- [2025-06-21](weekly/20250621-weekly-writing.html)
 - [2025-06-14](weekly/20250614-weekly-writing.html)
 - [2025-06-07](weekly/20250607-weekly-writing.html)
 - [2025-05-31](weekly/20250531-weekly-writing.html)
