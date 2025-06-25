@@ -78,7 +78,7 @@ is_gallery: TRUE
 
 ### García-Miralles and Leganza (2024)
 
-這篇標題是 Joint Retirement of Couples:Evidence from Discontinuities in Denmark，發表在 JPubE，作者利用丹麥全國的行政資料，研究夫妻共同退休的現象與原因。有另一篇 Coyne et al. (2024) 在 AER 也有一篇文章利用了類似的研究設計。
+這篇標題是 Joint Retirement of Couples:Evidence from Discontinuities in Denmark，發表在 JPubE，作者利用丹麥全國的行政資料，研究夫妻共同退休的現象與原因。有另一篇 Coyne et al. (2024)，刊在 AER 上，實證的部分也利用了類似的研究設計。
 
 丹麥的公共退休金制度中，最多勞工參與的莫過於 Voluntary Early Retirement Pension (VERP)。為了領取 VEPR 提供的退休金，勞工在 60 歲之前必須受僱、積極求職。若個人在達到 VERP 資格年齡前退出勞動市場，可能會損失 5 年的福利；個人可以選擇延遲領取，但延遲領取一年就意味著損失一年的福利；並且，如果個人在領取 VERP 福利的同時仍有勞動市場收入，他們的福利金將幾乎被取消，這強烈地不鼓勵個人在領取 VERP 福利後繼續工作。在主要分析期間（1991-2013年），VERP 的資格年齡一直穩定在 60 歲。
 
