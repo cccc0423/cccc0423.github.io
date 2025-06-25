@@ -5,6 +5,11 @@ date: 2025-06-21
 is_gallery: TRUE
 ---
 
+:::caution
+  如果網路不夠快的話，可能會需要一段時間才能載入圖片。在此之前圖片的佈局可能回有點奇怪。
+:::
+
+
 ## 東京行流水帳（上）
 
 週四一大早到了東京。此行的名目是畢業旅行（雖然畢不了業😅）。
@@ -22,7 +27,7 @@ is_gallery: TRUE
 ![SHI-TEN](../../images/202506-tokyo/04-shi-ten.jpg)
 ![東大安田講堂](../../images/202506-tokyo/05-utokyo-1.jpg)
 ![東京大學一隅](../../images/202506-tokyo/06-utokyo-2.jpg)
-![KM 同款的 Snoopy T](../../images/202506-tokyo/07-uq-snoopy.JPG)
+![Snoopy T 恤](../../images/202506-tokyo/07-uq-snoopy.JPG)
 ![豬排飯](../../images/202506-tokyo/08-pork-chop.jpg)
 ![臺灣滷肉飯 + 牛肉（沖泡）](../../images/202506-tokyo/09-loh-bah-png.jpg)
 </div>
