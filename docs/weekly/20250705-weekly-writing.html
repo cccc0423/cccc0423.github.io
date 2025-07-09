@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（二十四）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+    
+</head>
+<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
+    <span class="material-icons">arrow_upward</span>
+</button>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（二十四）</h1>
+        <p class="post-date">2025-07-05</p>
+
+                <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+            <li><a href="#研究與閱讀"
+            id="toc-研究與閱讀">研究與閱讀</a></li>
+            <li><a href="#其他" id="toc-其他">其他</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="研究與閱讀">研究與閱讀</h2>
+        <p>前陣子一個學弟問我一篇研究裡頭的一個迴歸應該如何理解，我看了也覺得百思不得其解，甚至連那篇文章的第一個迴歸都讓我想了很久。我由此發現一批公共經濟學的實證研究都利用了類似的研究設計。他們的研究主題裡頭通常包含某些以年齡判斷有無資格的政策（例如社會福利或退休金），然後利用這些政策的年齡門檻估計分段線性迴歸（piecewise
+        linear regression）。以下我把這種研究設計稱為 age-based
+        RDD。</p>
+        <p>先不論這些研究多半使用 panel dataset，先假設我們只有一個
+        cross-sectional
+        dataset，也就是說我們只觀察到某個時點的資料。假設他們感興趣的政策（例如退休金）的資格完全取決於年齡門檻
+        <span
+        class="math inline">\(c\)</span>。這時他們通常會估計的分段線性迴歸就如
+        <span class="math display">\[
+        Y_i = \beta_0 + \beta_1 (\mathit{age}_i - c) + \beta_2
+        \mathbf{1}(\mathit{age}_i \geq c) + \beta_3 (\mathit{age}_i - c)
+        \cdot \mathbf{1}(\mathit{age}_i \geq c) + \varepsilon_i,
+        \]</span> 其中 <span class="math inline">\(c\)</span>
+        是年齡門檻，<span class="math inline">\(\mathit{age}_i\)</span>
+        是個體 <span class="math inline">\(i\)</span> 的年齡，<span
+        class="math inline">\(\mathbf{1}(\cdot \geq c)\)</span>
+        是指示函數，當個體 <span class="math inline">\(i\)</span>
+        的年齡大於等於 <span class="math inline">\(c\)</span> 時為
+        1，否則為 0。然後他們會說他們感興趣的參數是 <span
+        class="math inline">\(\beta_2\)</span>。<a href="#fn1"
+        class="footnote-ref" id="fnref1"
+        role="doc-noteref"><sup>1</sup></a></p>
+        <p>不過，就像是我們小時候的計量課通常混淆了定義（definition）、識別（identification）與估計（estimation），說感興趣的參數是
+        <span class="math inline">\(\beta_2\)</span>
+        正是犯了同樣的錯誤。</p>
+        <p>所以，到底這時候研究者感興趣的參數是什麼呢？（待續）</p>
+        <h2 id="其他">其他</h2>
+        <p>心情煩躁的時候會練練字。同樣是練歐陽詢的《九成宮醴泉銘》和智永的《真草千字文》，但好久沒去上課了，都是自己在住處練習。</p>
+        <p>週三下午，KM
+        找計量課的助教們開個檢討會，看看計量課明年有沒有什麼可以改進的空間。話說不出意料地，這門課的教學評鑑非常低，據說在全校的課程中排名是
+        PR 2。此前，因為懶得做事，在研究室和 CC
+        稍微討論了一下。話說真的能看出對課程的品味差異。我們其中一個話題是計量課的作業需不需要改變。目前
+        KM 出的作業大多來自 Hansen
+        的課本習題。缺點是，我覺得這些習題品質參差不齊，不少題目需要麻煩、無聊的運算，但算完以後卻不會得到新的啟發。CC
+        覺得作業應該盡可能地貼近現實生活，準備一些學生以後出社會後可能會遇到的真實世界的問題，像是如何解釋線性迴歸的係數。我倒覺得還好。以線性迴歸的係數全是而言，他們就只是一些
+        statistical functionals
+        而已，要有常見的（也通常是錯誤的）解釋，需要特殊的假設或資料生成機制，除非我們要修改課程內容，不然與其學習錯誤的解釋，告訴他們就僅僅只是
+        <span class="math inline">\((\operatorname{E}(\mathbf{x}
+        \mathbf{x}^\intercal))^{-1} \operatorname{E}(\mathbf{x}
+        \mathbf{y})\)</span> 還是比較好。</p>
+        <p>當天晚上，KM
+        請計量課的助教們吃飯，地點在公館的俄羅斯城堡，一間俄羅斯餐廳。這是我第一次吃俄羅斯菜，感覺味道不怎麼樣，而且洋蔥真的好多（我不吃洋蔥😅）。</p>
+        <p>週日要考
+        GRE。最近真的太忙了，沒有時間準備。白白浪費一次考試機會。而且我一直到考前一天晚上才知道在考前四天可以取消考試並退還一半的報名費😅。但我感覺我暑假也不會有空好好準備就是了⋯⋯。</p>
+        <div class="comment">
+        <p><strong>考後記（2025-07-06）：</strong> 結果考出來 V 156，Q
+        秘密（太低了，真是亞洲人之恥，有些題目我真的在想有沒有陷阱，結果來不及寫），想不到一戰的總分就勉強還可以了，但因為
+        Q
+        沒有滿分，而且我感覺自己作文還有很大進步空間，應該擇日再戰。</p>
+        </div>
+        <section id="footnotes"
+        class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li id="fn1"><p>當然，<span class="math inline">\(\beta_1
+        (\mathit{age}_i - c) + \beta_3 (\mathit{age}_i - c) \cdot
+        \mathbf{1}(\mathit{age}_i \geq c)\)</span>
+        可以換成各種年齡的光滑函數，以上是一個特例：linear spline 而有
+        knot 在 <span
+        class="math inline">\(c\)</span>；而許多人也對這類型的迴歸做適當的加權，就是在門檻附近的樣本要給予較大的權重等等。<a
+        href="#fnref1" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>

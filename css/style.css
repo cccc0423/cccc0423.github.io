@@ -314,63 +314,6 @@ h1, h2, h3 {
 .post-date {
   color: var(--text-secondary);
 }
-
-div.books, div.comment, div.caution {
-  padding: 16px 16px 16px 76px;
-  margin: 24px 0;
-  background-repeat: no-repeat;
-  background-position: 16px center;
-  background-size: 40px;
-  color: var(--text-color);
-  background-color: var(--bg-white);
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-  transition: box-shadow 0.3s ease;
-  position: relative;
-  border: none;
-  overflow: hidden;
- }
- 
- div.books:hover, div.comment:hover, div.caution:hover {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
- }
- 
- div.books::before, div.comment::before, div.caution::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  border-radius: 4px 0 0 4px;
- }
- 
- div.books {
-  background-image: url("../images/books.svg");
-  background-color: var(--primary-light);
- }
- 
- div.books::before {
-  background-color: var(--primary-color);
- }
- 
- div.comment {
-  background-image: url("../images/speech-balloon.svg");
-  background-color: var(--light-bg);
- }
- 
- div.comment::before {
-  background-color: var(--secondary-color);
- }
- 
- div.caution {
-  background-image: url("../images/warning.svg");
-  background-color: rgba(255, 248, 225, 0.5);
- }
- 
- div.caution::before {
-  background-color: #FFC107;
- }
  
  @media (max-width: 768px) {
   div.books, div.comment, div.caution {
@@ -533,20 +476,20 @@ main a[href$=".pdf"]:hover::after {
 }
 
 div.books, div.comment, div.caution {
- padding: 16px 16px 16px 76px;
- margin: 24px 0;
- background-repeat: no-repeat;
- background-position: 16px center;
- background-size: 40px;
- color: var(--text-color);
- background-color: var(--bg-white);
- border-radius: 4px;
- box-shadow: 0 1px 3px rgba(0,0,0,0.12);
- transition: box-shadow 0.3s ease;
- position: relative;
- border: none;
- overflow: hidden;
-}
+  padding: 16px 16px 16px 76px;
+  margin: 24px 0;
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  background-size: 40px;
+  color: var(--text-color);
+  background-color: var(--bg-white);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  border: none;
+  overflow: hidden;
+ }
 
 div.books:hover, div.comment:hover, div.caution:hover {
  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
