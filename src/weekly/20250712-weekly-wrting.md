@@ -1,0 +1,76 @@
+---
+title: 週記（二十五）
+description: 渾渾噩噩的一週
+date: 2025-07-12
+---
+
+## 研究與閱讀
+
+（續前週；以下是沒什麼條理的 random thoughts，就像 LLM 一樣 autoregressively 依據前面的內容持續地生成之後的內容）
+
+當跑了一個這樣的迴歸時
+$$
+Y_i = \beta_0 + \beta_1 (\mathit{age}_i - c) + \beta_2 \mathbf{1}(\mathit{age}_i \geq c) + \beta_3 (\mathit{age}_i - c) \cdot \mathbf{1}(\mathit{age}_i \geq c) + \varepsilon_i,
+$$
+研究者通常真正感興趣的參數是
+$$
+\operatorname{E}(Y_i(1) - Y_i(0) \mid \mathit{age}_i = c),
+$$
+其中 $Y_i(1)$ 是個體 $i$ 有資格參與政策的潛在結果，而 $Y_i(0)$ 是個體 $i$ 沒有資格參與政策的潛在結果。這個參數代表了在年齡門檻，政策參與資格對個體結果的影響。比方說，假設某國的退休金領取資格是年齡 $c$，而 $Y_i$ 是個體 $i$ 是否有全職工作，那麼這個參數就代表了在年齡 $c$ 時，退休金領取資格對對於全職工作機率的影響。
+
+最近有一篇文章，[Decreuse and Wilemme (IER, 2025)](https://onlinelibrary.wiley.com/doi/10.1111/iere.12726)，標題為 Age discontinuity and nonemployment benefit policy evaluation through the lens of job search theory，也討論了這個問題。對於這類型以年齡判斷有無資格的政策，通常我們可以預期（也如 Decreuse and Wilemme 提到的 job search theory 所預測的），個體如果早知道自己在年齡 $c$ 時會有資格參與政策，他們會在年齡 $c$ 前就開始調整自己的行為。如此一來 $\operatorname{E}(Y_i(0) \mid \mathit{age}_i = c)$（年齡 $c$ 時沒有資格參與政策的平均潛在結果）是不可能識別的，因為這要求有一群人在門檻 $c$ 時沒有資格參與政策，也因此他們在接近但未到達門檻 $c$ 時的行為不會受到政策的影響，而可以當成對照組。
+
+但當然這一切取決於具體的制度背景和關心的結果。並非所有以基於年齡門檻的 RDD 都會有類似的問題。
+
+本來我覺得似乎這邊還可以多做一點文章：我想問這時候如果有一個 panel dataset，如何適當地有意義的參數。諸如 [García-Miralles and Leganza (JPubE, 2024)](https://www.sciencedirect.com/science/article/abs/pii/S0047272723002189)、[Coyne et al. (AER, 2024)](https://www.aeaweb.org/articles?id=10.1257/aer.20190813)、[Bargain and Jonassen (REStat, 2024)](https://direct.mit.edu/rest/article-abstract/106/3/655/111179/New-Evidence-on-Welfare-s-Disincentive-for-the?redirectedFrom=fulltext) 等文章都用了基於年齡門檻的 RDD，而他們並使用了不同的迴歸模型。
+
+例如 [García-Miralles and Leganza (JPubE, 2024)](https://www.sciencedirect.com/science/article/abs/pii/S0047272723002189) 估計了一些帶有時間固定效果的分段線性模型；[Coyne et al. (AER, 2024)](https://www.aeaweb.org/articles?id=10.1257/aer.20190813) 估計了未加入任何固定效果的分段線性模型；[Bargain and Jonassen (REStat, 2024)](https://direct.mit.edu/rest/article-abstract/106/3/655/111179/New-Evidence-on-Welfare-s-Disincentive-for-the?redirectedFrom=fulltext) 則估計了帶有時間和出生世代固定效果的分段線性模型。
+
+一開始我在想，在這種有 panel dataset 的情況，我們其實可以把它看成是一個 staggered treatment adoption 的設計，也就是有些人先得到處理（獲得資格），而有些人後得到處理。我本來想的是不知道能不能做出類似 Bacon decomposition 的結果。
+
+話說傳統的計量經濟學對於 panel data 已經有很豐富的研究，其中一個比較簡單的結果就是 pooled OLS 的迴歸係數可以被寫成 within estimator 和 between estimator 的加權平均（具體是怎樣在此從略）。套用這個邏輯就可以發現，[Coyne et al. (AER, 2024)](https://www.aeaweb.org/articles?id=10.1257/aer.20190813) 這種迴歸的係數可以寫成一個經過去除時間固定效果的 within estimator 和另一個 between estimator 的加權平均，而前者就是 [García-Miralles and Leganza (JPubE, 2024)](https://www.sciencedirect.com/science/article/abs/pii/S0047272723002189) 的迴歸係數。然後，[García-Miralles and Leganza (JPubE, 2024)](https://www.sciencedirect.com/science/article/abs/pii/S0047272723002189) 的迴歸係數又可以被寫成一個經過去除時間和出生世代固定效果的 within estimator 和另一個 between estimator 的加權平均，而前者就是 [Bargain and Jonassen (REStat, 2024)](https://direct.mit.edu/rest/article-abstract/106/3/655/111179/New-Evidence-on-Welfare-s-Disincentive-for-the?redirectedFrom=fulltext) 的迴歸係數。
+
+事實上如果我們像 [Bargain and Jonassen (REStat, 2024)](https://direct.mit.edu/rest/article-abstract/106/3/655/111179/New-Evidence-on-Welfare-s-Disincentive-for-the?redirectedFrom=fulltext) 一樣同時加入時間和出生世代的固定效果，這就是一個標準的 two-way fixed effects (TWFE) 模型。^[注意到其他 regressor 變異單純來自出生世代，所以這可以等價地看成是加入個體固定效果。] 因為 $\mathit{age}_{it}$ 和時間 $t$ 與出生世代完全共線，所以與一般的 TWFE 就只差在多了 $(\mathit{age}_{it} \geq c) \cdot \mathbf{1}(\mathit{age}_{it} - c)$ 這個 regressor。這時候我們應該可以直接利用 Goodman-Bacon 的邏輯，把 [Bargain and Jonassen (REStat, 2024)](https://direct.mit.edu/rest/article-abstract/106/3/655/111179/New-Evidence-on-Welfare-s-Disincentive-for-the?redirectedFrom=fulltext) 這東西寫成是所有可能的 $2 \times 2$ DiD 的加權平均（和一些別的東西）。
+
+問題在於，這樣又有什麼意義呢？
+
+話說在最近 DiD 的文獻中（跟傳統的經濟計量非常不熟悉😔），有一些對於迴歸係數的分解結果。以 Goodman-Bacon 的結果而言，他把一個靜態的 TWFE 迴歸的係數，在 staggered adoption 的情況之下，分解成資料內所有可能的 $2 \times 2$ DiD 的加權平均，權重的總和是 $1$，而且我印象中因為他的分解真的很 mechanical，所以這個權重都會是 non-negative 的。另一類型的結果是把 TWFE 迴歸的係數分解成一些因果參數的加權平均。我們常聽見的 negative weights，是來自於這類型的文獻，而 negative weights 的問題也不是只 DiD 的應用獨有就是了，如 [Goldsmith-Pinkham et al. (AER, 2024)](https://www.aeaweb.org/articles?id=10.1257/aer.20221116)。
+
+說實在 Goodman-Bacon 的結果確實很酷，但真的有點 mechanical，要產生些新的理解似乎比較困難；但是如果要把它分解成某些因果參數的加權平均，也很困難，畢竟如果單純說 age-based RDD 的問題的話，就像前面說的，在有些時候，我們似乎很難定義合理的因果參數當成 building block。
+
+（有想到如何繼續推進再繼續這個主題。）
+
+
+## 其他
+
+最近網路上熱烈討論普發現金政策，許多人批評普發現金沒有效果，反而會推升通膨。甚至有人誇張地說，大學應該要把經濟學原理設為必修課。
+
+雖然我修過經濟學原理、總體經濟學一年、經濟所碩一必修的總體經濟理論，也擔任過兩年經濟學原理助教，但我仍然不清楚為什麼普發現金沒有效果（什麼效果？），以及為什麼會推升通膨。（這不是陰陽怪氣，我是真的不知道具體的原因。）
+
+雖然我也很喜歡在網路上看大家的意見，但實在很懶得出聲。我常常覺得，螢幕兩邊的人在背景知識、思考方式，以及使用語言的方式上差異太大，很難有效溝通。以下我想透過普發現金這個例子，稍微描繪一下在網路上討論公共政策時，可能遇到的一些障礙。
+
+思考一項政策有沒有「效果」、「好不好」時，我首先會想：到底我們關心的結果是什麼？作為對照的反事實又是什麼？據說，普發現金的目的是要「救經濟、顧民生」。
+
+因為我真的沒有學過什麼相關的理論，所以我只能從大一的經濟學原理來思考這個問題。以大一的經濟學原理而言，我們在教簡單凱因斯模型時，確實會教到相關的內容。簡單凱因斯模型假設價格與工資在短期內是固定的（所謂的價格僵固性），而經濟產出主要由總需求決定。當總需求不足時，經濟會出現失業和產出缺口。簡單凱因斯模型並假設消費與所得之間存在某個穩定的關係，稱為消費函數 $C = a + bY$，其中 $a$ 是自發性消費（即即使所得為零時的消費），$b$ 是邊際消費傾向（即所得增加 $1$ 單位時，消費增加的量），$Y$ 是可支配所得，而 $C$ 是總消費。在這個框架下，政府可以透過增加總需求來刺激經濟，例如透過財政政策（如新建公共工程）。
+
+我們通常會要學生比較，在簡單凱因斯模型的設定下，政府支出增加與等值的移轉支付（例如普發現金）對均衡產出的影響。這時候簡單凱因斯模型的結論確實是，政府支出增加對均衡產出的乘數效果會大於等值的移轉支付。直觀上，這是因為政府支出直接成為總需求的一部分，而移轉性支付需要先透過消費函數轉化為消費支出，因此效果會被邊際消費傾向 $b$ 所削弱。
+
+如果我們相信簡單凱因斯模型的假設沒有和現實差距太遠，而且我們關心的是整個經濟體的總產出，而作為對照的反事實是這筆將要被普發的現金會透過政府支出被花掉，那普發現金確實會是一個比較不好的政策。
+
+但這裡依序有幾個問題：
+
+1. 簡單凱因斯模型的假設是否真的和現實差距不大？
+
+2. 我們是否只關心整個經濟體的總產出？
+
+3. 如果這筆錢沒有被普發，它會被如何使用？如果它會被花掉，會被怎麼花掉？
+
+就算螢幕兩端的人都修過經濟學原理，對這三個問題的答案都可能會有很大的差異，而這些差異會影響我們對普發現金的看法。
+
+以第一個問題而言，畢竟我不是做總體的，我只知道簡單凱因斯模型的假設確實和現實有很大的差距。但說是這樣說，就像統計學家 George Box 所說，"All models are wrong, but some are useful"，這並不一定妨礙我們利用簡單凱因斯模型作為政策分析的起點。因此我們不妨先假設這個故事是真的，然後繼續討論第二和第三個問題。
+
+第二和第三個問題本身有點相關，可以一起討論。以下我們都先假裝簡單凱因斯模型說了一個還算真實的寓言故事。
+
+先假設如果這筆錢沒有被普發，它會被政府以某種方式花掉，那簡單凱因斯模型的結論就會是，普發現金對總體經濟的乘數效果會小於政府支出增加的乘數效果。但問題在於我們是否都關心整個經濟體的總產出？有一種常見的說法是，這筆錢如果沒有被普發，會被拿去補貼臺電，而臺電虧損的根本原因在於持續地躉購綠電。這樣的說法暗示，即便他們也同意簡單凱因斯模型的結論，同意這筆錢若沒有被普發就會被用於政府支出，他們也可能認為應該支持普發現金。原因在於他們並不只關心整個經濟體的總產出，而政府支出事實上有分配效果；相對於普發現金的可能世界，政府支出可能造成一些人受益，另一些人受損。另一方面，假設我們只關心整個經濟體的總產出，還有一個重要的問題需要考慮：如果這筆錢沒有被普發，它真的會被政府花掉嗎？還是可能被用於其他用途，例如減少政府債務或者留作未來支出？這些不同的反事實情境，都會影響我們對普發現金政策的評估。
+
+所以我真的很懶得在網路上和人爭辯公共政策。網路上的政策討論之所以難以達成共識。這不只是有沒有修過經濟學原理的問題。即便我們都修過經濟學原理，我們也可能更在乎不同的結果，或者設想不同的反事實情境。
