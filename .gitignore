@@ -5,3 +5,6 @@
 .RData
 .Rproj
 .Rproj.user
+
+/.Claude/
+CLAUDE.md
