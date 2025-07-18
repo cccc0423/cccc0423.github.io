@@ -1,177 +1,370 @@
-// 安全版相簿 JavaScript（括號版本）
-console.log('載入相簿功能...');
+/**
+ * Modern Gallery Lightbox Module
+ * Improved version with better performance, accessibility, and mobile support
+ */
+(() => {
+    'use strict';
 
-// 等待頁面完全載入
-window.addEventListener('load', function() {
-    console.log('頁面載入完成，開始初始化相簿');
-    
-    // 尋找所有圖片
-    const images = document.querySelectorAll('img');
-    console.log('找到總共', images.length, '張圖片');
-    
-    // 找出在 .gallery 內的圖片
-    const galleryImages = [];
-    images.forEach((img, index) => {
-        // 檢查圖片是否在包含 'gallery' 的元素內
-        let parent = img.parentElement;
-        while (parent) {
-            if (parent.className && parent.className.includes('gallery')) {
-                galleryImages.push(img);
-                console.log('找到相簿圖片', index + 1, ':', img.src);
-                break;
-            }
-            parent = parent.parentElement;
-        }
-    });
-    
-    if (galleryImages.length === 0) {
-        console.log('沒有找到相簿圖片');
-        return;
-    }
-    
-    console.log('總共找到', galleryImages.length, '張相簿圖片');
-    
-    // 創建燈箱
-    const lightbox = document.createElement('div');
-    lightbox.className = 'lightbox';
-    lightbox.innerHTML = `
-        <span class="close">&times;</span>
-        <button class="nav-btn prev-btn">‹</button>
-        <button class="nav-btn next-btn">›</button>
-        <img class="lightbox-content" alt="放大圖片">
-        <div class="lightbox-info"></div>
-    `;
-    document.body.appendChild(lightbox);
-    
-    const lightboxImg = lightbox.querySelector('.lightbox-content');
-    const lightboxInfo = lightbox.querySelector('.lightbox-info');
-    const closeBtn = lightbox.querySelector('.close');
-    const prevBtn = lightbox.querySelector('.prev-btn');
-    const nextBtn = lightbox.querySelector('.next-btn');
-    
-    let currentIndex = 0;
-    
-    // 格式化燈箱資訊顯示（括號方式）
-    function formatLightboxInfo(index) {
-        const counter = `${index + 1} / ${galleryImages.length}`;
-        const caption = galleryImages[index].alt || '';
-        
-        if (caption) {
-            return `${caption} (${counter})`;
-        } else {
-            return counter;
-        }
-    }
-    
-    // 開啟燈箱
-    function openLightbox(index) {
-        console.log('開啟燈箱，圖片索引:', index);
-        currentIndex = index;
-        
-        lightboxImg.src = galleryImages[index].src;
-        lightboxImg.alt = galleryImages[index].alt || '圖片';
-        lightboxInfo.textContent = formatLightboxInfo(index);
-        
-        lightbox.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        setTimeout(() => {
-            lightbox.classList.add('show');
-        }, 10);
-    }
-    
-    // 關閉燈箱
-    function closeLightbox() {
-        console.log('關閉燈箱');
-        lightbox.classList.remove('show');
-        document.body.style.overflow = '';
-        
-        setTimeout(() => {
-            lightbox.style.display = 'none';
-        }, 300);
-    }
-    
-    // 上一張
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-        lightboxImg.src = galleryImages[currentIndex].src;
-        lightboxImg.alt = galleryImages[currentIndex].alt || '圖片';
-        lightboxInfo.textContent = formatLightboxInfo(currentIndex);
-    }
-    
-    // 下一張
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % galleryImages.length;
-        lightboxImg.src = galleryImages[currentIndex].src;
-        lightboxImg.alt = galleryImages[currentIndex].alt || '圖片';
-        lightboxInfo.textContent = formatLightboxInfo(currentIndex);
-    }
-    
-    // 綁定圖片點擊事件並添加說明文字
-    galleryImages.forEach((img, index) => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('點擊了圖片', index + 1);
-            openLightbox(index);
-        });
-        
-        // 檢查圖片是否已經在容器中
-        if (!img.parentElement.classList.contains('gallery-item')) {
-            // 創建容器
-            const container = document.createElement('div');
-            container.className = 'gallery-item';
-            
-            // 將圖片包裝在容器中
-            img.parentNode.insertBefore(container, img);
-            container.appendChild(img);
-            
-            // 如果有 alt 文字，添加 caption
-            if (img.alt && img.alt.trim()) {
-                const caption = document.createElement('div');
-                caption.className = 'gallery-caption';
-                caption.textContent = img.alt;
-                container.appendChild(caption);
-            }
-        }
-    });
-    
-    // 綁定燈箱事件
-    closeBtn.addEventListener('click', closeLightbox);
-    prevBtn.addEventListener('click', prevImage);
-    nextBtn.addEventListener('click', nextImage);
-    
-    // 點擊背景關閉
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-    
-    // 鍵盤事件
-    document.addEventListener('keydown', function(e) {
-        if (lightbox.style.display === 'block') {
-            switch(e.key) {
-                case 'Escape':
-                    closeLightbox();
-                    break;
-                case 'ArrowLeft':
-                    prevImage();
-                    break;
-                case 'ArrowRight':
-                    nextImage();
-                    break;
-            }
-        }
-    });
-    
-    console.log('相簿初始化完成！');
-    
-    // 測試功能
-    window.testGallery = function() {
-        console.log('測試開啟第一張圖片...');
-        if (galleryImages.length > 0) {
-            openLightbox(0);
-        }
+    // Constants
+    const SELECTORS = {
+        gallery: '.gallery',
+        galleryItem: '.gallery-item',
+        galleryCaption: '.gallery-caption',
+        lightbox: '.lightbox',
+        lightboxContent: '.lightbox-content',
+        lightboxInfo: '.lightbox-info',
+        closeBtn: '.close',
+        prevBtn: '.prev-btn',
+        nextBtn: '.next-btn'
     };
-});
+
+    const CLASSES = {
+        lightbox: 'lightbox',
+        lightboxShow: 'show',
+        galleryItem: 'gallery-item',
+        galleryCaption: 'gallery-caption',
+        loading: 'loading'
+    };
+
+    const TIMING = {
+        fadeIn: 10,
+        fadeOut: 300
+    };
+
+    const KEYS = {
+        ESCAPE: 'Escape',
+        ARROW_LEFT: 'ArrowLeft',
+        ARROW_RIGHT: 'ArrowRight',
+        SPACE: ' ',
+        ENTER: 'Enter'
+    };
+
+    class Gallery {
+        constructor() {
+            this.galleryImages = [];
+            this.currentIndex = 0;
+            this.lightbox = null;
+            this.elements = {};
+            this.isOpen = false;
+            this.touchStart = null;
+            this.lastFocusedElement = null;
+            
+            this.boundHandlers = {
+                keydown: this.handleKeydown.bind(this),
+                touchStart: this.handleTouchStart.bind(this),
+                touchEnd: this.handleTouchEnd.bind(this)
+            };
+        }
+
+        init() {
+            try {
+                this.findGalleryImages();
+                if (this.galleryImages.length === 0) {
+                    console.log('沒有找到相簿圖片');
+                    return;
+                }
+
+                this.createLightbox();
+                this.setupImageContainers();
+                this.bindEvents();
+                console.log(`相簿初始化完成！找到 ${this.galleryImages.length} 張圖片`);
+            } catch (error) {
+                console.error('Gallery initialization failed:', error);
+            }
+        }
+
+        findGalleryImages() {
+            const images = document.querySelectorAll('img');
+            this.galleryImages = Array.from(images).filter(img => {
+                return img.closest(SELECTORS.gallery);
+            });
+        }
+
+        createLightbox() {
+            if (document.querySelector(SELECTORS.lightbox)) return;
+
+            this.lightbox = document.createElement('div');
+            this.lightbox.className = CLASSES.lightbox;
+            this.lightbox.setAttribute('role', 'dialog');
+            this.lightbox.setAttribute('aria-modal', 'true');
+            this.lightbox.setAttribute('aria-label', '圖片燈箱');
+            
+            this.lightbox.innerHTML = `
+                <button class="close" aria-label="關閉燈箱">&times;</button>
+                <button class="nav-btn prev-btn" aria-label="上一張圖片">‹</button>
+                <button class="nav-btn next-btn" aria-label="下一張圖片">›</button>
+                <div class="lightbox-loading" aria-hidden="true">載入中...</div>
+                <img class="lightbox-content" alt="" role="img">
+                <div class="lightbox-info" aria-live="polite"></div>
+            `;
+            
+            document.body.appendChild(this.lightbox);
+            this.cacheElements();
+        }
+
+        cacheElements() {
+            this.elements = {
+                lightboxImg: this.lightbox.querySelector(SELECTORS.lightboxContent),
+                lightboxInfo: this.lightbox.querySelector(SELECTORS.lightboxInfo),
+                closeBtn: this.lightbox.querySelector(SELECTORS.closeBtn),
+                prevBtn: this.lightbox.querySelector(SELECTORS.prevBtn),
+                nextBtn: this.lightbox.querySelector(SELECTORS.nextBtn),
+                loading: this.lightbox.querySelector('.lightbox-loading')
+            };
+        }
+
+        setupImageContainers() {
+            this.galleryImages.forEach((img, index) => {
+                this.setupImageContainer(img, index);
+            });
+        }
+
+        setupImageContainer(img, index) {
+            img.style.cursor = 'pointer';
+            img.setAttribute('tabindex', '0');
+            img.setAttribute('role', 'button');
+            img.setAttribute('aria-label', `查看圖片 ${index + 1}`);
+
+            if (!img.parentElement.classList.contains(CLASSES.galleryItem)) {
+                const container = document.createElement('div');
+                container.className = CLASSES.galleryItem;
+                
+                img.parentNode.insertBefore(container, img);
+                container.appendChild(img);
+                
+                if (img.alt?.trim()) {
+                    const caption = document.createElement('div');
+                    caption.className = CLASSES.galleryCaption;
+                    caption.textContent = img.alt;
+                    container.appendChild(caption);
+                }
+            }
+        }
+
+        bindEvents() {
+            // Image click/keyboard events using delegation
+            document.addEventListener('click', this.handleImageClick.bind(this));
+            document.addEventListener('keydown', this.handleImageKeydown.bind(this));
+
+            // Lightbox events
+            this.elements.closeBtn.addEventListener('click', this.closeLightbox.bind(this));
+            this.elements.prevBtn.addEventListener('click', this.prevImage.bind(this));
+            this.elements.nextBtn.addEventListener('click', this.nextImage.bind(this));
+            
+            // Background click
+            this.lightbox.addEventListener('click', (e) => {
+                if (e.target === this.lightbox) {
+                    this.closeLightbox();
+                }
+            });
+
+            // Touch events for mobile
+            this.lightbox.addEventListener('touchstart', this.boundHandlers.touchStart, { passive: true });
+            this.lightbox.addEventListener('touchend', this.boundHandlers.touchEnd, { passive: true });
+        }
+
+        handleImageClick(e) {
+            const img = e.target.closest('img');
+            if (!img || !this.galleryImages.includes(img)) return;
+            
+            e.preventDefault();
+            const index = this.galleryImages.indexOf(img);
+            this.openLightbox(index);
+        }
+
+        handleImageKeydown(e) {
+            if (e.key !== KEYS.ENTER && e.key !== KEYS.SPACE) return;
+            
+            const img = e.target.closest('img');
+            if (!img || !this.galleryImages.includes(img)) return;
+            
+            e.preventDefault();
+            const index = this.galleryImages.indexOf(img);
+            this.openLightbox(index);
+        }
+
+        handleKeydown(e) {
+            if (!this.isOpen) return;
+
+            switch (e.key) {
+                case KEYS.ESCAPE:
+                    e.preventDefault();
+                    this.closeLightbox();
+                    break;
+                case KEYS.ARROW_LEFT:
+                    e.preventDefault();
+                    this.prevImage();
+                    break;
+                case KEYS.ARROW_RIGHT:
+                    e.preventDefault();
+                    this.nextImage();
+                    break;
+            }
+        }
+
+        handleTouchStart(e) {
+            this.touchStart = e.touches[0].clientX;
+        }
+
+        handleTouchEnd(e) {
+            if (!this.touchStart) return;
+
+            const touchEnd = e.changedTouches[0].clientX;
+            const diff = this.touchStart - touchEnd;
+            const threshold = 50;
+
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    this.nextImage();
+                } else {
+                    this.prevImage();
+                }
+            }
+
+            this.touchStart = null;
+        }
+
+        async openLightbox(index) {
+            if (index < 0 || index >= this.galleryImages.length) return;
+
+            this.lastFocusedElement = document.activeElement;
+            this.currentIndex = index;
+            this.isOpen = true;
+
+            // Show lightbox
+            this.lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Add keyboard listener
+            document.addEventListener('keydown', this.boundHandlers.keydown);
+
+            // Show loading state
+            this.elements.loading.style.display = 'block';
+            this.elements.lightboxImg.style.display = 'none';
+
+            try {
+                await this.loadImage(index);
+                
+                // Hide loading, show image
+                this.elements.loading.style.display = 'none';
+                this.elements.lightboxImg.style.display = 'block';
+                
+                // Fade in effect
+                setTimeout(() => {
+                    this.lightbox.classList.add(CLASSES.lightboxShow);
+                }, TIMING.fadeIn);
+
+                // Focus management
+                this.elements.closeBtn.focus();
+                
+                // Preload adjacent images
+                this.preloadAdjacentImages();
+                
+            } catch (error) {
+                console.error('Failed to load image:', error);
+                this.elements.loading.textContent = '圖片載入失敗';
+            }
+        }
+
+        async loadImage(index) {
+            const img = this.galleryImages[index];
+            
+            return new Promise((resolve, reject) => {
+                const newImg = new Image();
+                newImg.onload = () => {
+                    this.elements.lightboxImg.src = img.src;
+                    this.elements.lightboxImg.alt = img.alt || '圖片';
+                    this.updateInfo(index);
+                    resolve();
+                };
+                newImg.onerror = reject;
+                newImg.src = img.src;
+            });
+        }
+
+        preloadAdjacentImages() {
+            const preloadIndices = [
+                (this.currentIndex - 1 + this.galleryImages.length) % this.galleryImages.length,
+                (this.currentIndex + 1) % this.galleryImages.length
+            ];
+
+            preloadIndices.forEach(index => {
+                if (index !== this.currentIndex) {
+                    const img = new Image();
+                    img.src = this.galleryImages[index].src;
+                }
+            });
+        }
+
+        updateInfo(index) {
+            const counter = `${index + 1} / ${this.galleryImages.length}`;
+            const caption = this.galleryImages[index].alt || '';
+            
+            this.elements.lightboxInfo.textContent = caption 
+                ? `${caption} (${counter})` 
+                : counter;
+        }
+
+        closeLightbox() {
+            if (!this.isOpen) return;
+
+            this.isOpen = false;
+            this.lightbox.classList.remove(CLASSES.lightboxShow);
+            document.body.style.overflow = '';
+            
+            // Remove keyboard listener
+            document.removeEventListener('keydown', this.boundHandlers.keydown);
+
+            setTimeout(() => {
+                this.lightbox.style.display = 'none';
+                // Restore focus
+                if (this.lastFocusedElement) {
+                    this.lastFocusedElement.focus();
+                }
+            }, TIMING.fadeOut);
+        }
+
+        async prevImage() {
+            if (!this.isOpen) return;
+            
+            this.currentIndex = (this.currentIndex - 1 + this.galleryImages.length) % this.galleryImages.length;
+            await this.loadImage(this.currentIndex);
+            this.preloadAdjacentImages();
+        }
+
+        async nextImage() {
+            if (!this.isOpen) return;
+            
+            this.currentIndex = (this.currentIndex + 1) % this.galleryImages.length;
+            await this.loadImage(this.currentIndex);
+            this.preloadAdjacentImages();
+        }
+
+        // Public API
+        destroy() {
+            document.removeEventListener('keydown', this.boundHandlers.keydown);
+            if (this.lightbox) {
+                this.lightbox.remove();
+            }
+        }
+
+        testGallery() {
+            if (this.galleryImages.length > 0) {
+                this.openLightbox(0);
+            }
+        }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = new Gallery();
+            gallery.init();
+            window.testGallery = () => gallery.testGallery();
+        });
+    } else {
+        const gallery = new Gallery();
+        gallery.init();
+        window.testGallery = () => gallery.testGallery();
+    }
+})();
