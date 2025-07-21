@@ -43,6 +43,8 @@ $(DOCS_DIR)/index.html: $(SRC_DIR)/index.md $(INDEX_TEMPLATE) | dirs
 	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_home:true --mathjax
 
 $(DOCS_DIR)/weekly.html: $(SRC_DIR)/weekly.md $(INDEX_TEMPLATE) | dirs
+	@echo "Updating weekly post list..."
+	node js/generate-weekly-list.js
 	@echo "Building weekly listing page..."
 	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_weekly:true --mathjax
 
