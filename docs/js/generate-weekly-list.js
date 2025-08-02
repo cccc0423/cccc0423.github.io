@@ -66,7 +66,7 @@ function updateWeeklyMarkdown(newList) {
 
         // Regex to find either the placeholder or the old list
         const placeholderRegex = /<!-- WEEKLY_POSTS_PLACEHOLDER -->/;
-        const listRegex = /(- \[0-9]{4}-[0-9]{2}-[0-9]{2}\]\(weekly\/[0-9]{8}-weekly-writing\\.html\)\n?)+/;
+        const listRegex = /(- \[[0-9]{4}-[0-9]{2}-[0-9]{2}\]\(weekly\/[0-9]{8}-weekly-writing\.html\)\n?)+/;
 
         if (listRegex.test(content)) {
             // Replace the existing list

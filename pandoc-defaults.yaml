@@ -1,0 +1,13 @@
+reader: markdown
+writer: html
+standalone: true
+html-math-method: mathjax
+filters:
+  - pandoc-crossref
+metadata:
+  linkReferences: true
+  nameInLink: true
+  figPrefix: "Figure"
+  eqnPrefix: "Equation"
+  tblPrefix: "Table"
+  lstPrefix: "Listing"

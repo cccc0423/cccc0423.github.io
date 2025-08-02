@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
       const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
+      const targetElement = document.querySelector(targetId.replace(/:/g, '\\:'));
       
       if (targetElement) {
         targetElement.scrollIntoView({

@@ -55,12 +55,12 @@ $(DOCS_DIR)/about.html: $(SRC_DIR)/about.md $(INDEX_TEMPLATE) | dirs
 # Weekly posts with proper dependencies
 $(DOCS_DIR)/weekly/%.html: $(SRC_DIR)/weekly/%.md $(POST_TEMPLATE) | dirs
 	@echo "Building weekly post: $<"
-	pandoc $< -o $@ --template=$(POST_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_weekly:true --toc --mathjax
+	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_weekly:true --toc --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
 
 # Posts with corrected variables
 $(DOCS_DIR)/posts/%.html: $(SRC_DIR)/posts/%.md $(POST_TEMPLATE) | dirs
 	@echo "Building post: $<"
-	pandoc $< -o $@ --template=$(POST_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_post:true --toc --mathjax --highlight-style pygments
+	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_post:true --toc --highlight-style pygments --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
 
 # Copy static assets with better dependency tracking
 assets: $(DOCS_DIR)/css/.updated $(DOCS_DIR)/js/.updated $(DOCS_DIR)/images/.updated
@@ -87,11 +87,6 @@ sitemap: $(DOCS_DIR)/sitemap.xml
 $(DOCS_DIR)/sitemap.xml: $(MAIN_PAGES) $(WEEKLY_HTML) $(POSTS_HTML)
 	@echo "Generating sitemap..."
 	./generate-sitemap.sh
-
-# Development server (optional)
-serve:
-	@echo "Starting development server on http://localhost:8000"
-	@cd $(DOCS_DIR) && python3 -m http.server 8000
 
 # Help target
 help:
