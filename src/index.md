@@ -26,4 +26,6 @@ is_home: true
 
 ## Miscellanea
 
+- [Find Economic Papers](https://cccc0423.github.io/find-economic-papers/):
+一個簡單的經濟學期刊文章搜尋工具。
 - [名牌產生器](posts/name-tag.html): 一個簡單的 $\rm \LaTeX$ 名牌產生器。

@@ -42,9 +42,15 @@ $(DOCS_DIR)/index.html: $(SRC_DIR)/index.md $(INDEX_TEMPLATE) | dirs
 	@echo "Building index page..."
 	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_home:true --mathjax
 
-$(DOCS_DIR)/weekly.html: $(SRC_DIR)/weekly.md $(INDEX_TEMPLATE) | dirs
+# This new rule ensures src/weekly.md is updated ONLY if a new weekly post is added,
+# or the generator script itself changes.
+$(SRC_DIR)/weekly.md: $(WEEKLY_SRC) js/generate-weekly-list.js
 	@echo "Updating weekly post list..."
 	node js/generate-weekly-list.js
+
+# The weekly.html rule is now simpler and only handles the pandoc conversion.
+# It depends on the updated src/weekly.md.
+$(DOCS_DIR)/weekly.html: $(SRC_DIR)/weekly.md $(INDEX_TEMPLATE) | dirs
 	@echo "Building weekly listing page..."
 	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_weekly:true --mathjax
 
