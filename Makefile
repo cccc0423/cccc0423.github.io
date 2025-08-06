@@ -32,7 +32,7 @@ IMAGE_FILES := $(wildcard $(IMAGES_DIR)/*)
 
 .PHONY: all clean dirs assets sitemap serve help
 
-all: dirs $(MAIN_PAGES) $(WEEKLY_HTML) $(POSTS_HTML) assets sitemap
+all: dirs $(MAIN_PAGES) $(WEEKLY_HTML) $(POSTS_HTML) assets $(DOCS_DIR)/robots.txt sitemap
 
 dirs:
 	mkdir -p $(DIRS)
@@ -86,6 +86,13 @@ $(DOCS_DIR)/images/.updated: $(IMAGE_FILES) | dirs
 	@echo "Copying image files..."
 	[ ! -d "$(IMAGES_DIR)" ] || cp -r $(IMAGES_DIR)/* $(DOCS_DIR)/images/
 	@touch $@
+
+# Generate robots.txt
+$(DOCS_DIR)/robots.txt: | dirs
+	@echo "Generating robots.txt..."
+	@echo "User-agent: *" > $@
+	@echo "Allow: /" >> $@
+	@echo "Sitemap: https://cccc0423.github.io/sitemap.xml" >> $@
 
 # Generate sitemap
 sitemap: $(DOCS_DIR)/sitemap.xml
