@@ -108,9 +108,6 @@ date: 2025-08-09
 他從臺大醫學系畢業以後，
 沒有選擇從醫，
 最後在哈佛大學取得流行病學和生物統計學的雙博士。
-他博班的老闆是林希虹，
-這人非常大咖，
-2006 年的時候得過 COPSS 會長獎（統計學領域的大獎，只頒給 40 歲以下的學者）。
 
 這門課的教科書是 [Causal Inference: What If](https://miguelhernan.org/whatifbook)。
 這本書是 Miguel Hernán 和 James Robins
