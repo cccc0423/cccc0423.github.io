@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potential Outcomes Framework in a Nutshell</title>
+    <meta name="description" content="小學生筆記">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+    
+</head>
+<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
+    <span class="material-icons">arrow_upward</span>
+</button>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Potential Outcomes Framework in a Nutshell</h1>
+        <p class="post-date">2025-07-15</p>
+
+                <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+            <li><a href="#a-motivating-example"
+            id="toc-a-motivating-example">A Motivating Example</a></li>
+            <li><a href="#the-potential-outcomes-framework"
+            id="toc-the-potential-outcomes-framework">The Potential
+            Outcomes Framework</a>
+            <ul>
+            <li><a href="#potential-outcomes-notation"
+            id="toc-potential-outcomes-notation">Potential Outcomes
+            Notation</a></li>
+            <li><a href="#stable-unit-treatment-value-assumption-sutva"
+            id="toc-stable-unit-treatment-value-assumption-sutva">Stable
+            Unit Treatment Value Assumption (SUTVA)</a></li>
+            </ul></li>
+            <li><a href="#defining-causal-effects"
+            id="toc-defining-causal-effects">Defining Causal
+            Effects</a></li>
+            <li><a href="#identifying-causal-effects"
+            id="toc-identifying-causal-effects">Identifying Causal
+            Effects</a></li>
+            <li><a href="#epilogue" id="toc-epilogue">Epilogue</a></li>
+            </ul>
+        </div>
+        
+        <p>Causality is a fundamental concept in many scientific fields,
+        including economics, epidemiology, and social sciences. It
+        allows us to understand how one variable influences another.
+        With this understanding, we can know how to act or intervene to
+        achieve desired outcomes.</p>
+        <p>As Hume (1748) noted:</p>
+        <blockquote>
+        <p>The only immediate utility of all the sciences is to teach us
+        how to control and regulate future events through their
+        causes.</p>
+        </blockquote>
+        <p>For example, we might want to understand how educational
+        attainment affects income levels, or how a new drug influences
+        health outcomes.</p>
+        <p>This post introduces the <strong>potential outcomes
+        framework</strong>, which provides a unified language for causal
+        inference.<a href="#fn1" class="footnote-ref" id="fnref1"
+        role="doc-noteref"><sup>1</sup></a> Then, we will use the
+        notation of potential outcomes to define causal effects.</p>
+        <h2 id="a-motivating-example">A Motivating Example</h2>
+        <p>Consider a motivating example where we want to understand the
+        effect of a certain job training program on individuals’ income.
+        We want to know how much more income an individual would earn if
+        they participated in the program compared to if they did not. We
+        denote the income of individual <span
+        class="math inline">\(i\)</span> as <span
+        class="math inline">\(Y_i\)</span>, and whether individual <span
+        class="math inline">\(i\)</span> participated in the job
+        training program as <span class="math inline">\(D_i\)</span>,
+        and we observe the pair <span class="math inline">\((Y_i,
+        D_i)\)</span> for each individual <span
+        class="math inline">\(i\)</span> in our sample.</p>
+        <h2 id="the-potential-outcomes-framework">The Potential Outcomes
+        Framework</h2>
+        <h3 id="potential-outcomes-notation">Potential Outcomes
+        Notation</h3>
+        <p>The primitive concept in the potential outcomes framework is
+        that there is a treatment (or manipulation, intervention) that
+        can be applied to a unit (e.g., an individual, a household, or a
+        firm at a particular time). The treatment can be binary (e.g.,
+        treated or untreated) or continuous (e.g., the dosage of a
+        drug). For simplicity, we will focus on binary actions in this
+        post.</p>
+        <p>As shown in the <em>Science Table</em> below, the potential
+        outcomes framework posits that for each unit <span
+        class="math inline">\(i\)</span>, there are two potential
+        outcomes:</p>
+        <ul>
+        <li><p><span class="math inline">\(Y_i(1)\)</span>, the income
+        that unit <span class="math inline">\(i\)</span> would have been
+        observed under the hypothetical intervention <span
+        class="math inline">\(D_i = 1\)</span>, and</p></li>
+        <li><p><span class="math inline">\(Y_i(0)\)</span>, the income
+        that unit <span class="math inline">\(i\)</span> would have been
+        observed under the hypothetical intervention <span
+        class="math inline">\(D_i = 0\)</span>.</p></li>
+        </ul>
+        <p>These potential outcomes are often referred to as
+        <strong>counterfactuals</strong> because they represent what
+        would have happened under different circumstances.</p>
+        <table>
+        <thead>
+        <tr>
+        <th style="text-align: center;">Unit</th>
+        <th style="text-align: center;"><span
+        class="math inline">\(Y_i(1)\)</span></th>
+        <th style="text-align: center;"><span
+        class="math inline">\(Y_i(0)\)</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="text-align: center;">1</td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_1(1)\)</span></td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_1(0)\)</span></td>
+        </tr>
+        <tr>
+        <td style="text-align: center;">2</td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_2(1)\)</span></td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_2(0)\)</span></td>
+        </tr>
+        <tr>
+        <td style="text-align: center;">3</td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_3(1)\)</span></td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_3(0)\)</span></td>
+        </tr>
+        <tr>
+        <td style="text-align: center;"><span
+        class="math inline">\(\vdots{}\)</span></td>
+        <td style="text-align: center;"><span
+        class="math inline">\(\vdots{}\)</span></td>
+        <td style="text-align: center;"><span
+        class="math inline">\(\vdots{}\)</span></td>
+        </tr>
+        <tr>
+        <td style="text-align: center;"><span
+        class="math inline">\(n\)</span></td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_n(1)\)</span></td>
+        <td style="text-align: center;"><span
+        class="math inline">\(Y_n(0)\)</span></td>
+        </tr>
+        </tbody>
+        </table>
+        <p>Notice that each potential outcomes is <em>a priori</em>
+        observable, meaning that we can imagine a world where we could
+        observe both potential outcomes for each unit. For example, if
+        we had a parallel universe where individual <span
+        class="math inline">\(i\)</span> participated in the job
+        training program, we would observe <span
+        class="math inline">\(Y_i(1)\)</span>, and in another universe
+        where individual <span class="math inline">\(i\)</span> did not
+        participate, we would observe <span
+        class="math inline">\(Y_i(0)\)</span>.</p>
+        <p>However, <em>a posteriori</em>, after the treatment is
+        applied, we can only observe the outcome that corresponds to the
+        treatment status of the unit. This is also known as the
+        <strong>fundamental problem of causal inference</strong>. In our
+        example, if individual <span class="math inline">\(i\)</span>
+        participates in the job training program, we observe <span
+        class="math inline">\(Y_i(1)\)</span>, and if they do not
+        participate, we observe <span
+        class="math inline">\(Y_i(0)\)</span>. The observed outcome
+        <span class="math inline">\(Y_i\)</span>, therefore, is related
+        to the potential outcomes as follows: <span
+        class="math display">\[
+        Y_i = D_i Y_i(1) + (1 - D_i) Y_i(0), \tag{1}
+        \]</span> or equivalently, <span class="math display">\[
+        Y_i = Y_i(D_i), \tag{2}
+        \]</span> where <span class="math inline">\(Y_i(D_i)\)</span> is
+        the observed outcome for unit <span
+        class="math inline">\(i\)</span> given their natural treatment
+        value <span class="math inline">\(D_i\)</span>.</p>
+        <h3 id="stable-unit-treatment-value-assumption-sutva">Stable
+        Unit Treatment Value Assumption (SUTVA)</h3>
+        <p>While it seems straightforward to write the potential
+        outcomes as <span class="math inline">\(Y_i(1)\)</span> and
+        <span class="math inline">\(Y_i(0)\)</span> and relate them to
+        the observed outcome <span class="math inline">\(Y_i\)</span>
+        through Equation 1, we are implicitly making two important
+        assumptions, together known as the <strong>stable unit treatment
+        value assumption (SUTVA)</strong>:</p>
+        <ol type="1">
+        <li><p>(no interference) the potential outcomes for each unit
+        are not affected by the treatment status of other units,
+        and</p></li>
+        <li><p>(no hidden variations) there are no hidden variations in
+        the treatment that would lead to different potential outcomes
+        for the same treatment status.</p></li>
+        </ol>
+        <p>Let’s dive deeper into these two assumptions.</p>
+        <h4 id="no-interference-assumption">No Interference
+        Assumption</h4>
+        <p>When we write the potential outcomes as <span
+        class="math inline">\(Y_i(1)\)</span> and <span
+        class="math inline">\(Y_i(0)\)</span>, we are implicitly
+        assuming that the potential outcomes for each unit are not
+        affected by the treatment status of other units.</p>
+        <p>In our example, this means that the income of individual
+        <span class="math inline">\(i\)</span> is not influenced by
+        whether other individuals participated in the job training
+        program.</p>
+        <p>This assumption can be violated in many real-world scenarios.
+        For example, if the job training program creates a spillover
+        effect, where the program not only affects the treated
+        individuals but also influences the income of untreated
+        individuals because the treated individuals share their
+        knowledge or skills with others, then the potential outcomes for
+        each unit would depend on the treatment status of other units.
+        In such cases, it would be better to account for these spillover
+        effects using a more flexible notation.</p>
+        <h4 id="no-hidden-variations-assumption">No Hidden Variations
+        Assumption</h4>
+        <p>Another implicit assumption typically made in the potential
+        outcomes framework is that there are no hidden variations in the
+        treatment that would lead to different potential outcomes for
+        the same treatment status.</p>
+        <p>For example, if the job training program has different
+        versions or levels of intensity (e.g., online vs. in-person
+        training, or short-term vs. long-term training), then the
+        potential outcomes for each unit would depend on the specific
+        version of the treatment they received. In the presence of such
+        variations, we would need to specify the treatment more
+        precisely.</p>
+        <h2 id="defining-causal-effects">Defining Causal Effects</h2>
+        <p>Once we have defined the potential outcomes, we can use them
+        to define causal effects, which are functions of the Science
+        Table above.</p>
+        <p>For example, the <strong>individual causal effect</strong> of
+        the job training program on unit <span
+        class="math inline">\(i\)</span> can be defined as the
+        difference between the two potential outcomes: <span
+        class="math display">\[
+        \tau_i \equiv Y_i(1) - Y_i(0).
+        \]</span> This individual causal effect <span
+        class="math inline">\(\tau_i\)</span> represents the change in
+        income for unit <span class="math inline">\(i\)</span> if they
+        were to participate in the job training program compared to if
+        they did not. Due to the fundamental problem of causal
+        inference, we can only observe either <span
+        class="math inline">\(Y_i(1)\)</span> or <span
+        class="math inline">\(Y_i(0)\)</span> for each unit <span
+        class="math inline">\(i\)</span>, but not both. Therefore, this
+        quantity cannot be recovered from the data without very strong
+        homogeneity assumptions.</p>
+        <p>Instead, we are often interested in the <strong>average
+        causal effect</strong> (ACE), also known as the <strong>average
+        treatment effect</strong> (ATE), of the job training program on
+        the income of all units can be defined as the average of the
+        individual causal effects: <span class="math display">\[
+        \tau \equiv \operatorname{E}(Y_i(1) - Y_i(0)) =
+        \operatorname{E}(Y_i(1)) - \operatorname{E}(Y_i(0)),
+        \]</span> where the expectation is taken over the distribution
+        of the units in the sample.</p>
+        <p>Another common quantity of interest is the <strong>average
+        treatment effect on the treated</strong> (ATT), which is defined
+        as the average of the individual causal effects for the treated
+        units: <span class="math display">\[
+        \begin{align*}
+        \tau_{\text{ATT}}
+        &amp;\equiv \operatorname{E}(Y_i(1) - Y_i(0) \mid D_i = 1) \\
+        &amp;= \operatorname{E}(Y_i(1) \mid D_i = 1) -
+        \operatorname{E}(Y_i(0) \mid D_i = 1).
+        \end{align*}
+        \]</span></p>
+        <h2 id="identifying-causal-effects">Identifying Causal
+        Effects</h2>
+        <h2 id="epilogue">Epilogue</h2>
+        <ul>
+        <li>Holland, P. W. (1986). Statistics and causal inference.
+        <em>Journal of the American statistical Association</em>,
+        <em>81</em>(396), 945-960.</li>
+        </ul>
+        <section id="footnotes"
+        class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li id="fn1"><p>There are other frameworks for causal inference,
+        such as the <strong>structural causal model (SCM)</strong>,
+        which will be discussed in a future post.<a href="#fnref1"
+        class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>
