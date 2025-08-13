@@ -1,4 +1,5 @@
 # Variables
+BASE_URL := https://cccc0423.github.io
 YEAR := $(shell date +%Y)
 DOCS_DIR := docs
 SRC_DIR := src
@@ -40,7 +41,7 @@ dirs:
 # Main pages with proper dependencies
 $(DOCS_DIR)/index.html: $(SRC_DIR)/index.md $(INDEX_TEMPLATE) | dirs
 	@echo "Building index page..."
-	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_home:true --mathjax
+	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_home:true --variable=canonical_url:$(BASE_URL)/index.html --mathjax
 
 # This new rule ensures src/weekly.md is updated ONLY if a new weekly post is added,
 # or the generator script itself changes.
@@ -52,21 +53,21 @@ $(SRC_DIR)/weekly.md: $(WEEKLY_SRC) js/generate-weekly-list.js
 # It depends on the updated src/weekly.md.
 $(DOCS_DIR)/weekly.html: $(SRC_DIR)/weekly.md $(INDEX_TEMPLATE) | dirs
 	@echo "Building weekly listing page..."
-	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_weekly:true --mathjax
+	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_weekly:true --variable=canonical_url:$(BASE_URL)/weekly.html --mathjax
 
 $(DOCS_DIR)/about.html: $(SRC_DIR)/about.md $(INDEX_TEMPLATE) | dirs
 	@echo "Building about page..."
-	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_about:true --mathjax
+	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_about:true --variable=canonical_url:$(BASE_URL)/about.html --mathjax
 
 # Weekly posts with proper dependencies
 $(DOCS_DIR)/weekly/%.html: $(SRC_DIR)/weekly/%.md $(POST_TEMPLATE) | dirs
 	@echo "Building weekly post: $<"
-	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_weekly:true --toc --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
+	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_weekly:true --variable=canonical_url:$(BASE_URL)/weekly/$(notdir $(basename $<)).html --toc --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
 
 # Posts with corrected variables
 $(DOCS_DIR)/posts/%.html: $(SRC_DIR)/posts/%.md $(POST_TEMPLATE) | dirs
 	@echo "Building post: $<"
-	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_post:true --toc --highlight-style pygments --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
+	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_post:true --variable=canonical_url:$(BASE_URL)/posts/$(notdir $(basename $<)).html --toc --highlight-style pygments --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
 
 # Copy static assets with better dependency tracking
 assets: $(DOCS_DIR)/css/.updated $(DOCS_DIR)/js/.updated $(DOCS_DIR)/images/.updated

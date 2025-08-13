@@ -37,6 +37,7 @@
 
     <script src="../js/main.js" defer></script>
     $if(is_gallery)$<script src="../js/gallery.js"></script>$endif$
+    $if(canonical_url)$<link rel="canonical" href="$canonical_url$" />$endif$
 </head>
 <button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
     <span class="material-icons">arrow_upward</span>
