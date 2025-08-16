@@ -5,9 +5,6 @@ lang: zh-TW
 is_home: true
 ---
 
-:::caution
-  網站還在架設中。
-:::
 
 :::comment
 <script src="js/confucius-said.js"></script>
