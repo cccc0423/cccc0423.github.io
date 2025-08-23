@@ -196,7 +196,10 @@
         \hat{w}_{it} = 1\)</span>， 所以一個可以因果地解釋 <span
         class="math inline">\(\hat{\beta}\)</span> 的充分條件是斜率
         <span class="math inline">\(\Delta y_{it} / \Delta
-        x_{it}\)</span> 真的是某個因果參數。</p>
+        x_{it}\)</span> 真的是某個因果參數。
+        但它的長相看起來就很難是，除非我們考慮 <span
+        class="math inline">\(\Delta x_{it}\)</span> 很小的情況，
+        我們似乎有可能可以把它解釋成某種導數。</p>
         <p>為了定義目標參數， 先來定義潛在結果的符號。 令 <span
         class="math inline">\(y_{ijt}(x)\)</span> 是第 <span
         class="math inline">\(i\)</span> 對雙胞胎中第 <span
@@ -308,8 +311,8 @@
         \operatorname{E}[w_{it} R_{it}].
         \]</span> 如果我們假設權重 <span
         class="math inline">\(w_{it}\)</span> 和 <span
-        class="math inline">\(\mu_{it}&#39;(x_{it})\)</span> 不相關，
-        那麼 <span class="math display">\[
+        class="math inline">\(\mu_{it}&#39;(x_{it})\)</span>
+        不相關（這是非常強的假設）， 那麼 <span class="math display">\[
         \operatorname{E}[w_{it} \mu_{it}&#39;(x_{it})] =
         \operatorname{E}[w_{it}]
         \operatorname{E}[\mu_{it}&#39;(x_{it})] =
@@ -331,6 +334,9 @@
         class="math inline">\(\hat{\beta}_w\)</span> 會收斂到 <span
         class="math inline">\(\operatorname{E}[\mu_{it}&#39;(x_{it})]\)</span>，
         也就是所有雙胞胎對在所有時間點的劑量反應函數的平均斜率。</p>
+        <p>結論就是， 即便我們假設了財富的變異像是外生的， <span
+        class="math inline">\(\beta\)</span> 還是沒有明顯的因果詮釋，
+        除非我們給它的劑量反應函數一些很強的假設。</p>
         <h2 id="未來想要寫的東西">未來想要寫的東西</h2>
         <p>最近幾年網路上流行魯迅說的一句話：「人類的悲歡並不相通」。
         這句話有很多不同的解讀， 但字面上的意義很好理解，
