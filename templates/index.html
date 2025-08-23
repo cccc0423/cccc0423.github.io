@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$if(title)$$title$$else$小學生筆記$endif$</title>
-    <meta name="description" content="$if(description)$$description$$else$小學生筆記$endif$">
+    <meta name="description" content="$if(description)$description$else$小學生筆記$endif$">
+    <meta name="author" content="cccc0423">
+    <meta name="robots" content="index, follow">
     $if(keywords)$<meta name="keywords" content="$keywords$">$endif$
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +59,7 @@
         
         $if(toc)$
         <div class="toc">
-            <h2>Table of Contents/h2>
+            <h2>Table of Contents</h2>
             $toc$
         </div>
         $endif$
