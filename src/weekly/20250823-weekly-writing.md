@@ -231,7 +231,8 @@ $$
 其中 $K_h(u)$ 是一個帶寬為 $h$ 的 kernel function。
 這麼一看就會發現，
 在 $nh^3 \to \infty$ 而 $h \to 0$ 的情況下，
-$\hat{\beta}_w$ 會收斂到 $\operatorname{E}[\mu_{it}'(x_{it})]$。
+$\hat{\beta}_w$ 會收斂到 $\operatorname{E}[\mu_{it}'(x_{it})]$，
+也就是所有雙胞胎對在所有時間點的劑量反應函數的平均斜率。
 
 ## 未來想要寫的東西
 
