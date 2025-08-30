@@ -62,7 +62,7 @@
 
     <main>
         <h1>Potential Outcomes Framework in a Nutshell</h1>
-        <p class="post-date">2025-07-15</p>
+        <p class="post-date">2025-08-30</p>
 
                 <div class="toc">
             <h2>Table of Contents</h2>
@@ -83,32 +83,54 @@
             <li><a href="#defining-causal-effects"
             id="toc-defining-causal-effects">Defining Causal
             Effects</a></li>
-            <li><a href="#identifying-causal-effects"
-            id="toc-identifying-causal-effects">Identifying Causal
-            Effects</a></li>
-            <li><a href="#epilogue" id="toc-epilogue">Epilogue</a></li>
+            <li><a href="#recovering-causal-effects"
+            id="toc-recovering-causal-effects">Recovering Causal
+            Effects</a>
+            <ul>
+            <li><a href="#bias-from-selection-into-treatment"
+            id="toc-bias-from-selection-into-treatment">Bias from
+            Selection into Treatment</a></li>
+            <li><a href="#randomized-experiments"
+            id="toc-randomized-experiments">Randomized
+            Experiments</a></li>
+            </ul></li>
+            <li><a href="#conclusion"
+            id="toc-conclusion">Conclusion</a></li>
             </ul>
         </div>
         
-        <p>Causality is a fundamental concept in many scientific fields,
-        including economics, epidemiology, and social sciences. It
-        allows us to understand how one variable influences another.
-        With this understanding, we can know how to act or intervene to
-        achieve desired outcomes.</p>
-        <p>As Hume (1748) noted:</p>
+        <p>To act upon the world it to assume a grasp of causality. From
+        the dawn of inquiry, humans have sought to understand not just
+        the what but the why the world behaves as it does. For, as
+        famously articulated by Democritus:</p>
+        <blockquote>
+        <p>I would rather discover one causal law than be the king of
+        Persia.</p>
+        </blockquote>
+        <p>The quest to unravel causal relationships stems partly from
+        our innate curiosity and partly from practical necessity, as
+        David Hume (1748) pointed out:</p>
         <blockquote>
         <p>The only immediate utility of all the sciences is to teach us
         how to control and regulate future events through their
         causes.</p>
         </blockquote>
         <p>For example, we might want to understand how educational
-        attainment affects income levels, or how a new drug influences
-        health outcomes.</p>
+        attainment affects income levels, how a new drug influences
+        health outcomes, or how an advertising campaign impacts sales.
+        Each of these questions invloves a choice among multiple
+        possible actions, and we wish to know where these different
+        paths might lead us.</p>
         <p>This post introduces the <strong>potential outcomes
-        framework</strong>, which provides a unified language for causal
-        inference.<a href="#fn1" class="footnote-ref" id="fnref1"
-        role="doc-noteref"><sup>1</sup></a> Then, we will use the
-        notation of potential outcomes to define causal effects.</p>
+        framework</strong>, a unifying language for navigating these
+        choices and their consequences with clarity. We will begin by
+        defining the core concepts of the potential outcomes framework
+        and the assumptions that underpin them. Next, we will formally
+        define various measures of causal effects through the lens of
+        potential outcomes. Finally, we will explore the primary
+        challenge in recovering causal effects from observational data
+        and discuss how randomized experiments can help overcome this
+        challenge.</p>
         <h2 id="a-motivating-example">A Motivating Example</h2>
         <p>Consider a motivating example where we want to understand the
         effect of a certain job training program on individuals’ income.
@@ -127,29 +149,31 @@
         <h3 id="potential-outcomes-notation">Potential Outcomes
         Notation</h3>
         <p>The primitive concept in the potential outcomes framework is
-        that there is a treatment (or manipulation, intervention) that
-        can be applied to a unit (e.g., an individual, a household, or a
-        firm at a particular time). The treatment can be binary (e.g.,
-        treated or untreated) or continuous (e.g., the dosage of a
-        drug). For simplicity, we will focus on binary actions in this
-        post.</p>
-        <p>As shown in the <em>Science Table</em> below, the potential
-        outcomes framework posits that for each unit <span
-        class="math inline">\(i\)</span>, there are two potential
+        that there is a <strong>treatment</strong> (or manipulation,
+        intervention) that can be applied to a unit (e.g., an
+        individual, a household, or a firm at a particular time). The
+        treatment can be binary (e.g., treated or untreated) or
+        continuous (e.g., the dosage of a drug). For simplicity, we will
+        focus on binary actions in this post.</p>
+        <p>To organize our thinking, let us imagine an omniscient record
+        sometimes called the “Science Table.” This table represents a
+        God’s-eye view of the world, where we can see not only what
+        actually happened but also what could have happened under
+        different scenarios. These potential outcomes are often referred
+        to as <strong>counterfactuals</strong> because they represent
+        what would have happened under different circumstances. In our
+        binary case, it appears as each unit has two potential
         outcomes:</p>
         <ul>
         <li><p><span class="math inline">\(Y_i(1)\)</span>, the income
-        that unit <span class="math inline">\(i\)</span> would have been
+        that unit <span class="math inline">\(i\)</span> would be
         observed under the hypothetical intervention <span
         class="math inline">\(D_i = 1\)</span>, and</p></li>
         <li><p><span class="math inline">\(Y_i(0)\)</span>, the income
-        that unit <span class="math inline">\(i\)</span> would have been
+        that unit <span class="math inline">\(i\)</span> would be
         observed under the hypothetical intervention <span
         class="math inline">\(D_i = 0\)</span>.</p></li>
         </ul>
-        <p>These potential outcomes are often referred to as
-        <strong>counterfactuals</strong> because they represent what
-        would have happened under different circumstances.</p>
         <table>
         <thead>
         <tr>
@@ -200,10 +224,15 @@
         </tr>
         </tbody>
         </table>
-        <p>Notice that each potential outcomes is <em>a priori</em>
+        <p>By intervention, we mean an action that forcibly sets the
+        treatment status of unit <span class="math inline">\(i\)</span>
+        to a specific value, without regard to the natural treatment
+        status of the unit or any other factors that may influence the
+        treatment status.</p>
+        <p>Notice that each potential outcome is <em>a priori</em>
         observable, meaning that we can imagine a world where we could
-        observe both potential outcomes for each unit. For example, if
-        we had a parallel universe where individual <span
+        observe both potential outcomes for each unit. That is to say,
+        if we had a parallel universe where individual <span
         class="math inline">\(i\)</span> participated in the job
         training program, we would observe <span
         class="math inline">\(Y_i(1)\)</span>, and in another universe
@@ -213,77 +242,89 @@
         <p>However, <em>a posteriori</em>, after the treatment is
         applied, we can only observe the outcome that corresponds to the
         treatment status of the unit. This is also known as the
-        <strong>fundamental problem of causal inference</strong>. In our
-        example, if individual <span class="math inline">\(i\)</span>
-        participates in the job training program, we observe <span
-        class="math inline">\(Y_i(1)\)</span>, and if they do not
-        participate, we observe <span
-        class="math inline">\(Y_i(0)\)</span>. The observed outcome
-        <span class="math inline">\(Y_i\)</span>, therefore, is related
-        to the potential outcomes as follows: <span
+        <strong>fundamental problem of causal inference</strong>. The
+        inability to simultaneously witness what is and what could have
+        been is poignantly captured in Robert Frost’s famous poem <a
+        href="https://en.wikipedia.org/wiki/The_Road_Not_Taken"><em>The
+        Road Not Taken</em></a>:</p>
+        <blockquote>
+        <p>Two roads diverged in a yellow wood,</p>
+        <p>And sorry I could not travel both…</p>
+        </blockquote>
+        <p>Robert Frost’s lament is, in essence, the lament of all of us
+        who seek to understand causality. The “two roads” are the two
+        potential outcomes <span class="math inline">\(Y_i(1)\)</span>
+        and <span class="math inline">\(Y_i(0)\)</span>. His sorrow,
+        “And sorry I could not travel both”, is a perfect encapsulation
+        of the fundamental problem of causal inference: we can only ever
+        observe the road taken, <span
+        class="math inline">\(Y_i(D_i)\)</span>, the outcome
+        corresponding to the natural treatment status <span
+        class="math inline">\(D_i\)</span>; while the road not taken,
+        <span class="math inline">\(Y_i(1 - D_i)\)</span>, remains
+        forever in the realm of the counterfactual.</p>
+        <p>In our motivating example, if an individual participates, we
+        observe <span class="math inline">\(Y_i(1)\)</span>; if they
+        abstain, we observe <span class="math inline">\(Y_i(0)\)</span>.
+        We see the outcome of their choice, but the outcome of the
+        alternative path remains forever a shadow. Nonetheless, we can
+        never observe both potential outcomes for the same individual at
+        the same time. The observed outcome <span
+        class="math inline">\(Y_i\)</span>, therefore, is related to the
+        potential outcomes as follows: <span id="eq:consistency-1"><span
         class="math display">\[
-        Y_i = D_i Y_i(1) + (1 - D_i) Y_i(0), \tag{1}
-        \]</span> or equivalently, <span class="math display">\[
-        Y_i = Y_i(D_i), \tag{2}
-        \]</span> where <span class="math inline">\(Y_i(D_i)\)</span> is
-        the observed outcome for unit <span
-        class="math inline">\(i\)</span> given their natural treatment
-        value <span class="math inline">\(D_i\)</span>.</p>
+        \begin{align*}
+        Y_i = D_i Y_i(1) + (1 - D_i) Y_i(0),
+        \end{align*}
+        \qquad{(1)}\]</span></span> or equivalently, <span
+        id="eq:consistency-2"><span class="math display">\[
+        \begin{align*}
+        Y_i = Y_i(D_i).
+        \end{align*}
+        \qquad{(2)}\]</span></span></p>
+        <div class="comment">
+        <p>One might argue that we can observe both potential outcomes
+        for the same individual by recording their income in two
+        different years, one year when they did not participate in the
+        job training program and another year when they did. However,
+        this line of reasoning is flawed because it assumes that the
+        potential outcomes are stable over time, which is often not the
+        case. Instead, it would be more appropriate to consider the same
+        individual at the different time points as different units, and
+        then we still face the fundamental problem of causal inference
+        because we can only observe one potential outcome for each
+        unit.</p>
+        </div>
         <h3 id="stable-unit-treatment-value-assumption-sutva">Stable
         Unit Treatment Value Assumption (SUTVA)</h3>
         <p>While it seems straightforward to write the potential
         outcomes as <span class="math inline">\(Y_i(1)\)</span> and
         <span class="math inline">\(Y_i(0)\)</span> and relate them to
         the observed outcome <span class="math inline">\(Y_i\)</span>
-        through Equation 1, we are implicitly making two important
-        assumptions, together known as the <strong>stable unit treatment
-        value assumption (SUTVA)</strong>:</p>
+        through <a href="#eq:consistency-1">Equation 1</a> or <a
+        href="#eq:consistency-2">Equation 2</a>, we are implicitly
+        making two important assumptions, together known as the
+        <strong>stable unit treatment value assumption
+        (SUTVA)</strong>:</p>
         <ol type="1">
-        <li><p>(no interference) the potential outcomes for each unit
-        are not affected by the treatment status of other units,
-        and</p></li>
-        <li><p>(no hidden variations) there are no hidden variations in
-        the treatment that would lead to different potential outcomes
-        for the same treatment status.</p></li>
+        <li><p><strong>No Interference:</strong> The potential outcomes
+        for any unit do not vary with the treatments assigned to other
+        units. In our job training example, this means an individual’s
+        income is not affected by whether their peers participated in
+        the program. This assumption, however, would be violated if the
+        program created “spillover effects,” such as treated individuals
+        sharing their new skills with the untreated.</p></li>
+        <li><p><strong>No Hidden Variations in Treatment:</strong> There
+        are no hidden variations in the treatment that would lead to
+        different potential outcomes for the same treatment status. This
+        implies that the “job training program” is a single, consistent
+        entity. If, in reality, the program had different instructors or
+        intensity levels, a more precise definition of the treatment
+        would be required to uphold this assumption.</p></li>
         </ol>
-        <p>Let’s dive deeper into these two assumptions.</p>
-        <h4 id="no-interference-assumption">No Interference
-        Assumption</h4>
-        <p>When we write the potential outcomes as <span
-        class="math inline">\(Y_i(1)\)</span> and <span
-        class="math inline">\(Y_i(0)\)</span>, we are implicitly
-        assuming that the potential outcomes for each unit are not
-        affected by the treatment status of other units.</p>
-        <p>In our example, this means that the income of individual
-        <span class="math inline">\(i\)</span> is not influenced by
-        whether other individuals participated in the job training
-        program.</p>
-        <p>This assumption can be violated in many real-world scenarios.
-        For example, if the job training program creates a spillover
-        effect, where the program not only affects the treated
-        individuals but also influences the income of untreated
-        individuals because the treated individuals share their
-        knowledge or skills with others, then the potential outcomes for
-        each unit would depend on the treatment status of other units.
-        In such cases, it would be better to account for these spillover
-        effects using a more flexible notation.</p>
-        <h4 id="no-hidden-variations-assumption">No Hidden Variations
-        Assumption</h4>
-        <p>Another implicit assumption typically made in the potential
-        outcomes framework is that there are no hidden variations in the
-        treatment that would lead to different potential outcomes for
-        the same treatment status.</p>
-        <p>For example, if the job training program has different
-        versions or levels of intensity (e.g., online vs. in-person
-        training, or short-term vs. long-term training), then the
-        potential outcomes for each unit would depend on the specific
-        version of the treatment they received. In the presence of such
-        variations, we would need to specify the treatment more
-        precisely.</p>
         <h2 id="defining-causal-effects">Defining Causal Effects</h2>
-        <p>Once we have defined the potential outcomes, we can use them
-        to define causal effects, which are functions of the Science
-        Table above.</p>
+        <p>With the potential outcomes framework in place, we can give a
+        precise definition of causal effects.</p>
         <p>For example, the <strong>individual causal effect</strong> of
         the job training program on unit <span
         class="math inline">\(i\)</span> can be defined as the
@@ -294,19 +335,17 @@
         class="math inline">\(\tau_i\)</span> represents the change in
         income for unit <span class="math inline">\(i\)</span> if they
         were to participate in the job training program compared to if
-        they did not. Due to the fundamental problem of causal
-        inference, we can only observe either <span
-        class="math inline">\(Y_i(1)\)</span> or <span
-        class="math inline">\(Y_i(0)\)</span> for each unit <span
-        class="math inline">\(i\)</span>, but not both. Therefore, this
-        quantity cannot be recovered from the data without very strong
-        homogeneity assumptions.</p>
+        they did not. This is precisely “the difference” the poet muses
+        on at the end of his journey. And just as for the poet, for us
+        too, this individual causal effect <span
+        class="math inline">\(\tau_i\)</span> cannot be recovered from
+        data without very strong homogeneity assumptions.</p>
         <p>Instead, we are often interested in the <strong>average
         causal effect</strong> (ACE), also known as the <strong>average
         treatment effect</strong> (ATE), of the job training program on
         the income of all units can be defined as the average of the
         individual causal effects: <span class="math display">\[
-        \tau \equiv \operatorname{E}(Y_i(1) - Y_i(0)) =
+        \tau_{\text{ATE}} \equiv \operatorname{E}(Y_i(1) - Y_i(0)) =
         \operatorname{E}(Y_i(1)) - \operatorname{E}(Y_i(0)),
         \]</span> where the expectation is taken over the distribution
         of the units in the sample.</p>
@@ -320,25 +359,149 @@
         &amp;= \operatorname{E}(Y_i(1) \mid D_i = 1) -
         \operatorname{E}(Y_i(0) \mid D_i = 1).
         \end{align*}
+        \]</span> In our example, it captures the average effect of the
+        job training program on those who actually participated in the
+        program.</p>
+        <p>In epidemiology, the <strong>relative risk (RR)</strong> and
+        the <strong>odds ratio (OR)</strong> are also commonly used to
+        measure causal effects, especially when the outcome is binary
+        (e.g., success or failure, alive or dead). The relative risk is
+        defined as: <span class="math display">\[
+        \tau_{\text{RR}} \equiv
+        \frac{\operatorname{E}(Y_i(1))}{\operatorname{E}(Y_i(0))},
+        \]</span> and the odds ratio is defined as: <span
+        class="math display">\[
+        \tau_{\text{OR}} \equiv \frac{\operatorname{E}(Y_i(1)) / (1 -
+        \operatorname{E}(Y_i(1)))}{\operatorname{E}(Y_i(0)) / (1 -
+        \operatorname{E}(Y_i(0)))}.
         \]</span></p>
-        <h2 id="identifying-causal-effects">Identifying Causal
+        <h2 id="recovering-causal-effects">Recovering Causal
         Effects</h2>
-        <h2 id="epilogue">Epilogue</h2>
-        <ul>
-        <li>Holland, P. W. (1986). Statistics and causal inference.
-        <em>Journal of the American statistical Association</em>,
-        <em>81</em>(396), 945-960.</li>
-        </ul>
-        <section id="footnotes"
-        class="footnotes footnotes-end-of-document" role="doc-endnotes">
-        <hr />
-        <ol>
-        <li id="fn1"><p>There are other frameworks for causal inference,
-        such as the <strong>structural causal model (SCM)</strong>,
-        which will be discussed in a future post.<a href="#fnref1"
-        class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-        </ol>
-        </section>
+        <p>We now turn to the question of how to recover causal effects
+        from data. In the following, we will focus on the causal effects
+        on the additive scale, i.e., <span
+        class="math inline">\(\tau_{\text{ATE}}\)</span> and <span
+        class="math inline">\(\tau_{\text{ATT}}\)</span>, but similar
+        ideas apply to other scales as well.</p>
+        <h3 id="bias-from-selection-into-treatment">Bias from Selection
+        into Treatment</h3>
+        <p>To recover <span
+        class="math inline">\(\tau_{\text{ATE}}\)</span> or <span
+        class="math inline">\(\tau_{\text{ATT}}\)</span> from data, we
+        might be tempted to compare the average outcomes between the
+        treated and untreated groups; e.g., comparing those who
+        participated in the job training program to those who did not.
+        This type of comparison is common in everyday life; for
+        instance, the media often compares which academic majors lead to
+        better financial prospects, or which vaccines are more effective
+        than others.</p>
+        <p>However, this naive comparison is generally biased for <span
+        class="math inline">\(\tau\)</span> or <span
+        class="math inline">\(\tau_{\text{ATT}}\)</span> because of
+        <strong>selection into treatment</strong>. To see this, <span
+        id="eq:selection-bias"><span class="math display">\[
+        \begin{align*}
+        &amp;\mathrel{\phantom{=}} \operatorname{E}(Y_i \mid D_i = 1) -
+        \operatorname{E}(Y_i \mid D_i = 0) \\
+        &amp;= \operatorname{E}(Y_i(1) \mid D_i = 1) -
+        \operatorname{E}(Y_i(0) \mid D_i = 0) \\
+        &amp;= \tau_{\text{ATT}}
+            + \underbrace{\operatorname{E}(Y_i(0) \mid D_i = 1)
+            - \operatorname{E}(Y_i(0) \mid D_i = 0)}_{\text{bias from
+        selection into treatment}},
+        \end{align*}
+        \qquad{(3)}\]</span></span> where the first equality follows
+        from <a href="#eq:consistency-1">Equation 1</a> or <a
+        href="#eq:consistency-2">Equation 2</a>, and the second equality
+        follows from the definition of <span
+        class="math inline">\(\tau_{\text{ATT}}\)</span>. In <a
+        href="#eq:selection-bias">Equation 3</a>, the second term on the
+        right-hand side is the bias from selection into treatment, or
+        <strong>selection bias</strong> for short, which captures the
+        difference in the average potential outcome under control <span
+        class="math inline">\(Y_i(0)\)</span> between the treated (<span
+        class="math inline">\(D_i = 1\)</span>) and untreated groups
+        (<span class="math inline">\(D_i = 0\)</span>). Selection bias
+        arises when the individuals who choose to receive the treatment
+        (or are selected for it) differ systematically from those who do
+        not, in ways that also affect the outcome of interest. This
+        means that the observed difference in outcomes between the
+        treated and untreated groups may not solely reflect the causal
+        effect of the treatment, but also these pre-existing
+        differences. The direction and magnitude of selection bias
+        depend on how these groups differ. In most economic and social
+        science applications, the selection bias can be substantial
+        because individuals often (if not always) try to choose options
+        that align with their preferences, abilities, or circumstances.
+        This optimizing behavior creates diffculties in recovering
+        causal effects from observational data. For instance, if
+        individuals who opt into a job training program are generally
+        more motivated or have higher baseline skills than those who do
+        not, the selection bias would likely lead to an overestimation
+        of the treatment effect when naively comparing outcomes between
+        the two groups.</p>
+        <div class="comment">
+        <p>The term “selection bias” has different meanings in different
+        contexts. Sometimes, it refers to biases that arise from
+        non-random sampling of units into the study; i.e., selection
+        into the sample. Here, we use it to refer to biases that arise
+        from selection into treatment.</p>
+        </div>
+        <h3 id="randomized-experiments">Randomized Experiments</h3>
+        <p>If we, like Frost’s lone traveler, cannot travel both roads,
+        how can we ever hope to learn about causal effects?</p>
+        <p>The genius of R.A. Fisher was to see that we can take a large
+        crowd of travelers and randomly send half down one road and half
+        down the other. This is the essence of a <strong>randomized
+        experiment</strong>, which is widely regarded as the gold
+        standard for causal inference.</p>
+        <p>In a two-arm randomized experiment, where units are randomly
+        assigned to either the treatment group (<span
+        class="math inline">\(D_i = 1\)</span>) or the control group
+        (<span class="math inline">\(D_i = 0\)</span>), the
+        randomization ensures that the treatment assignment is
+        independent of any other factors that may influence the outcome.
+        This can be expressed mathematically as <span
+        id="eq:randomization"><span class="math display">\[
+        \begin{align*}
+        D_i \perp\!\!\!\perp (Y_i(1), Y_i(0)),
+        \end{align*}
+        \qquad{(4)}\]</span></span> where <span
+        class="math inline">\(\perp\!\!\!\perp\)</span> denotes
+        statistical independence.</p>
+        <p>Under the randomization (<a
+        href="#eq:randomization">Equation 4</a>), the selection bias
+        term in <a href="#eq:selection-bias">Equation 3</a> vanishes
+        because <span class="math display">\[
+        \begin{align*}
+        \operatorname{E}(Y_i(0) \mid D_i = 1)
+        = \operatorname{E}(Y_i(0) \mid D_i = 0),
+        \end{align*}
+        \]</span> and therefore, the naive comparison of average
+        outcomes between the treated and untreated groups gives <span
+        class="math inline">\(\tau_{\text{ATT}}\)</span> exactly: <span
+        class="math display">\[
+        \begin{align*}
+        \operatorname{E}(Y_i \mid D_i = 1) - \operatorname{E}(Y_i \mid
+        D_i = 0)
+        = \tau_{\text{ATT}}.
+        \end{align*}
+        \]</span></p>
+        <h2 id="conclusion">Conclusion</h2>
+        <p>By conceptualizing what would have happened under different
+        scenarios, the potential outcomes framework gives us a precise
+        language to define and reason about causality. It highlights the
+        challenges in recovering causal effects because of the
+        fundamental problem of causal inference and the peril of
+        selection bias. It also illuminates a path forward through
+        randomized experiments, which, by breaking the link between
+        treatment assignment and potential outcomes, turn the elusive
+        quest for causality into a tractable problem. Yet, in many
+        real-world applications, randomized experiments may not be
+        feasible or ethical. The potential outcomes framework, still,
+        provides a foundation for developing methods to identify and
+        estimate causal effects from observational data, which we will
+        explore in future posts.</p>
     </main>
 
     <footer>

@@ -1,7 +1,6 @@
 ---
 title: 首頁
 description: 小學生筆記
-lang: zh-TW
 is_home: true
 ---
 
@@ -19,6 +18,8 @@ is_home: true
 
 ## Econometrics
 
+- [Potential Outcomes in a Nutshell](posts/potential-outcomes-nutshell.html): A
+  brief introduction to the potential outcomes framework.
 - [Instrumental Variable in a Nutshell](posts/iv-nutshell.html): A brief introduction to the IV, 2SLS, and control function approaches.
 
 ## Miscellanea
