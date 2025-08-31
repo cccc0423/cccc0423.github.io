@@ -1,5 +1,5 @@
 ---
-title: "Instrumental Variables in a Nutshell"
+title: "IV, 2SLS, and Control Function in a Nutshell"
 subtitle: "A brief introduction to the IV, 2SLS, and control function approaches"
 date: 2025-03-17
 ---

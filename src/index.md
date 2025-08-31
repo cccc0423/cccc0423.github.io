@@ -18,9 +18,8 @@ is_home: true
 
 ## Econometrics
 
-- [Potential Outcomes Framework in a Nutshell](posts/potential-outcomes-nutshell.html): A
-  brief introduction to the potential outcomes framework.
-- [Instrumental Variable in a Nutshell](posts/iv-nutshell.html): A brief introduction to the IV, 2SLS, and control function approaches.
+- [Potential Outcomes Framework in a Nutshell](posts/potential-outcomes-nutshell.html).
+- [IV, 2SLS, and Control Function in a Nutshell](posts/iv-nutshell.html).
 
 ## Miscellanea
 

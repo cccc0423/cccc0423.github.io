@@ -6,7 +6,7 @@ date: 2025-08-30
 
 本週沒有週記，
 但是新增了一篇文章 
-[Potential Outcomes in a Nutshell](../posts/potential-outcomes-nutshell.html)。
+[Potential Outcomes Framework in a Nutshell](../posts/potential-outcomes-nutshell.html)。
 
 
 
