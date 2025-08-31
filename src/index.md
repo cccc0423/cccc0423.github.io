@@ -18,8 +18,8 @@ is_home: true
 
 ## Econometrics
 
-- [Potential Outcomes Framework in a Nutshell](posts/potential-outcomes-nutshell.html).
-- [IV, 2SLS, and Control Function in a Nutshell](posts/iv-nutshell.html).
+- [Potential Outcomes Framework in a Nutshell](posts/potential-outcomes-nutshell.html)
+- [IV, 2SLS, and Control Function in a Nutshell](posts/iv-nutshell.html)
 
 ## Miscellanea
 
