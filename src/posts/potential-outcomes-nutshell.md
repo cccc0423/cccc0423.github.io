@@ -4,7 +4,7 @@ subtitle: "A brief introduction to the potential outcomes framework"
 date: 2025-08-30
 ---
 
-To act upon the world it to assume a grasp of causality.
+To act upon the world is to assume a grasp of causality.
 From the dawn of inquiry,
 humans have sought to understand 
 not just the what but the why the world behaves as it does.
@@ -62,16 +62,15 @@ The treatment can be binary (e.g., treated or untreated)
 or continuous (e.g., the dosage of a drug).
 For simplicity, we will focus on binary actions in this post.
 
-To organize our thinking,
-let us imagine an omniscient record sometimes
-called the "Science Table." 
-This table represents a God's-eye view of the world,
-where we can see not only what actually happened
-but also what could have happened under different scenarios.
-These potential outcomes are often referred to as **counterfactuals**
-because they represent what would have happened under different circumstances.
-In our binary case,
-it appears as each unit has two potential outcomes:
+To organize our thinking, 
+let us imagine an omniscient record called the "Science Table." 
+This table represents a God's-eye view of the world, 
+where we can see not only what actually happened 
+but also what could have happened under different scenarios. 
+Each entry in this table represents what we call a **potential outcome**, 
+often referred to as a **counterfactual** 
+because it shows what would have happened under different circumstances. 
+In our binary case, each unit has two potential outcomes:
 
 - $Y_i(1)$, the income that unit $i$ would be observed
     under the hypothetical intervention $D_i = 1$, and
@@ -88,11 +87,12 @@ it appears as each unit has two potential outcomes:
 | $n$         |  $Y_n(1)$  |  $Y_n(0)$  |
 
 
-By intervention,
-we mean an action that forcibly
-sets the treatment status of unit $i$ to a specific value,
-without regard to the natural treatment status of the unit
-or any other factors that may influence the treatment status.
+What do we mean by "intervention"? 
+It refers to an action 
+that forcibly sets the treatment status of unit $i$ 
+to a specific value, 
+without regard to the natural treatment status of the unit 
+or any other factors that may influence the treatment choice.
 
 Notice that each potential outcome is *a priori* observable,
 meaning that we can imagine a world
