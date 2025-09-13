@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週記（三十四）</title>
+    <meta name="description" content="渾渾噩噩的一週">
+    <meta name="author" content="cccc0423">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/mathtools']},
+            tex: {packages: {'[+]': ['mathtools']}}
+        };
+    </script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros']},
+            tex: {packages: {'[+]': ['textmacros']}}
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="../js/main.js" defer></script>
+    
+    <link rel="canonical" href="https://cccc0423.github.io/weekly/20250913-weekly-writing.html" />
+</head>
+<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
+    <span class="material-icons">arrow_upward</span>
+</button>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="../index.html" class="nav-brand">小學生筆記</a>
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="../weekly.html" class="active">週記</a>
+                <a href="../about.html" class="">關於</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>週記（三十四）</h1>
+        <p class="post-date">2025-09-13</p>
+
+                <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+            <li><a href="#故宮" id="toc-故宮">故宮</a></li>
+            <li><a href="#新網站" id="toc-新網站">新網站</a></li>
+            <li><a href="#代理變數" id="toc-代理變數">代理變數</a>
+            <ul>
+            <li><a href="#線性結構模型的情況"
+            id="toc-線性結構模型的情況">線性結構模型的情況</a></li>
+            </ul></li>
+            </ul>
+        </div>
+        
+        <h2 id="故宮">故宮</h2>
+        <p>好幾年沒去故宮，週六去了一趟。</p>
+        <h2 id="新網站">新網站</h2>
+        <p>KM 說 CV 上可以放自己的 GitHub 頁面。
+        為了區隔個人和工作（？）的帳號， 我又重新弄了一個 GitHub
+        帳號和<a href="https://tchung697.github.io/">網頁</a>。</p>
+        <p>現在這個網頁有一個缺點， 就是它承襲我早期寫的一些 CSS（再經過
+        LLM 魔改） 還有一些 LLM 寫的 JavaScript，
+        疊床架屋之下可以說有點過度設計。 這件事暫時沒有立即的影響，
+        而我也沒空處理， 因此就擱著， 打算等到哪天我有空再來重構。
+        不過基於如此前車之鑑，新網頁盡可能地簡約。</p>
+        <p>雖然有了新網頁， 不過還是會在這裡繼續寫週記，
+        至於英文筆記（會有嗎）就會改到新網頁上。</p>
+        <h2 id="代理變數">代理變數</h2>
+        <div class="comment">
+        <p>這是一篇用來幫助我思考代理變數的中文筆記，
+        所有內容幾乎都是參考 <a
+        href="http://doi.org/10.1214/23-STS911">Tchetgen Tchetgen et
+        al. (2024)</a>。</p>
+        </div>
+        <p>假設我們觀察到一筆 IID 的資料 <span
+        class="math inline">\(\{(A_i, L_i, Y_i)\}_{i=1}^n\)</span> 從
+        <span class="math inline">\((A, L, Y)\)</span> 的分配中抽出，
+        其中 <span class="math inline">\(A\)</span>
+        是一個二元處理（treatment）變數， <span
+        class="math inline">\(L\)</span> 是共變數（covariate）， <span
+        class="math inline">\(Y\)</span> 是一個結果變數。 令 <span
+        class="math inline">\(Y_a\)</span> 是處理狀態為 <span
+        class="math inline">\(a\)</span> 時的潛在結果（potential
+        outcome）。 假設一致性（causal consistency）成立 <span
+        class="math inline">\(Y = Y_A\)</span>。 我們的目標是估計 <span
+        class="math inline">\(A\)</span> 對 <span
+        class="math inline">\(Y\)</span> 的平均因果效應， 如 <span
+        id="eq:no-unmeasured-confounding"><span class="math display">\[
+        \operatorname{E}(Y_1 - Y_0).
+        \qquad{(1)}\]</span></span>
+        標準的假設是<strong>沒有觀察不到的干擾因子（no unmeasured
+        confounding）</strong>， 即 <span class="math display">\[
+        Y_a \perp\!\!\!\perp A \mid L, \quad a \in \{0, 1\},
+        \]</span> 而且正值性（positicity）假設， 即對所有 <span
+        class="math inline">\(a\)</span> 和 <span
+        class="math inline">\(l\)</span>， <span
+        id="eq:positivity"><span class="math display">\[
+        p(a \mid l) &gt; 0
+        \qquad{(2)}\]</span></span> 成立 （用 <span
+        class="math inline">\(p\)</span>
+        表示機率密度函數或機率質量函數）。 給定 <a
+        href="#eq:no-unmeasured-confounding">Equation 1</a> 與 <a
+        href="#eq:positivity">Equation 2</a>， 我們有 <span
+        id="eq:g-formula"><span class="math display">\[
+        \begin{aligned}
+        \operatorname{E}(Y_a)
+        &amp;= \sum_l \operatorname{E}(Y_a \mid l) p(l) \\
+        &amp;= \sum_l \operatorname{E}(Y_a \mid a, l) p(l) \\
+        &amp;= \sum_l \operatorname{E}(Y \mid a, l) p(l).
+        \end{aligned}
+        \qquad{(3)}\]</span></span> 這個式子被 James Robins 稱為
+        <strong>g-formula</strong>，
+        而也被稱為<strong>後門調整公式（backdoor adjustment
+        formula）</strong>。</p>
+        <p>現在我們來考慮一個資料生成機制，由下圖描述。</p>
+        <figure id="fig:nuc-fail">
+        <img src="../images/202509/nuc-fail.png" style="width:40.0%"
+        alt="Figure 1: 有無法觀察到的干擾因子。圖出自 Tchetgen Tchetgen et al. (2024)。" />
+        <figcaption aria-hidden="true">Figure 1:
+        有無法觀察到的干擾因子。圖出自 <a
+        href="http://doi.org/10.1214/23-STS911">Tchetgen Tchetgen et
+        al. (2024)</a>。</figcaption>
+        </figure>
+        <p>在 <a href="#fig:nuc-fail">Figure 1</a> 這個 single world
+        intervention graph (SWIG) 中， <span
+        class="math inline">\(U\)</span> 是一個無法觀察到的干擾因子，
+        而共變數 <span class="math inline">\(L = (X, Z, W)\)</span>。
+        這個 SWIG 並蘊含了 <span id="eq:proxy-assumption"><span
+        class="math display">\[
+        (W, Y_a) \perp\!\!\!\perp (A, Z) \mid (U, X), \quad a \in \{0,
+        1\},
+        \qquad{(4)}\]</span></span> 根據 weak union 的性質，<a
+        href="#fn1" class="footnote-ref" id="fnref1"
+        role="doc-noteref"><sup>1</sup></a> 這隱含 <span
+        class="math display">\[
+        (W, Y_a) \perp\!\!\!\perp Z \mid (A, U, X), \quad a \in \{0,
+        1\}.
+        \]</span></p>
+        <p>令 <span class="math inline">\(h(a, x, w)\)</span>
+        是以下方程式的解： <span id="eq:bridge-function"><span
+        class="math display">\[
+        \operatorname{E}(Y \mid a, z, x) = \sum_w h(a, x, w) p(w \mid a,
+        x, z).
+        \qquad{(5)}\]</span></span> 其中 <span
+        class="math inline">\(\sum_w\)</span> 是對 <span
+        class="math inline">\(W\)</span> 的求和或積分， 而 <span
+        class="math inline">\(h\)</span> 稱為 outcome confounding bridge
+        function。 假設以下完備性（completeness）條件成立： 對於任意
+        <span class="math inline">\(v \in L_2\)</span>， <span
+        id="eq:completeness"><span class="math display">\[
+        \operatorname{E}[v(U) \mid Z, A, X] = 0 \text{ a.s. } \implies
+        v(U) = 0 \text{
+        a.s.}
+        \qquad{(6)}\]</span></span></p>
+        <p>那麼在一致性、正值性、<a
+        href="#eq:proxy-assumption">Equation 4</a>、 <a
+        href="#eq:bridge-function">Equation 5</a> 與 <a
+        href="#eq:completeness">Equation 6</a> 成立的情況下， <span
+        id="eq:proximal-g-formula"><span class="math display">\[
+        \operatorname{E}(Y_a) = \sum_{w, x} h(a, x, w) p(w, x).
+        \qquad{(7)}\]</span></span> 這個式子被稱為 <strong>proximal
+        g-formula</strong>。</p>
+        <p>以下我們從線性模型的例子來理解 <a
+        href="#eq:proximal-g-formula">Equation 7</a>。</p>
+        <h3 id="線性結構模型的情況">線性結構模型的情況</h3>
+        <p>假設 <a href="#fig:nuc-fail">Figure 1</a>
+        背後的因果模型包括以下的線性結構方程式： <span
+        class="math display">\[
+        \begin{aligned}
+        Y &amp;= \beta_0 + \beta_a A + \beta_x X + \beta_u U + \beta_w W
+        + \varepsilon_Y, \\
+        W &amp;= \eta_0 + \eta_x X + \eta_u U + \varepsilon_W,
+        \end{aligned}
+        \]</span> 其中 <span
+        class="math inline">\(\varepsilon_Y\)</span> 與 <span
+        class="math inline">\(\varepsilon_W\)</span>
+        是相互獨立的誤差項。 根據上式，我們有 <span
+        class="math display">\[
+        \begin{aligned}
+        \operatorname{E}(Y \mid A, Z, X)
+        &amp;= \beta_0 + \beta_a A + \beta_x X + \beta_u
+        \operatorname{E}(U \mid A, Z, X) + \beta_w \operatorname{E}(W
+        \mid A, Z, X), \\
+        \operatorname{E}(W \mid A, Z, X)
+        &amp;= \eta_0 + \eta_x X + \eta_u \operatorname{E}(U \mid A, Z,
+        X).
+        \end{aligned}
+        \]</span> 移項以後可以得到 <span class="math display">\[
+        \operatorname{E}(U \mid A, Z, X)
+        = \frac{1}{\eta_u} \operatorname{E}(W \mid A, Z, X)
+        - \frac{\eta_0}{\eta_u} - \frac{\eta_x}{\eta_u} X,
+        \]</span> 而將上式代入 <span
+        class="math inline">\(\operatorname{E}(Y \mid A, Z, X)\)</span>
+        可得 <span class="math display">\[
+        \begin{aligned}
+        &amp;\mathrel{\phantom{=}} \operatorname{E}(Y \mid A, Z, X) \\
+        &amp;= \underbrace{\left(\beta_0 - \frac{\beta_u
+        \eta_0}{\eta_u}\right)}_{\beta_0^*}
+        + \beta_a A
+        + \underbrace{\left(\beta_x - \frac{\beta_u
+        \eta_x}{\eta_u}\right)}_{\beta_x^*} X
+        + \underbrace{\left(\beta_w +
+        \frac{\beta_u}{\eta_u}\right)}_{\beta_w^*} \operatorname{E}(W
+        \mid A, Z, X) \\
+        &amp;= \beta_0^* + \beta_a A + \beta_x^* X + \beta_w^*
+        \operatorname{E}(W \mid A, Z, X).
+        \end{aligned}
+        \]</span> 此時，<a href="#eq:bridge-function">Equation 5</a>
+        的解是 <span class="math display">\[
+        h(a, x, w) = \beta_0^* + \beta_a a + \beta_x^* x + \beta_w^* w.
+        \]</span></p>
+        <p>這給我們幾個啟示：</p>
+        <ol type="1">
+        <li><p>我們可以用 2SLS 來估計 <span
+        class="math inline">\(\beta_a\)</span>：</p>
+        <ol type="i">
+        <li><p>以 <span class="math inline">\(W\)</span> 對 <span
+        class="math inline">\((A, Z, X)\)</span> 做線性迴歸， 取得 <span
+        class="math inline">\(\hat{W} = \hat{\eta}_0 + \hat{\eta}_a A +
+        \hat{\eta}_z Z + \hat{\eta}_x X\)</span>。</p></li>
+        <li><p>以 <span class="math inline">\(Y\)</span> 對 <span
+        class="math inline">\((A, X, \hat{W})\)</span> 做線性迴歸， 而
+        <span class="math inline">\(\hat{\beta}_a\)</span> 就是 <span
+        class="math inline">\(\beta_a\)</span>
+        的一致估計（在線性結構模型成立的情況下）。</p></li>
+        </ol>
+        <p>這種方法被稱為 proximal 2SLS (P2SLS)。</p></li>
+        <li><p>既然 2SLS 和 control function 的方法是一體兩面，
+        那我們也可以利用 control function 來估計 <span
+        class="math inline">\(\beta_a\)</span>：</p>
+        <ol type="i">
+        <li><p>以 <span class="math inline">\(W\)</span> 對 <span
+        class="math inline">\((A, Z, X)\)</span> 做線性迴歸， 取得殘差
+        <span class="math inline">\(\tilde{W} = W -
+        \hat{W}\)</span>。</p></li>
+        <li><p>以 <span class="math inline">\(Y\)</span> 對 <span
+        class="math inline">\((A, X, W, \tilde{W})\)</span> 做線性迴歸，
+        而 <span class="math inline">\(A\)</span> 的迴歸係數就是 <span
+        class="math inline">\(\beta_a\)</span> 的一致估計。</p></li>
+        </ol></li>
+        <li><p>如果 <span class="math inline">\(U\)</span> 不影響 <span
+        class="math inline">\(Y\)</span>，即 <span
+        class="math inline">\(\beta_u = 0\)</span>，
+        也就沒有觀察不到的干擾因子， 那麼 <span
+        class="math inline">\(\beta_0 = \beta_0^*\)</span>、<span
+        class="math inline">\(\beta_x = \beta_x^*\)</span> 與 <span
+        class="math inline">\(\beta_w = \beta_w^*\)</span>。
+        此時，直接以 <span class="math inline">\(Y\)</span> 對 <span
+        class="math inline">\((A, X, W)\)</span> 做線性迴歸， 就可以得到
+        <span class="math inline">\(\beta_a\)</span> 的一致估計。
+        不過，就算我們使用 P2SLS， 我們也還是可以得到 <span
+        class="math inline">\(\beta_a\)</span> 的一致估計。</p></li>
+        </ol>
+        <section id="footnotes"
+        class="footnotes footnotes-end-of-document" role="doc-endnotes">
+        <hr />
+        <ol>
+        <li id="fn1"><p> 參見 <a
+        href="https://en.wikipedia.org/wiki/Graphoid">Graphoid</a>。<a
+        href="#fnref1" class="footnote-back"
+        role="doc-backlink">↩︎</a></p></li>
+        </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 小學生筆記</p>
+    </footer>
+</body>
+</html>
