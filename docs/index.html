@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁</title>
-    <meta name="description" content="description">
-    <meta name="author" content="cccc0423">
+    <meta name="description" content="小學生筆記">
     <meta name="robots" content="index, follow">
-    
+    <link rel="canonical" href="https://cccc0423.github.io/index.html">
+    <title>小學生筆記</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script>
-        MathJax = {
-            loader: {load: ['[tex]/mathtools']},
-            tex: {packages: {'[+]': ['mathtools']}}
-        };
-    </script>
     <script>
         MathJax = {
             loader: {load: ['[tex]/textmacros']},
@@ -29,71 +22,44 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
+    
     <meta name="google-site-verification" content="Yzem9_xPjrCrNcCHmziBq7Ak2gQUxZeZ29IQMvNZdkc" />
-    <script src="js/main.js" defer></script>
-    <link rel="canonical" href="https://cccc0423.github.io/index.html" />
 </head>
-<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
-    <span class="material-icons">arrow_upward</span>
-</button>
 <body>
     <header>
-        <div class="navbar">
-            <a href="index.html" class="nav-brand">小學生筆記</a>
-            <button class="hamburger-menu" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-links">
-                <a href="weekly.html" class="">週記</a>
-                <a href="about.html" class="">關於</a>
-            </div>
-        </div>
+        <nav>
+            <a href="index.html" class="current">Home</a>
+            <a href="archive.html">Archive</a>
+        </nav>
     </header>
-    
     <main>
-        <h1>首頁</h1>
-        
-        
-                
-        <div class="comment">
-        <script src="js/confucius-said.js"></script>
-        <div class="analects-header">
-        <div id="analects-chapter">
+      <h1>小學生筆記</h1>
+      
+      
+            
+      <div class="comment">
+      <script src="js/confucius-said.js"></script>
+      <div class="analects-box">
+      <div id="analects-verse">
 
-        </div>
-        <div class="analects-controls">
-        <p><btn onclick="previous_verse()" title="Previous verse"><i class="fa-solid fa-arrow-left"></i></btn>
-        <btn onclick="next_verse()" title="Next verse"><i class="fa-solid fa-arrow-right"></i></btn>
-        <btn onclick="confucius_said()" title="Random verse"><i class="fa-solid fa-arrow-rotate-right"></i></btn>
-        <btn title="Jesse C. Chen is credited with creating this widget."><i class="fa-solid fa-circle-info"></i></btn></p>
-        </div>
-        </div>
-        <p id="analects-verse">
-        </p>
-        </div>
-        <h2 id="econometrics">Econometrics</h2>
-        <ul>
-        <li><a href="posts/potential-outcomes-nutshell.html">Potential
-        Outcomes Framework in a Nutshell</a></li>
-        <li><a href="posts/iv-nutshell.html">IV, 2SLS, and Control
-        Function in a Nutshell</a></li>
-        </ul>
-        <h2 id="miscellanea">Miscellanea</h2>
-        <ul>
-        <li><a
-        href="https://cccc0423.github.io/find-economic-papers/">Find
-        Economic Papers</a>: 一個簡單的經濟學期刊文章搜尋工具。</li>
-        <li><a href="posts/name-tag.html">名牌產生器</a>: 一個簡單的
-        <span class="math inline">\(\rm \LaTeX\)</span>
-        名牌產生器。</li>
-        </ul>
+      </div>
+      <div class="analects-footer">
+      <div id="analects-chapter">
+
+      </div>
+      <div class="analects-controls">
+      <btn onclick="previous_verse()" title="Previous verse"><i class="fa-solid fa-arrow-left"></i></btn><btn onclick="confucius_said()" title="Random verse"><i class="fa-solid fa-arrow-rotate-right"></i></btn><btn onclick="next_verse()" title="Next verse"><i class="fa-solid fa-arrow-right"></i></btn><btn title="Jesse C. Chen is credited with creating this widget."><i class="fa-solid fa-circle-info"></i></btn>
+      </div>
+      </div>
+      </div>
+      </div>
+      <h2 id="econometrics">Econometrics</h2>
+      <ul class="minimal-post-list">
+      <li>
+      <a href="posts/new-econometrics.html">因果推論中的潛在結果模型</a>
+      <span class="date">2026-06-09</span>
+      </li>
+      </ul>
     </main>
-    
-    <footer>
-        <p>© 2025 小學生筆記</p>
-    </footer>
 </body>
 </html>

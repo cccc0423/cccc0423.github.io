@@ -1,34 +1,25 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>名牌產生器</title>
-    <meta name="description" content="小學生筆記">
-    <meta name="author" content="cccc0423">
+    
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cccc0423.github.io/posts/name-tag.html">
+    <title>名牌產生器</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-    <!-- and it's easy to individually load additional languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
-
     <script>hljs.highlightAll();</script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script>
-        MathJax = {
-            loader: {load: ['[tex]/mathtools']},
-            tex: {packages: {'[+]': ['mathtools']}}
-        };
-    </script>
     <script>
         MathJax = {
             loader: {load: ['[tex]/textmacros']},
@@ -36,45 +27,29 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <script src="../js/main.js" defer></script>
     
-    <link rel="canonical" href="https://cccc0423.github.io/posts/name-tag.html" />
+    
 </head>
-<button id="back-to-top" class="fab fab-scroll" aria-label="back-to-top">
-    <span class="material-icons">arrow_upward</span>
-</button>
 <body>
     <header>
-        <div class="navbar">
-            <a href="../index.html" class="nav-brand">小學生筆記</a>
-            <button class="hamburger-menu" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-links">
-                <a href="../weekly.html" class="">週記</a>
-                <a href="../about.html" class="">關於</a>
-            </div>
-        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../archive.html">Archive</a>
+        </nav>
     </header>
-
     <main>
-        <h1>名牌產生器</h1>
-        
-
-        
-        <p>這個產生器能讀 <code>.tsv</code> 檔。使用者需要把
-        <code>.tsv</code> 檔和 <code>.tex</code>
-        檔放在同個路徑之下。</p>
-        <p>如果我們從 NTU COOL 上下載了學生名單，那我們可以用 R
-        把學生名單轉換成 <code>.tsv</code> 檔。注意這個
-        <code>.tsv</code> 檔要有兩個欄位，一個是中文名字
-        <code>chinese</code>，另一個是英文名字
-        <code>english</code>。</p>
-        <div class="sourceCode" id="cb1"><pre
-        class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+      <h1>名牌產生器</h1>
+      <p class="post-date">2025-04-13</p>
+      
+            
+      <p>這個產生器能讀 <code>.tsv</code> 檔。使用者需要把
+      <code>.tsv</code> 檔和 <code>.tex</code> 檔放在同個路徑之下。</p>
+      <p>如果我們從 NTU COOL 上下載了學生名單，那我們可以用 R
+      把學生名單轉換成 <code>.tsv</code> 檔。注意這個 <code>.tsv</code>
+      檔要有兩個欄位，一個是中文名字
+      <code>chinese</code>，另一個是英文名字 <code>english</code>。</p>
+      <div class="sourceCode" id="cb1"><pre
+      class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;Student-List.xlsx&quot;</span></span>
@@ -88,22 +63,22 @@
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>student <span class="sc">%&gt;%</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(chinese, english) <span class="sc">%&gt;%</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_tsv</span>(<span class="st">&quot;student.tsv&quot;</span>)</span></code></pre></div>
-        <p>檔案大概要是長這樣。</p>
-        <pre><code>chinese english
+      <p>檔案大概要是長這樣。</p>
+      <pre><code>chinese english
 林一一  LIN, YI-Yi
 張二二 CHANG, ER-ER
 ...</code></pre>
-        <p>再來就是 <span class="math inline">\(\rm \LaTeX\)</span>
-        的部分。這個文件會讀取 <code>.tsv</code>
-        檔，然後把學生名字和學號印在 A4 紙上。注意這個文件要用
-        <code>xelatex</code> 編譯，因為我用了 <code>xeCJK</code>
-        套件來處理中文，而且要安裝相應的字型才能正常編譯（或者改成自己有的字型）。現在使用的幾個字型都是
-        overleaf 上有的。漢字字型是日文的 Harano Aji
-        Gothic，因為有點缺字，所以缺字的地方會用 Noto Sans CJK JP
-        來代替。英文字型則是 IBM Plex Sans Condensed，會使用 Condesed
-        是因為這樣能塞下比較多的字，不至於把字縮得太小。</p>
-        <div class="sourceCode" id="cb3"><pre
-        class="sourceCode latex"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[a4paper]{<span class="ex">article</span>}</span>
+      <p>再來就是 <span class="math inline">\(\rm \LaTeX\)</span>
+      的部分。這個文件會讀取 <code>.tsv</code>
+      檔，然後把學生名字和學號印在 A4 紙上。注意這個文件要用
+      <code>xelatex</code> 編譯，因為我用了 <code>xeCJK</code>
+      套件來處理中文，而且要安裝相應的字型才能正常編譯（或者改成自己有的字型）。現在使用的幾個字型都是
+      overleaf 上有的。漢字字型是日文的 Harano Aji
+      Gothic，因為有點缺字，所以缺字的地方會用 Noto Sans CJK JP
+      來代替。英文字型則是 IBM Plex Sans Condensed，會使用 Condesed
+      是因為這樣能塞下比較多的字，不至於把字縮得太小。</p>
+      <div class="sourceCode" id="cb3"><pre
+      class="sourceCode latex"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[a4paper]{<span class="ex">article</span>}</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[margin=-10pt]{<span class="ex">geometry</span>}</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">fontspec</span>}</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[AutoFallBack=true]{<span class="ex">xeCJK</span>}</span>
@@ -160,9 +135,5 @@
 <span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
     </main>
-
-    <footer>
-        <p>© 2025 小學生筆記</p>
-    </footer>
 </body>
 </html>

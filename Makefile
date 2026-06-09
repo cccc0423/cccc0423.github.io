@@ -20,7 +20,7 @@ WEEKLY_HTML := $(patsubst $(SRC_DIR)/weekly/%.md,$(DOCS_DIR)/weekly/%.html,$(WEE
 POSTS_HTML := $(patsubst $(SRC_DIR)/posts/%.md,$(DOCS_DIR)/posts/%.html,$(POSTS_SRC))
 
 # Main pages
-MAIN_PAGES := $(DOCS_DIR)/index.html $(DOCS_DIR)/weekly.html $(DOCS_DIR)/about.html
+MAIN_PAGES := $(DOCS_DIR)/index.html $(DOCS_DIR)/archive.html
 
 # Templates
 INDEX_TEMPLATE := $(TEMPLATES_DIR)/index.html
@@ -31,9 +31,9 @@ CSS_FILES := $(wildcard $(CSS_DIR)/*)
 JS_FILES := $(wildcard $(JS_DIR)/*)
 IMAGE_FILES := $(wildcard $(IMAGES_DIR)/*)
 
-.PHONY: all clean dirs assets sitemap serve help
+.PHONY: all clean dirs assets serve help
 
-all: dirs $(MAIN_PAGES) $(WEEKLY_HTML) $(POSTS_HTML) assets $(DOCS_DIR)/robots.txt sitemap
+all: dirs $(MAIN_PAGES) $(WEEKLY_HTML) $(POSTS_HTML) assets $(DOCS_DIR)/robots.txt
 
 dirs:
 	mkdir -p $(DIRS)
@@ -43,21 +43,9 @@ $(DOCS_DIR)/index.html: $(SRC_DIR)/index.md $(INDEX_TEMPLATE) | dirs
 	@echo "Building index page..."
 	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_home:true --variable=canonical_url:$(BASE_URL)/index.html --mathjax
 
-# This new rule ensures src/weekly.md is updated ONLY if a new weekly post is added,
-# or the generator script itself changes.
-$(SRC_DIR)/weekly.md: $(WEEKLY_SRC) js/generate-weekly-list.js
-	@echo "Updating weekly post list..."
-	node js/generate-weekly-list.js
-
-# The weekly.html rule is now simpler and only handles the pandoc conversion.
-# It depends on the updated src/weekly.md.
-$(DOCS_DIR)/weekly.html: $(SRC_DIR)/weekly.md $(INDEX_TEMPLATE) | dirs
-	@echo "Building weekly listing page..."
-	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_weekly:true --variable=canonical_url:$(BASE_URL)/weekly.html --mathjax
-
-$(DOCS_DIR)/about.html: $(SRC_DIR)/about.md $(INDEX_TEMPLATE) | dirs
-	@echo "Building about page..."
-	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_about:true --variable=canonical_url:$(BASE_URL)/about.html --mathjax
+$(DOCS_DIR)/archive.html: $(SRC_DIR)/archive.md $(INDEX_TEMPLATE) | dirs
+	@echo "Building archive page..."
+	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_archive:true --variable=canonical_url:$(BASE_URL)/archive.html --mathjax
 
 # Weekly posts with proper dependencies
 $(DOCS_DIR)/weekly/%.html: $(SRC_DIR)/weekly/%.md $(POST_TEMPLATE) | dirs
@@ -93,14 +81,6 @@ $(DOCS_DIR)/robots.txt: | dirs
 	@echo "Generating robots.txt..."
 	@echo "User-agent: *" > $@
 	@echo "Allow: /" >> $@
-	@echo "Sitemap: https://cccc0423.github.io/sitemap.xml" >> $@
-
-# Generate sitemap
-sitemap: $(DOCS_DIR)/sitemap.xml
-
-$(DOCS_DIR)/sitemap.xml: $(MAIN_PAGES) $(WEEKLY_HTML) $(POSTS_HTML)
-	@echo "Generating sitemap..."
-	./generate-sitemap.sh
 
 # Help target
 help:
@@ -108,7 +88,6 @@ help:
 	@echo "  all     - Build everything (default)"
 	@echo "  clean   - Remove generated files"
 	@echo "  assets  - Copy static assets only"
-	@echo "  sitemap - Generate sitemap only"
 	@echo "  serve   - Start development server"
 	@echo "  help    - Show this help"
 

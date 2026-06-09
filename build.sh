@@ -5,10 +5,9 @@ mkdir -p docs/css
 mkdir -p docs/js
 mkdir -p docs/images
 
-# Generate index and about pages
+# Generate index and archive pages
 pandoc src/index.md -o docs/index.html --template=templates/index.html --standalone --variable=year:$(date +%Y) --variable=is_home:true --mathjax
-pandoc src/weekly.md -o docs/weekly.html --template=templates/index.html --standalone --variable=year:$(date +%Y) --variable=is_weekly:true --mathjax
-pandoc src/about.md -o docs/about.html --template=templates/index.html --standalone --variable=year:$(date +%Y) --variable=is_about:true --mathjax
+pandoc src/archive.md -o docs/archive.html --template=templates/index.html --standalone --variable=year:$(date +%Y) --variable=is_archive:true --mathjax
 
 # Generate weekly posts
 for file in src/weekly/*.md; do
