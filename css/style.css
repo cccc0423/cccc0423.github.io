@@ -340,6 +340,7 @@ td {
   padding: 4px;
   border: 1px solid #f0f0f0;
   display: block;
+  margin: 0 auto;
 }
 
 /* 圖片說明文字 */
