@@ -300,13 +300,7 @@ td {
 
 
 
-/* Responsive adjustments */
 
-@media (max-width: 768px) {
-  header {
-    margin-bottom: 2rem;
-  }
-}
 
 /* 簡化版相簿樣式 */
 .gallery {
@@ -360,43 +354,7 @@ td {
   transform: translateY(-2px);
 }
 
-/* 響應式 */
-@media (max-width: 768px) {
-  .gallery {
-    max-width: 100%;
-    padding: 8px;
-  }
-  
-  .gallery-item {
-    margin: 8px;
-    max-width: 150px;
-  }
-  
-  .gallery img {
-    max-width: 150px;
-    max-height: 120px;
-  }
-  
-  .gallery-caption {
-    font-size: 0.8rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .gallery-item {
-    margin: 5px;
-    max-width: 120px;
-  }
-  
-  .gallery img {
-    max-width: 120px;
-    max-height: 100px;
-  }
-  
-  .gallery-caption {
-    font-size: 0.75rem;
-  }
-}
 
 /* 燈箱樣式 */
 .lightbox {
@@ -509,34 +467,7 @@ td {
   text-overflow: ellipsis;
 }
 
-/* 手機版燈箱調整 */
-@media (max-width: 768px) {
-  .lightbox-info {
-    max-width: 90%;
-    font-size: 13px;
-    padding: 6px 12px;
-    bottom: 15px;
-  }
-  
-  .close {
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-  }
-  
-  .nav-btn {
-    font-size: 20px;
-    padding: 8px 12px;
-  }
-  
-  .prev-btn {
-    left: 10px;
-  }
-  
-  .next-btn {
-    right: 10px;
-  }
-}
+
 
 /* 極簡文章列表樣式 (Minimal Post List) - 雙欄目錄對齊 */
 .minimal-post-list {
