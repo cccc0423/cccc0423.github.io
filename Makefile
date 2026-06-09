@@ -9,14 +9,14 @@ JS_DIR := js
 IMAGES_DIR := images
 
 # Directories
-DIRS := $(DOCS_DIR)/weekly $(DOCS_DIR)/css $(DOCS_DIR)/js $(DOCS_DIR)/images $(DOCS_DIR)/posts
+DIRS := $(DOCS_DIR)/archive $(DOCS_DIR)/css $(DOCS_DIR)/js $(DOCS_DIR)/images $(DOCS_DIR)/posts
 
 # Source files
-WEEKLY_SRC := $(wildcard $(SRC_DIR)/weekly/*.md)
+ARCHIVE_SRC := $(wildcard $(SRC_DIR)/archive/*.md)
 POSTS_SRC := $(wildcard $(SRC_DIR)/posts/*.md)
 
 # Target files
-WEEKLY_HTML := $(patsubst $(SRC_DIR)/weekly/%.md,$(DOCS_DIR)/weekly/%.html,$(WEEKLY_SRC))
+ARCHIVE_HTML := $(patsubst $(SRC_DIR)/archive/%.md,$(DOCS_DIR)/archive/%.html,$(ARCHIVE_SRC))
 POSTS_HTML := $(patsubst $(SRC_DIR)/posts/%.md,$(DOCS_DIR)/posts/%.html,$(POSTS_SRC))
 
 # Main pages
@@ -33,7 +33,7 @@ IMAGE_FILES := $(wildcard $(IMAGES_DIR)/*)
 
 .PHONY: all clean dirs assets serve help
 
-all: dirs $(MAIN_PAGES) $(WEEKLY_HTML) $(POSTS_HTML) assets $(DOCS_DIR)/robots.txt
+all: dirs $(MAIN_PAGES) $(ARCHIVE_HTML) $(POSTS_HTML) assets $(DOCS_DIR)/robots.txt
 
 dirs:
 	mkdir -p $(DIRS)
@@ -47,10 +47,10 @@ $(DOCS_DIR)/archive.html: $(SRC_DIR)/archive.md $(INDEX_TEMPLATE) | dirs
 	@echo "Building archive page..."
 	pandoc $< -o $@ --template=$(INDEX_TEMPLATE) --standalone --variable=year:$(YEAR) --variable=is_archive:true --variable=canonical_url:$(BASE_URL)/archive.html --mathjax
 
-# Weekly posts with proper dependencies
-$(DOCS_DIR)/weekly/%.html: $(SRC_DIR)/weekly/%.md $(POST_TEMPLATE) | dirs
-	@echo "Building weekly post: $<"
-	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_weekly:true --variable=canonical_url:$(BASE_URL)/weekly/$(notdir $(basename $<)).html --toc --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
+# Archive posts with proper dependencies
+$(DOCS_DIR)/archive/%.html: $(SRC_DIR)/archive/%.md $(POST_TEMPLATE) | dirs
+	@echo "Building archive post: $<"
+	pandoc $< -o $@ --defaults=pandoc-defaults.yaml --template=$(POST_TEMPLATE) --variable=year:$(YEAR) --variable=is_archive_post:true --variable=canonical_url:$(BASE_URL)/archive/$(notdir $(basename $<)).html --toc --highlight-style pygments --number-sections=$(shell grep -q "number-sections: true" $< && echo "true" || echo "false")
 
 # Posts with corrected variables
 $(DOCS_DIR)/posts/%.html: $(SRC_DIR)/posts/%.md $(POST_TEMPLATE) | dirs

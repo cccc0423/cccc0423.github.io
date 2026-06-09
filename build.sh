@@ -1,19 +1,20 @@
 #!/bin/bash
 
-mkdir -p docs/weekly
+mkdir -p docs/archive
 mkdir -p docs/css
 mkdir -p docs/js
 mkdir -p docs/images
+mkdir -p docs/posts
 
 # Generate index and archive pages
 pandoc src/index.md -o docs/index.html --template=templates/index.html --standalone --variable=year:$(date +%Y) --variable=is_home:true --mathjax
 pandoc src/archive.md -o docs/archive.html --template=templates/index.html --standalone --variable=year:$(date +%Y) --variable=is_archive:true --mathjax
 
-# Generate weekly posts
-for file in src/weekly/*.md; do
+# Generate archive posts
+for file in src/archive/*.md; do
     if [ -f "$file" ]; then
         filename=$(basename "$file" .md)
-        pandoc "$file" -o "docs/weekly/$filename.html" --template=templates/post.html --standalone --variable=year:$(date +%Y) --variable=is_weekly:true --toc --mathjax
+        pandoc "$file" -o "docs/archive/$filename.html" --template=templates/post.html --standalone --variable=year:$(date +%Y) --variable=is_archive_post:true --toc --mathjax --highlight-style pygments
     fi
 done
 

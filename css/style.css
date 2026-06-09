@@ -65,6 +65,12 @@ blockquote {
   padding-left: 1rem; 
   margin: 1.5rem 0; 
 }
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 2rem 0;
+}
       
 a { 
   color: inherit;
