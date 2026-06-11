@@ -18,6 +18,7 @@ is_home: true
 ## 軍旅手札
 
 <ul class="minimal-post-list">
+<li><a href="posts/20260426-bunkmates.html">新訓鄰兵合集</a><span class="date">2026-04-26</span></li>
 <li><a href="posts/20260421-valor.html">勇敢</a><span class="date">2026-04-21</span></li>
 <li><a href="posts/20260403-broom-and-brush.html">掃地與書法之聯繫</a><span class="date">2026-04-03</span></li>
 <li><a href="posts/20260208-commiseration.html">不忍人之心</a><span class="date">2026-02-08</span></li>
